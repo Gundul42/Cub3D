@@ -6,12 +6,13 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/03 14:01:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:26:11 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cube3d.h"
 
+//to be called at program termination for cleanup.
 int	the_end(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
@@ -23,6 +24,8 @@ int	the_end(t_data *data)
 	return (0);
 }
 
+//alloc memory for datatype and set everything to 0
+//define window size with x and y
 t_data	*ft_blank(t_data *data)
 {
 	data = malloc(sizeof(t_data));
@@ -34,8 +37,8 @@ t_data	*ft_blank(t_data *data)
 	data->line_length = 0;
 	data->endian = 0;
 	data->type = 0;
-	data->x = 600;
-	data->y = 400;
+	data->x = 1200;
+	data->y = 800;
 	return (data);
 }
 
