@@ -6,11 +6,11 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:18:45 by graja             #+#    #+#             */
-/*   Updated: 2021/09/12 13:06:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/03 13:30:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fractol.h"
+#include "../header/cube3d.h"
 
 int	ft_make_trgb(int t, int r, int g, int b)
 {
@@ -28,22 +28,28 @@ int	ft_make_color(t_color src)
 	return (col);
 }
 
-int	ft_calc_color(t_numbr new, int i, t_data *f)
+t_color	ft_rgb2col(int t, int r, int g, int b)
 {
-	int		index;
+	t_color	new;
 
-	index = ft_smooth_color(new, i, f);
-	if (i == f->i)
-		return (0);
-	return (f->palette[index]);
+	new.a = t;
+	new.r = r;
+	new.g = g;
+	new.b = b;
+	return (new);
 }
 
-int	ft_smooth_color(t_numbr new, int i, t_data *data)
+/* interpolates from color1 to color2 by step i of imax in
+ * hsv color space and return the new color in hsv, too
+ */
+t_hsv	ft_interpolate_hsv(t_hsv col1, t_hsv col2, int i, int maxi)
 {
-	double	smoothed;
-	int		col;
+	t_hsv		new;
+	double		step;
 
-	smoothed = log2(log2(new.real * new.real + new.img * new.img) / 2.0);
-	col = (int)(sqrt((double)(i) + 10.0 - smoothed) * 255.0) % data->i;
-	return (col);
+	step = (double)(i) / (double)(maxi);
+	new.h = (col2.h - col1.h) * step + col1.h;
+	new.s = (col2.s - col1.s) * step + col1.s;
+	new.v = (col2.v - col1.v) * step + col1.v;
+	return (new);
 }

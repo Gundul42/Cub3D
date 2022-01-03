@@ -6,11 +6,11 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:43:11 by graja             #+#    #+#             */
-/*   Updated: 2021/09/17 08:30:00 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/03 13:30:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fractol.h"
+#include "../header/cube3d.h"
 
 static
 t_color	ft_getrgb_a(t_hsv in, t_hsv pqt, long i)

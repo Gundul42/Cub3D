@@ -6,16 +6,13 @@
 #    By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2021/09/17 13:52:13 by graja            ###   ########.fr        #
+#    Updated: 2022/01/03 13:30:02 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fractol 
+NAME		= cub3d 
 SRCS		= main.c
-COMMON		= common/colors.c common/draw.c common/ccalc.c common/init.c \
-		  common/hsv2rgb.c common/rgb2hsv.c common/hooks.c \
-		  common/sets.c common/cmdline.c common/fractset.c
-FRACTALS	= fractals/mandel.c fractals/julia.c fractals/ship.c
+COMMON		= common/colors.c common/draw.c common/hsv2rgb.c common/rgb2hsv.c
 CC		= gcc
 FLAGS		= -Wall -Wextra -Werror
 LIBFT		= libft
@@ -27,12 +24,12 @@ MLX		= minilibx
 $(NAME)		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FRACTALS) $(FLAGS) $(FLGMLX) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(FLGFT) -o $(NAME)
 
 apple		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FRACTALS) $(FLAGS) $(FLGMLX) $(APLFLG) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(APLFLG) $(FLGFT) -o $(NAME)
 
 all		:	$(NAME)
 

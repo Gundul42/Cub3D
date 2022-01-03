@@ -6,11 +6,11 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 12:18:27 by graja             #+#    #+#             */
-/*   Updated: 2021/09/12 13:12:27 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/03 13:31:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fractol.h"
+#include "../header/cube3d.h"
 
 /* color conversion see formulae on:
  * https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae
