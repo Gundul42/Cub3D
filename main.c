@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 16:21:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/04 18:30:30 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_data	*ft_blank(t_data *data)
 int	main(void)
 {
 	t_data	*img;
+	size_t	x;
+	size_t	y;
 
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
@@ -58,6 +60,8 @@ int	main(void)
 	img->img = mlx_new_image(img->mlx, img->x, img->y);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
+	ft_openMap(img, NULL, &x, &y);
+	printf("%ld - %ld\n", x, y); 
 	ft_draw_background(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
 	mlx_key_hook(img->win, ft_key_hook, img);

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 16:20:46 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/04 18:17:28 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 // a color typedef for HSV colors
 typedef struct s_hsv {
@@ -55,6 +58,7 @@ typedef struct s_data {
 	t_color		cfloor_far;	//floor color
 	t_color		cfloor_near;	//floor color
 	int		csky;		//sky color
+	int		**map;		//2d array, map representation from cub file
 }				t_data;
 
 int		ft_make_trgb(int t, int r, int g, int b);
@@ -65,6 +69,7 @@ void	ft_init_window(t_data *data, int x, int y, int i);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_background(t_data *data);
+void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy);
 t_data	*ft_blank(t_data *data);
 
 //Hooks
@@ -76,6 +81,5 @@ int		ft_key_hook(int code, t_data *data);
 t_color	hsv2rgb(t_hsv in);
 t_hsv	ft_interpolate_hsv(t_hsv col1, t_hsv col2, int i, int maxi);
 t_hsv	rgb2hsv(t_color in);
-
 
 #endif

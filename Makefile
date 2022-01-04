@@ -6,14 +6,14 @@
 #    By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/04 11:50:35 by graja            ###   ########.fr        #
+#    Updated: 2022/01/04 17:11:50 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3d 
 SRCS		= main.c
 COMMON		= common/colors.c common/draw.c common/hsv2rgb.c \
-		  common/rgb2hsv.c common/hooks.c
+		  common/rgb2hsv.c common/hooks.c common/load_map.c
 CC		= gcc
 FLAGS		= -Wall -Wextra -Werror
 LIBFT		= libft
