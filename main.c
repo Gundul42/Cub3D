@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/03 14:26:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/04 12:03:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,9 @@ int	the_end(t_data *data)
 //define window size with x and y
 t_data	*ft_blank(t_data *data)
 {
-	data = malloc(sizeof(t_data));
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img = NULL;
-	data->addr = NULL;
-	data->bits_per_pixel = 0;
-	data->line_length = 0;
-	data->endian = 0;
-	data->type = 0;
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		exit (1);
 	data->x = 1200;
 	data->y = 800;
 	return (data);
@@ -56,6 +50,9 @@ int	main(void)
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
+	mlx_key_hook(img->win, ft_key_hook, img);
+	mlx_mouse_hook(img->win, ft_mouse_hook, img);
+	mlx_loop_hook(img->mlx, ft_loop_hook, img);
 	mlx_loop(img->mlx);
 	return (0);
 }
