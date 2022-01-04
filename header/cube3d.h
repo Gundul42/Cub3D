@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 18:17:28 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/04 22:21:41 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_init_window(t_data *data, int x, int y, int i);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_background(t_data *data);
-void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy);
+void	ft_initMap(t_data *data, char *path);
 t_data	*ft_blank(t_data *data);
 
 //Hooks
