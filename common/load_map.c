@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 18:29:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/04 18:40:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ size_t	ft_getll(char *s)
 	return (i);
 }
 
+static
+void	ft_readErr(t_data *data, char *path)
+{
+	{
+		if (path)
+			perror(path);
+		else
+			perror("./maps/test.cub");
+		the_end(data);
+	}
+}
+
 void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy)
 {
 	int	fd;
@@ -38,13 +50,7 @@ void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy)
 	else
 		fd = open("./maps/test.cub", O_RDONLY);
 	if (fd == -1)
-	{
-		if (path)
-			perror(path);
-		else
-			perror("./maps/test.cub");
-		the_end(data);
-	}
+		ft_readErr(data, path);
 	*maxy = 0;
 	*maxx = 0;
 	while (get_next_line(fd, &line))
