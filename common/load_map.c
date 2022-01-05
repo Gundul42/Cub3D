@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 22:44:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 13:04:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,18 @@ int	ft_openFile(t_data *data, char *path)
 }
 
 static
-void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy)
+void	ft_openMap(t_data *data, char *path)
 {
 	int	fd;
 	char	*line;
 
 	line = NULL;
 	fd = ft_openFile(data, path);
-	*maxy = 0;
-	*maxx = 0;
 	while (get_next_line(fd, &line))
 	{
-		if (*maxx < ft_getll(line))
-			*maxx = ft_getll(line);
-		(*maxy)++;
+		if (data->mapx < ft_getll(line))
+			data->mapx = ft_getll(line);
+		(data->mapy)++;
 		free(line);
 	}
 	free(line);
@@ -69,17 +67,17 @@ void	ft_openMap(t_data *data, char *path, size_t *maxx, size_t *maxy)
 }
 
 static
-void	ft_dumpMap(t_data *data, size_t x, size_t y)
+void	ft_dumpMap(t_data *data)
 {
 	size_t	a;
 	size_t	b;
 
 	a = 0;
 	b = 0;
-	while (b < y)
+	while (b < data->mapy)
 	{
 		a = 0;
-		while (a < x)
+		while (a < data->mapx)
 		{
 			printf("%d ",data->map[b][a]);
 			a++;
@@ -91,8 +89,6 @@ void	ft_dumpMap(t_data *data, size_t x, size_t y)
 		
 void	ft_initMap(t_data *data, char *path)
 {
-	size_t	x;
-	size_t	y;
 	size_t	i;
 	size_t	j;
 	int	fd;
@@ -100,18 +96,17 @@ void	ft_initMap(t_data *data, char *path)
 	char	*bck;
 
 	line = NULL;
-	ft_openMap(data, path, &x, &y);
-	if (x < 3 || y < 3)
+	ft_openMap(data, path);
+	if (data->mapx < 3 || data->mapy < 3)
 		the_end(data);
 	fd = ft_openFile(data, path);
-	data->map = ft_calloc(y, sizeof(int *));
+	data->map = ft_calloc(data->mapy, sizeof(int *));
 	j = 0;
-	while (j < y)
+	while (get_next_line(fd, &line))
 	{
 		i = 0;
-		data->map[j] = ft_calloc(x, sizeof(int));
-		get_next_line(fd, &line);
 		bck = line;
+		data->map[j] = ft_calloc(data->mapx, sizeof(int));
 		while (*bck)
 		{
 			if (*bck == '1')
@@ -123,5 +118,7 @@ void	ft_initMap(t_data *data, char *path)
 		j++;
 		free(line);
 	}
-	ft_dumpMap(data, x, y);
+	free(line);
+	close(fd);
+	ft_dumpMap(data);
 }

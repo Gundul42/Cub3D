@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 16:33:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 12:34:23 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ void	ft_draw_background(t_data *data)
 	int	y;
 
 	y = 0;
-	while (y < data->y / 2)
+	while (y < data->win_y / 2)
 	{
 		x = 0;
-		while (x < data->x)
+		while (x < data->win_x)
 		{
 			ft_draw_pixel(data, x, y, data->csky);
 			x++;
 		}
 		y++;
 	}
-	while (y < data->y)
+	while (y < data->win_y)
 	{
 		x = 0;
-		while (x < data->x)
+		while (x < data->win_x)
 		{
-			ft_draw_pixel(data, x, y, interpol_color(data, y, data->y));
+			ft_draw_pixel(data, x, y, interpol_color(data, y, data->win_y));
 			x++;
 		}
 		y++;

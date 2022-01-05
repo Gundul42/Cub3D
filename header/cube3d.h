@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 22:21:41 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 12:23:35 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_data {
 	int		line_length;
 	int		endian;
 	int		type;
-	int		x;		//windowsize x
-	int		y;		//windowsize y
+	int		win_x;		//windowsize x
+	int		win_y;		//windowsize y
 	unsigned char	tilesize;	//size of a game tile == texture size in Bit
 	unsigned char	fov;		//field of view od player in degrees
 	unsigned char	speed;		//player speed in pixel of gametile / movement unit
@@ -59,6 +59,8 @@ typedef struct s_data {
 	t_color		cfloor_near;	//floor color
 	int		csky;		//sky color
 	int		**map;		//2d array, map representation from cub file
+	size_t		mapx;
+	size_t		mapy;		//dimension of loaded map
 }				t_data;
 
 int		ft_make_trgb(int t, int r, int g, int b);
