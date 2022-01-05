@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 12:34:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 15:41:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 
 void	ft_draw_background(t_data *data)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	y = 0;
 	while (y < data->win_y / 2)
@@ -59,6 +59,26 @@ void	ft_draw_background(t_data *data)
 		y++;
 	}
 
+}
+
+void	ft_draw_rect(t_data *data, int x, int y, int l, int w)
+{
+	int	a;
+	int	b;
+	int	col;
+
+	b = 0;
+	col = ft_make_trgb(0, 255, 217, 102);
+	while (b < w)
+	{
+		a = 0;
+		while (a < l)
+		{
+			ft_draw_pixel(data, x + a, y + b, col); 
+			a++;
+		}
+		b++;
+	}
 }
 
 void	ft_draw_line(t_data *data, int x, int y, int a, int b)

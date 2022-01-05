@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 12:23:35 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 15:45:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_data {
 	int		line_length;
 	int		endian;
 	int		type;
-	int		win_x;		//windowsize x
-	int		win_y;		//windowsize y
+	size_t		win_x;		//windowsize x
+	size_t		win_y;		//windowsize y
 	unsigned char	tilesize;	//size of a game tile == texture size in Bit
 	unsigned char	fov;		//field of view od player in degrees
 	unsigned char	speed;		//player speed in pixel of gametile / movement unit
@@ -70,7 +70,9 @@ t_color	ft_rgb2col(int t, int r, int g, int b);
 void	ft_init_window(t_data *data, int x, int y, int i);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
+void	ft_draw_rect(t_data *data, int x, int y, int l, int w);
 void	ft_draw_background(t_data *data);
+void	ft_draw2dmap(t_data *data);
 void	ft_initMap(t_data *data, char *path);
 t_data	*ft_blank(t_data *data);
 

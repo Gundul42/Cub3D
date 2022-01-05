@@ -6,12 +6,13 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 12:56:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 15:48:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cube3d.h"
 
+//clean up all allocated memory for the loaded map
 static
 void	ft_cleanupMap(t_data *data)
 {
@@ -78,6 +79,7 @@ int	main(void)
 			&img->line_length, &img->endian);
 	ft_initMap(img, NULL);
 	ft_draw_background(img);
+	ft_draw2dmap(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
 	mlx_key_hook(img->win, ft_key_hook, img);
 	mlx_mouse_hook(img->win, ft_mouse_hook, img);
