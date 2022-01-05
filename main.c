@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 16:40:40 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 16:48:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(void)
 	ft_draw2dmap(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
 	mlx_key_hook(img->win, ft_key_hook, img);
-	mlx_mouse_hook(img->win, ft_mouse_hook, img);
+//	mlx_mouse_hook(img->win, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_loop_hook, img);
 	mlx_loop(img->mlx);
 	return (0);

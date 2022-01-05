@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/04 12:05:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 17:48:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	ft_key_hook(int code, t_data *data)
 {
 	if (code == 65307)
 		the_end(data);
-	/*
 	if (code == 65362)
-		//ft_mmove(data, data->x / 2, data->y / 2 + data->y / 16, 0.1);
+		ft_movePlayer(data, 1);//down
 	if (code == 65364)
-		//ft_mmove(data, data->x / 2, data->y / 2 - data->y / 16, 0.1);
+		ft_movePlayer(data, 2);//up
 	if (code == 65361)
-		//ft_mmove(data, data->x / 2 + data->x / 16, data->y / 2, 0.1);
+		ft_movePlayer(data, 3);//right
 	if (code == 65363)
-		//ft_mmove(data, data->x / 2 - data->x / 16, data->y / 2, 0.1);*/
+		ft_movePlayer(data, 4);//left
 	return (code);
 }
 

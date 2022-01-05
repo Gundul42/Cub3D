@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 16:31:25 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 17:27:34 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
 void	ft_draw_background(t_data *data);
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);
+void	ft_movePlayer(t_data *data,int flag);
 void	ft_initMap(t_data *data, char *path);
 t_data	*ft_blank(t_data *data);
 
