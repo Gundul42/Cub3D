@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 15:45:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/05 16:31:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ t_color	ft_rgb2col(int t, int r, int g, int b);
 void	ft_init_window(t_data *data, int x, int y, int i);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
-void	ft_draw_rect(t_data *data, int x, int y, int l, int w);
+void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
 void	ft_draw_background(t_data *data);
 void	ft_draw2dmap(t_data *data);
+void	ft_showPlayer(t_data *data);
 void	ft_initMap(t_data *data, char *path);
 t_data	*ft_blank(t_data *data);
 
