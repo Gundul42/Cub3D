@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 17:48:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 11:43:01 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_loop_hook(t_data *img)
 {
-	mlx_do_sync(img->mlx);
+	//mlx_do_sync(img->mlx);  I forgot this is good for what exactly ???
+	ft_draw_background(img);
+	ft_draw2dmap(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	return (0);
 }
