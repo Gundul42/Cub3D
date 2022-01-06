@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 19:38:26 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 00:07:02 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_hsv {
 	double	h;
 	double	s;
 	double	v;
-}		t_hsv;
+}	t_hsv;
 
 // a color typedef for ARGB colors like in MiniLibX
 typedef struct s_color {
@@ -39,30 +39,30 @@ typedef struct s_color {
 
 // the basic data type for handling the minilibx
 typedef struct s_data {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		type;
-	size_t		win_x;		//windowsize x
-	size_t		win_y;		//windowsize y
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				type;
+	size_t			win_x;		//windowsize x
+	size_t			win_y;		//windowsize y
 	unsigned char	tilesize;	//size of a game tile == texture size in Bit
 	unsigned char	fov;		//field of view of player in degrees
 	unsigned char	speed;		//player speed in pixel of gametile / movement unit
-	float		rotspeed;	//player rotation speed;
-	float		dir;		//player look direction
-	float		px;		//player x position
-	float		py;		//player y position
-	t_color		cfloor_far;	//floor color
-	t_color		cfloor_near;	//floor color
-	int		csky;		//sky color
-	int		**map;		//2d array, map representation from cub file
-	size_t		mapx;
-	size_t		mapy;		//dimension of loaded map
-}				t_data;
+	float			rotspeed;	//player rotation speed;
+	float			dir;		//player look direction
+	float			px;		//player x position
+	float			py;		//player y position
+	t_color			cfloor_far;	//floor color
+	t_color			cfloor_near;	//floor color
+	int				csky;		//sky color
+	int				**map;		//2d array, map representation from cub file
+	size_t			mapx;
+	size_t			mapy;		//dimension of loaded map
+}	t_data;
 
 // common: colors.c
 int		ft_make_trgb(int t, int r, int g, int b);
@@ -77,6 +77,7 @@ t_hsv	rgb2hsv(t_color in);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_background(t_data *data);
 void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
+void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 // common: hooks.c
@@ -85,6 +86,8 @@ int		ft_key_hook(int code, t_data *data);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
 // common: load_map.c
 void	ft_initMap(t_data *data, char *path);
+// common: load_map_utils.c
+void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);

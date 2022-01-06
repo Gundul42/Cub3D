@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 19:21:47 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 00:08:28 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,27 @@ void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col)
 			a++;
 		}
 		b++;
+	}
+}
+
+void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col)
+{
+	int	x;
+	int	y;
+
+	x = or_x - r;
+	while (x <= or_x + r)
+	{
+		y = or_y - r;
+		while (y <= or_y + r)
+		{
+			if (pow(pow(x - or_x, 2) + pow(y - or_y, 2), 0.5) <= r)
+			{
+				ft_draw_pixel(d, x, y, col);
+			}
+			y++;
+		}
+		x++;
 	}
 }
 
