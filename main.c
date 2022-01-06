@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 15:48:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 18:29:02 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cube3d.h"
+
+//./cub3d ./maps/test.cub
+
 
 //clean up all allocated memory for the loaded map
 static
@@ -58,16 +61,19 @@ t_data	*ft_blank(t_data *data)
 	data->dir = 0.0;
 	data->px = 5.0 * 64.0;
 	data->py = 5.0 * 64.0;
-	data->cfloor_far = ft_rgb2col(0, 76, 0, 0);
-	data->cfloor_near = ft_rgb2col(0, 128, 128, 128);
+	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
+	data->cfloor_near = (ft_rgb2col(0, 132, 43, 135));
+
 	data->csky = ft_make_trgb(0, 135, 206, 235);
 	return (data);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	*img;
 
+	if (argc == 1)
+		fehlt_map(NULL, NULL, 0);
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
 	if (!img->mlx)
@@ -77,7 +83,7 @@ int	main(void)
 	img->img = mlx_new_image(img->mlx, img->win_x, img->win_y);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	ft_initMap(img, NULL);
+	ft_initMap(img, argv[1]);
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 15:41:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 18:21:45 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	interpol_color(t_data *data, int now, int max)
 {
 	t_hsv	res;
 
-	res = ft_interpolate_hsv(rgb2hsv(data->cfloor_far), 
+	res = ft_interpolate_hsv(rgb2hsv(data->cfloor_far),
 			rgb2hsv(data->cfloor_near), now, max);
 	return (ft_make_color(hsv2rgb(res)));
 }
@@ -74,7 +74,7 @@ void	ft_draw_rect(t_data *data, int x, int y, int l, int w)
 		a = 0;
 		while (a < l)
 		{
-			ft_draw_pixel(data, x + a, y + b, col); 
+			ft_draw_pixel(data, x + a, y + b, col);
 			a++;
 		}
 		b++;

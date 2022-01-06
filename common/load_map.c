@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 13:04:25 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 15:34:40 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ int	ft_openFile(t_data *data, char *path)
 	if (fd == -1)
 	{
 		if (path)
-			perror(path);
+			fehlt_map(data, path, 1);
 		else
-			perror("./maps/test.cub");
-		the_end(data);
+			fehlt_map(data, path, 2);
 	}
 	return (fd);
 }
@@ -86,7 +85,7 @@ void	ft_dumpMap(t_data *data)
 		b++;
 	}
 }
-		
+
 void	ft_initMap(t_data *data, char *path)
 {
 	size_t	i;
@@ -109,8 +108,8 @@ void	ft_initMap(t_data *data, char *path)
 		data->map[j] = ft_calloc(data->mapx, sizeof(int));
 		while (*bck)
 		{
-			if (*bck == '1')
-				data->map[j][i] = 1;
+			if (ft_isdigit(*bck) == 1)
+				data->map[j][i] = *bck - 48;
 			if (*bck != 32)
 				i++;
 			bck++;
