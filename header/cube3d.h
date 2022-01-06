@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 19:06:19 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 19:38:26 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,33 +67,34 @@ typedef struct s_data {
 // common: colors.c
 int		ft_make_trgb(int t, int r, int g, int b);
 int		ft_make_color(t_color src);
-int		the_end(t_data *data);
-float	ft_deg2rad(float deg);
-float	ft_rad2deg(float rad);
 t_color	ft_rgb2col(int t, int r, int g, int b);
-void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
-void	ft_rotatePlayer(t_data *data, int flag);
-void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
-void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
-void	ft_init_window(t_data *data, int x, int y, int i);
-void	ft_draw_pixel(t_data *data, int x, int y, int color);
-void	ft_draw_line(t_data *data, int x, int y, int a, int b);
-void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
-void	ft_draw_background(t_data *data);
-void	ft_draw2dmap(t_data *data);
-void	ft_showPlayer(t_data *data);
-void	ft_movePlayer(t_data *data,int flag);
-void	ft_initMap(t_data *data, char *path);
-t_data	*ft_blank(t_data *data);
-t_color	hsv2rgb(t_hsv in);
-t_hsv	rgb2hsv(t_color in);
 t_hsv	ft_interpolate_hsv(t_hsv col1, t_hsv col2, int i, int maxi);
-void	fehlt_map(t_data *data, char *path, int type);
-
-//Hooks
+// common: col_hsv2rgb.c
+t_color	hsv2rgb(t_hsv in);
+// common: rgb2hsv.c
+t_hsv	rgb2hsv(t_color in);
+// common: draw.c
+void	ft_draw_pixel(t_data *data, int x, int y, int color);
+void	ft_draw_background(t_data *data);
+void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
+void	ft_draw_line(t_data *data, int x, int y, int a, int b);
+void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
+// common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
+// common: load_map.c
+void	ft_initMap(t_data *data, char *path);
+// common: map2d.c
+void	ft_draw2dmap(t_data *data);
+void	ft_showPlayer(t_data *data);
+void	ft_movePlayer(t_data *data,int flag);
+// common: math.c
+float	ft_deg2rad(float deg);
+float	ft_rad2deg(float rad);
+void	ft_rotatePlayer(t_data *data, int flag);
+void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
+void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 // common: load_map.c
 void	ft_initMap(t_data *data, char *path);
 // common: map2d.c

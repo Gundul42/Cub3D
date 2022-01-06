@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 18:54:36 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 19:21:47 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_background(t_data *data)
 	size_t	y;
 
 	y = 0;
-	while (y < data->win_y / 2)
+	while (y < data->win_y / 3)
 	{
 		x = 0;
 		while (x < data->win_x)

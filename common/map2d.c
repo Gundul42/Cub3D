@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 17:32:13 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 19:13:13 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_draw2dmap(t_data *data)
 		while (x < data->mapx)
 		{
 			if (data->map[y][x])
-				ft_draw_rect(data, x * xstep, y * ystep, xstep, ystep, col);
+				ft_draw_rect(data, (x * xstep) + 1, (y * ystep) + 1, xstep - 1, ystep - 1, col);
 			x++;
 		}
 		y++;
@@ -75,7 +75,7 @@ void	ft_movePlayer(t_data *data,int flag)
 	float	newy;
 
 	newx = data->px;
-	newy = data->py;	
+	newy = data->py;
 	if (flag == 1 || flag == 2)
 		ft_forbac(data, &newx, &newy, flag);
 	if (flag == 3 || flag == 4)
