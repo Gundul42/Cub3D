@@ -6,15 +6,15 @@
 #    By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/05 19:13:41 by flormich         ###   ########.fr        #
+#    Updated: 2022/01/06 19:07:14 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3d
-SRCS	= main.c error.c
-COMMON	= common/colors.c common/draw.c common/col_hsv2rgb.c \
-		common/col_rgb2hsv.c common/hooks.c common/load_map.c \
-		common/map2d.c
+NAME		= cub3d 
+SRCS		= main.c
+COMMON		= common/colors.c common/draw.c common/hsv2rgb.c \
+		  common/rgb2hsv.c common/hooks.c common/load_map.c \
+		  common/map2d.c common/maths.c error.c
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 LIBFT	= libft

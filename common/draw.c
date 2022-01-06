@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 18:21:45 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:54:36 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ void	ft_draw_background(t_data *data)
 
 }
 
-void	ft_draw_rect(t_data *data, int x, int y, int l, int w)
+void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col)
 {
 	int	a;
 	int	b;
-	int	col;
 
 	b = 0;
-	col = ft_make_trgb(0, 255, 217, 102);
 	while (b < w)
 	{
 		a = 0;
@@ -99,4 +97,16 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b)
 		ft_draw_pixel(data, x + xstep * i, y + ystep * i, col);
 		i++;
 	}
+}
+
+/* newly added (06/01/22) draw a line beginning from x,y with the length
+ * of len in direction of alpha */
+void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
+{
+	int	x2;
+	int	y2;
+
+	x2 = x + (float)(len) * cosf(ft_deg2rad(alpha));
+	y2 = y + (float)(len) * sinf(ft_deg2rad(alpha));
+	ft_draw_line(data, x, y, x2, y2);
 }
