@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 17:51:26 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:17:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_showPlayer(t_data *data)
 	x = data->px * xstep - xstep / 8;
 	y = data->py * ystep - ystep / 8;
 	ft_draw_rect(data, x, y, xstep / 4, ystep / 4, col);
+	ft_draw_angeled(data, x + xstep / 8, y + ystep / 8, data->dir, data->tilesize / 4);
 }
 
 /* Flags:
@@ -67,14 +68,12 @@ void	ft_movePlayer(t_data *data,int flag)
 
 	newx = data->px;
 	newy = data->py;	
-	if (flag == 1)
-		newy -= 0.25;
-	if (flag == 2)
-		newy += 0.25;
-	if (flag == 3)
-		newx -= 0.25;
-	if (flag == 4)
-		newx += 0.25;
+	if (flag == 1 || flag == 2)
+		ft_forbac(data, &newx, &newy, flag);
+	if (flag == 3 || flag == 4)
+		ft_leftright(data, &newx, &newy, flag);
+	newx += data->px;
+	newy += data->py;
 	if (!data->map[(size_t)(newy - 0.25)][(size_t)(newx)])
 	{
 		data->px = newx;

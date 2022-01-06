@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 11:46:41 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:11:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ t_data	*ft_blank(t_data *data)
 	data->win_y = 800;
 	data->tilesize = 64;
 	data->fov = 120;
-	data->speed = 32;
+	data->speed = 16;
+	data->rotspeed = 1.5;
 	data->dir = 0.0;
-	data->px = 6.5;
-	data->py = 3.5;
+	data->px = 6.0;
+	data->py = 3.0;
 	data->cfloor_far = ft_rgb2col(0, 76, 0, 0);
 	data->cfloor_near = ft_rgb2col(0, 128, 128, 128);
 	data->csky = ft_make_trgb(0, 135, 206, 235);

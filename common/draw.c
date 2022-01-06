@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 16:31:49 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 16:53:41 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,14 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b)
 		ft_draw_pixel(data, x + xstep * i, y + ystep * i, col);
 		i++;
 	}
+}
+	
+void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
+{
+	int	x2;
+	int	y2;
+
+	x2 = x + (float)(len) * cosf(ft_deg2rad(alpha));
+	y2 = y + (float)(len) * sinf(ft_deg2rad(alpha));
+	ft_draw_line(data, x, y, x2, y2);
 }

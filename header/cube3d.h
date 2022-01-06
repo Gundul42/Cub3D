@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/05 17:27:34 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:14:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ typedef struct s_data {
 	size_t		win_x;		//windowsize x
 	size_t		win_y;		//windowsize y
 	unsigned char	tilesize;	//size of a game tile == texture size in Bit
-	unsigned char	fov;		//field of view od player in degrees
+	unsigned char	fov;		//field of view of player in degrees
 	unsigned char	speed;		//player speed in pixel of gametile / movement unit
+	float		rotspeed;	//player rotation speed;
 	float		dir;		//player look direction
 	float		px;		//player x position
 	float		py;		//player y position
@@ -66,7 +67,13 @@ typedef struct s_data {
 int		ft_make_trgb(int t, int r, int g, int b);
 int		ft_make_color(t_color src);
 int		the_end(t_data *data);
+float	ft_deg2rad(float deg);
+float	ft_rad2deg(float rad);
 t_color	ft_rgb2col(int t, int r, int g, int b);
+void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
+void	ft_rotatePlayer(t_data *data, int flag);
+void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
+void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 void	ft_init_window(t_data *data, int x, int y, int i);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);

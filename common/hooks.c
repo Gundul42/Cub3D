@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 11:43:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 15:44:32 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,21 @@ int	ft_loop_hook(t_data *img)
 
 int	ft_key_hook(int code, t_data *data)
 {
+	//printf("Key: %d)\n", code);
 	if (code == 65307)
 		the_end(data);
-	if (code == 65362)
+	if (code == 119) //65362)
 		ft_movePlayer(data, 1);//down
-	if (code == 65364)
+	if (code == 115) //65364)
 		ft_movePlayer(data, 2);//up
+	if (code == 97) //65361)
+		ft_movePlayer(data, 3);//left
+	if (code == 100) //65363)
+		ft_movePlayer(data, 4);//right
 	if (code == 65361)
-		ft_movePlayer(data, 3);//right
+		ft_rotatePlayer(data, 0);
 	if (code == 65363)
-		ft_movePlayer(data, 4);//left
+		ft_rotatePlayer(data, 1);
 	return (code);
 }
 
