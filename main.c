@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 18:50:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/07 00:36:08 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ t_data	*ft_blank(t_data *data)
 	data->fov = 120;
 	data->speed = 16;
 	data->rotspeed = 1.5;
-	data->dir = 0.0;
-	data->px = 6.0;
-	data->py = 3.0;
-	data->cfloor_far = ft_rgb2col(0, 76, 0, 0);
-	data->cfloor_near = ft_rgb2col(0, 128, 128, 128);
+	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
+	data->cfloor_near = ft_rgb2col(0, 132, 43, 135);
 	data->csky = ft_make_trgb(0, 135, 206, 235);
 	return (data);
 }
@@ -87,7 +84,7 @@ int	main(int argc, char **argv)
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
-	mlx_hook(img->win, 2, 1L << 0, ft_key_hook, img); //do as long as key is pressed
+	mlx_hook(img->win, 2, 1L << 0, ft_key_hook, img); //do as long as key is pressed (orientation:left/right - WSDA)
 //	mlx_key_hook(img->win, ft_key_hook, img);
 //	mlx_mouse_hook(img->win, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_loop_hook, img);

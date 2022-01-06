@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 18:54:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 23:42:35 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,32 @@ void	ft_openMap(t_data *data, char *path)
 	close(fd);
 }
 
+// Display map in the terminal
 static
 void	ft_dumpMap(t_data *data)
 {
-	size_t	a;
-	size_t	b;
+	size_t	x;
+	size_t	y;
 
-	a = 0;
-	b = 0;
-	while (b < data->mapy)
+	x = 0;
+	y = 0;
+	while (y < data->mapy)
 	{
-		a = 0;
-		while (a < data->mapx)
+		x = 0;
+		while (x < data->mapx)
 		{
-			printf("%d ",data->map[b][a]);
-			a++;
+			printf("%d ",data->map[y][x]);
+			x++;
 		}
 		printf("\n");
-		b++;
+		y++;
 	}
 }
 
 void	ft_initMap(t_data *data, char *path)
 {
-	size_t	i;
-	size_t	j;
+	size_t	x;
+	size_t	y;
 	int	fd;
 	char	*line;
 	char	*bck;
@@ -100,21 +101,24 @@ void	ft_initMap(t_data *data, char *path)
 		the_end(data);
 	fd = ft_openFile(data, path);
 	data->map = ft_calloc(data->mapy, sizeof(int *));
-	j = 0;
+	y = 0;
 	while (get_next_line(fd, &line))
 	{
-		i = 0;
+		x = 0;
 		bck = line;
-		data->map[j] = ft_calloc(data->mapx, sizeof(int));
+		data->map[y] = ft_calloc(data->mapx, sizeof(int));
 		while (*bck)
 		{
-			if (ft_isdigit(*bck) == 1)
-				data->map[j][i] = *bck - 48;
+			if (*bck == '1')
+				data->map[y][x] = 1;
+			else if (*bck == 'N' || *bck == 'S' || *bck == 'E'
+				|| *bck == 'W')
+				ft_initialize_player(data, x, y, *bck);
 			if (*bck != 32)
-				i++;
+				x++;
 			bck++;
 		}
-		j++;
+		y++;
 		free(line);
 	}
 	free(line);

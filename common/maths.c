@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 17:38:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 19:49:28 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* M_PI is a macro of math.h lib for the value of pi.
  * deg2rad converting from degree to radians
- * and rad2deg vice verca */
-
+ * and rad2deg vice verca
+*/
 float	ft_deg2rad(float deg)
 {
 	return (deg * M_PI /180);
@@ -28,7 +28,7 @@ float	ft_rad2deg(float rad)
 }
 
 /* calculates the forward / backward movement of the player
- * newx and newy are pointers to be able tto give the values back
+ * newx and newy are pointers to be able to give the values back
  * flag == 2 means backwards, so * -1
  * movement now depending on player look direction
  */
@@ -46,7 +46,7 @@ void	ft_forbac(t_data *data, float *newx, float *newy, int flag)
 	}
 }
 
-/* EasyPeasy, tmp add/substract 90 degrees to look direction 
+/* EasyPeasy, tmp add/substract 90 degrees to look direction
  * and move forward, then return the original view direction :D
  */
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
@@ -67,7 +67,7 @@ void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
 }
 
 /* rotate the player view with cursor right/left
- * by the rotspeed value 
+ * by the rotspeed value
  * get sure angle is only between 0 and 360
  */
 void	ft_rotatePlayer(t_data *data, int flag)
