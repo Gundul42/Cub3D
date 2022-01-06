@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 17:17:29 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:32:13 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	ft_draw2dmap(t_data *data)
 	ft_showPlayer(data);
 }
 
+/* calculates the player position (which is in maptiles) and shows it in the map
+ * now including view direction of the player
+ * color is hardcoded because only temp solution
+ */
 void	ft_showPlayer(t_data *data)
 {
 	size_t	xstep;
@@ -60,6 +64,10 @@ void	ft_showPlayer(t_data *data)
  * 		2 = down
  * 		3 = right
  * 		4 = left
+ *
+ * 		first save player position, then calculate the new positions
+ * 		then check data->map[xyz] == 0 ? Only if true, save the new
+ * 		player position.
 */
 void	ft_movePlayer(t_data *data,int flag)
 {

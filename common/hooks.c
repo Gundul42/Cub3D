@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 15:44:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:26:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_loop_hook(t_data *img)
 {
-	//mlx_do_sync(img->mlx);  I forgot this is good for what exactly ???
+	//mlx_do_sync(img->mlx); documentation says this is auto sync of frames -- tests needed 
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
@@ -26,18 +26,18 @@ int	ft_key_hook(int code, t_data *data)
 	//printf("Key: %d)\n", code);
 	if (code == 65307)
 		the_end(data);
-	if (code == 119) //65362)
-		ft_movePlayer(data, 1);//down
-	if (code == 115) //65364)
-		ft_movePlayer(data, 2);//up
-	if (code == 97) //65361)
-		ft_movePlayer(data, 3);//left
-	if (code == 100) //65363)
-		ft_movePlayer(data, 4);//right
+	if (code == 119)
+		ft_movePlayer(data, 1);		// W
+	if (code == 115)
+		ft_movePlayer(data, 2);		// S
+	if (code == 97)
+		ft_movePlayer(data, 3);		// A
+	if (code == 100)
+		ft_movePlayer(data, 4);		// D
 	if (code == 65361)
-		ft_rotatePlayer(data, 0);
+		ft_rotatePlayer(data, 0);	// cursor right
 	if (code == 65363)
-		ft_rotatePlayer(data, 1);
+		ft_rotatePlayer(data, 1);	// cursor left
 	return (code);
 }
 

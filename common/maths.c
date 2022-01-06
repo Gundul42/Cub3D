@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 17:07:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:38:14 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ float	ft_rad2deg(float rad)
 	return (rad / M_PI * 180);
 }
 
+/* calculates the forward / backward movement of the player
+ * newx and newy are pointers to be able tto give the values back
+ * flag == 2 means backwards, so * -1
+ * movement now depending on player look direction
+ */
 void	ft_forbac(t_data *data, float *newx, float *newy, int flag)
 {
 	float	step;
@@ -41,6 +46,9 @@ void	ft_forbac(t_data *data, float *newx, float *newy, int flag)
 	}
 }
 
+/* EasyPeasy, tmp add/substract 90 degrees to look direction 
+ * and move forward, then return the original view direction :D
+ */
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
 {
 	float	tmpdir;
@@ -58,6 +66,10 @@ void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
 	data->dir = tmpdir;
 }
 
+/* rotate the player view with cursor right/left
+ * by the rotspeed value 
+ * get sure angle is only between 0 and 360
+ */
 void	ft_rotatePlayer(t_data *data, int flag)
 {
 	if (flag)

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 16:53:41 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/06 17:20:10 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b)
 		i++;
 	}
 }
-	
+
+/* newly added (06/01/22) draw a line beginning from x,y with the length
+ * of len in direction of alpha */
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
 {
 	int	x2;
