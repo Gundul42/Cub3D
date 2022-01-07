@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 17:26:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/07 11:35:05 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_key_hook(int code, t_data *data)
 		ft_movePlayer(data, 1);		// W
 	if (code == 115)
 		ft_movePlayer(data, 2);		// S
-	if (code == 97)
-		ft_movePlayer(data, 3);		// A
 	if (code == 100)
+		ft_movePlayer(data, 3);		// A
+	if (code == 97)
 		ft_movePlayer(data, 4);		// D
 	if (code == 65361)
 		ft_rotatePlayer(data, 0);	// cursor right
