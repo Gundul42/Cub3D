@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 23:42:35 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 10:38:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_dumpMap(t_data *data)
 	size_t	x;
 	size_t	y;
 
-	x = 0;
 	y = 0;
 	while (y < data->mapy)
 	{

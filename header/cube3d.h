@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 00:07:02 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 10:56:32 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ typedef struct s_data {
 	int				type;
 	size_t			win_x;		//windowsize x
 	size_t			win_y;		//windowsize y
-	unsigned char	tilesize;	//size of a game tile == texture size in Bit
-	unsigned char	fov;		//field of view of player in degrees
-	unsigned char	speed;		//player speed in pixel of gametile / movement unit
+	unsigned char	tilesize;		//size of a game tile == texture size in Bit
+	unsigned char	fov;			//field of view of player in degrees
+	unsigned char	speed;			//player speed in pixel of gametile / movement unit
 	float			rotspeed;	//player rotation speed;
 	float			dir;		//player look direction
 	float			px;		//player x position
 	float			py;		//player y position
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
-	int				csky;		//sky color
-	int				**map;		//2d array, map representation from cub file
+	int				csky;	//sky color
+	int				**map;	//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 }	t_data;

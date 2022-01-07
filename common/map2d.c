@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 00:40:13 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 11:04:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_draw2dmap(t_data *data)
 		while (x < data->mapx)
 		{
 			if (data->map[y][x])
-				ft_draw_rect(data, (x * xstep) + 1, (y * ystep) + 1, xstep - 1, ystep - 1, col);
+				ft_draw_rect(data, (x * xstep), (y * ystep), xstep - 1, ystep - 1, col);
 			x++;
 		}
 		y++;
@@ -53,14 +53,8 @@ void	ft_showPlayer(t_data *data)
 	col = ft_make_trgb(0, 0, 0, 255);
 	xstep = data->win_x / data->mapx;
 	ystep = data->win_y / data->mapy;
-	//x = data->px * xstep - xstep / 8;
-	//y = data->py * ystep - ystep / 8;
-	//ft_draw_rect(data, x, y, xstep / 4, ystep / 4, col);
-	//ft_draw_angeled(data, x + xstep / 8, y + ystep / 8, data->dir, data->tilesize / 5);
 	x = data->px * xstep;
 	y = data->py * ystep;
-	//printf("d->x = %f - xstep=%ld x = %ld\n", data->px, xstep, x);
-	//printf("d->y = %f - ystep=%ld y = %ld\n", data->py, ystep, y);
 	ft_draw_circle(data, x, y, 4, col);
 	ft_draw_angeled(data, x, y, data->dir, data->tilesize / 4);
 }
