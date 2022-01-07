@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 10:56:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/07 12:50:28 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int		ft_mouse_hook(int button, int x, int y, t_data *data);
 void	ft_initMap(t_data *data, char *path);
 // common: load_map_utils.c
 void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir);
+void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);
@@ -102,6 +103,8 @@ void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 void	ft_initMap(t_data *data, char *path);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
+// common: raycast.c
+void	ft_castRay(t_data *d, size_t x, size_t y);
 // main
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);

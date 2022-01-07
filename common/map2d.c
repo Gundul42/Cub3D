@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 11:04:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/07 12:29:27 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,12 @@ void	ft_draw2dmap(t_data *data)
  */
 void	ft_showPlayer(t_data *data)
 {
-	size_t	xstep;
-	size_t	ystep;
 	size_t	x;
 	size_t	y;
 	int	col;
 
 	col = ft_make_trgb(0, 0, 0, 255);
-	xstep = data->win_x / data->mapx;
-	ystep = data->win_y / data->mapy;
-	x = data->px * xstep;
-	y = data->py * ystep;
+	ft_getPlayerPos(data, &x, &y);
 	ft_draw_circle(data, x, y, 4, col);
 	ft_draw_angeled(data, x, y, data->dir, data->tilesize / 4);
 }

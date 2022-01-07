@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 00:36:08 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 12:52:22 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);
 	mlx_hook(img->win, 2, 1L << 0, ft_key_hook, img); //do as long as key is pressed (orientation:left/right - WSDA)
 //	mlx_key_hook(img->win, ft_key_hook, img);
-//	mlx_mouse_hook(img->win, ft_mouse_hook, img);
+	mlx_mouse_hook(img->win, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_loop_hook, img);
 	mlx_loop(img->mlx);
 	return (0);
