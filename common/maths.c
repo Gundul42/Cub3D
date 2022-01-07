@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/06 19:49:28 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:51:50 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 */
 float	ft_deg2rad(float deg)
 {
+	deg -= 90.0;
 	return (deg * M_PI /180);
 }
 
 float	ft_rad2deg(float rad)
 {
-	return (rad / M_PI * 180);
+	float	deg;
+	deg = 90.0 + rad / M_PI * 180;
+	if (deg < 0)
+		return (360.0 + deg);
+	return (deg);
 }
 
 /* calculates the forward / backward movement of the player

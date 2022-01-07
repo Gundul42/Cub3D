@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 00:08:28 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/07 18:40:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,25 @@ void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col)
 		x++;
 	}
 }
+
+void	ft_draw_hit(t_data *data, float x, float y, float r)
+{
+	int	alpha;
+	int	col;
+	int	newx;
+	int	newy;
+
+	col = ft_make_trgb(0, 51, 0, 255);
+	alpha = 0;
+	while (alpha < 360)
+	{
+		newx = (int)(x + r * cos(ft_deg2rad((float)(alpha))));
+		newy = (int)(y + r * sin(ft_deg2rad((float)(alpha)))); 
+		ft_draw_pixel(data, newx, newy, col);  
+		alpha++;
+	}
+}
+
 
 void	ft_draw_line(t_data *data, int x, int y, int a, int b)
 {
