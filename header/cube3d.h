@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 12:21:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 15:51:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+// a typedef for points
+typedef	struct s_point {
+	float	x;
+	float	y;
+}	t_point;
 
 // a color typedef for HSV colors
 typedef struct s_hsv {
@@ -90,6 +96,7 @@ void	ft_initMap(t_data *data, char *path);
 // common: load_map_utils.c
 void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir);
 void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y);
+t_point	ft_getPlayerPoint(t_data *data);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);
@@ -98,6 +105,7 @@ void	ft_movePlayer(t_data *data,int flag);
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
 float	ft_getDist(float x1, float y1, float x2, float y2);
+float	ft_PointDist(t_point a, t_point b);
 // common: movePlayer.c
 void	ft_rotatePlayer(t_data *data, int flag);
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
@@ -106,6 +114,7 @@ void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 void	ft_initMap(t_data *data, char *path);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
+int	ft_checkMap(t_data *data, t_point hit);
 // common: raycast.c
 void	ft_castRay(t_data *d, size_t x, size_t y);
 // main

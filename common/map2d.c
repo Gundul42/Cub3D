@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 12:29:27 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 16:27:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,20 @@ void	ft_movePlayer(t_data *data,int flag)
 	}
 	ft_showPlayer(data);
 }
+
+int	ft_checkMap(t_data *data, t_point hit)
+{
+	size_t	x;
+	size_t	y;
+	x = (size_t)(hit.x) / data->win_x / data->mapx;
+	y = (size_t)(hit.y) / data->win_y / data->mapy;
+	if (x >= data->mapx)
+		return (1);
+	if (y >= data->mapy)
+		return (1);
+	//printf("Tile no.: %ld, %ld\n\n", x, y);
+	return (0);
+}
+
+
+

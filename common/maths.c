@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 12:20:27 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 14:27:30 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ float	ft_rad2deg(float rad)
 float	ft_getDist(float x1, float y1, float x2, float y2)
 {
 	return (sqrtf(powf((x1 - x2), 2) + powf((y1 - y2), 2)));
+}
+
+float	ft_PointDist(t_point a, t_point b)
+{
+	return (ft_getDist(a.x, a.y, b.x, b.y));
 }
