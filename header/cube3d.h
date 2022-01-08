@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 08:38:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 12:21:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	ft_movePlayer(t_data *data,int flag);
 // common: math.c
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
+float	ft_getDist(float x1, float y1, float x2, float y2);
+// common: movePlayer.c
 void	ft_rotatePlayer(t_data *data, int flag);
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
 void	ft_forbac(t_data *data, float *newx, float *newy, int flag);

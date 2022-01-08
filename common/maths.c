@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 11:10:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 12:20:27 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 /* M_PI is a macro of math.h lib for the value of pi.
  * deg2rad converting from degree to radians
  * and rad2deg vice verca
+ *
+ * IMPORTANT CHANGE !!!
+ * we assume that North == 0.0 is the top of our screen !
+ * no more gap between logical and tecnical north position
+ * (technical it is the right side of our screen)
 */
 float	ft_deg2rad(float deg)
 {
@@ -32,59 +37,9 @@ float	ft_rad2deg(float rad)
 	return (deg);
 }
 
-/* calculates the forward / backward movement of the player
- * newx and newy are pointers to be able to give the values back
- * flag == 2 means backwards, so * -1
- * movement now depending on player look direction
- */
-void	ft_forbac(t_data *data, float *newx, float *newy, int flag)
+/* get distance between two points in float
+*/
+float	ft_getDist(float x1, float y1, float x2, float y2)
 {
-	float	step;
-
-	step = (float)(data->speed) / (float)(data->tilesize);
-	*newx = step * cosf(ft_deg2rad(data->dir));
-	*newy = step * sinf(ft_deg2rad(data->dir));
-	if (flag == 2)
-	{
-		*newx *= -1.0;
-		*newy *= -1.0;
-	}
-}
-
-/* EasyPeasy, tmp add/substract 90 degrees to look direction
- * and move forward, then return the original view direction :D
- */
-void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
-{
-	float	tmpdir;
-
-	tmpdir = data->dir;
-	if (flag == 3)
-		data->dir += 90.0;
-	else
-		data->dir -= 90.0;
-	if (data->dir > 360.0)
-		data->dir -= 360.0;
-	if (data->dir < 0)
-		data->dir += 360.0;
-	ft_forbac(data, newx, newy, 1);
-	data->dir = tmpdir;
-}
-
-/* rotate the player view with cursor right/left
- * by the rotspeed value
- * get sure angle is only between 0 and 360
- */
-void	ft_rotatePlayer(t_data *data, int flag)
-{
-	if (flag)
-		data->dir += data->rotspeed;
-	else
-		data->dir -= data->rotspeed;
-	if (data->dir > 360.0)
-		data->dir -= 360.0;
-	if (data->dir < 0)
-		data->dir += 360.0;
-	printf("DIR= %10f -- RAD=%10f \n", data->dir, ft_deg2rad(data->dir));
-	ft_showPlayer(data);
+	return (sqrtf(powf((x1 - x2), 2) + powf((y1 - y2), 2)));
 }
