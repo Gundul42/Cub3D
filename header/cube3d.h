@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 15:51:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 18:53:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
+void	ft_printBox(t_data *data, t_point p);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);

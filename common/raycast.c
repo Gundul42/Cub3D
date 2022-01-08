@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 17:10:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/08 18:59:19 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_point	ft_find_collision(t_data *data, float alpha, t_point h, t_point v)
 			hit = v;
 			if (alpha >= 0 && alpha <= 180)
 			{
-				v.x += (float)(data->win_x / data->mapx);
+				v.x += (float)tdata->win_x / data->mapx);
 				v.y += deltaY;
 			}
 			else
@@ -90,6 +90,7 @@ t_point	ft_find_collision(t_data *data, float alpha, t_point h, t_point v)
 			}
 			ft_draw_circle(data, h.x, h.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 		}
+		ft_printBox(data, hit);
 	return (hit);
 }
 
