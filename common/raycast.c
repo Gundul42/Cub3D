@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 18:50:18 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 19:04:41 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 			v.x -= (float)(data->win_x / data->mapx);
 			v.y -= deltaY;
 		}
-	ft_draw_circle(data, v.x, v.y, 3.0, ft_make_trgb(0, 102, 0, 0));
 	}
 	return (v);
 }
@@ -85,7 +84,6 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 			h.x += deltaX;
 			h.y += (float)(data->win_y / data->mapy);
 		}
-	ft_draw_circle(data, h.x, h.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 	}
 	return (h);
 }
@@ -105,6 +103,10 @@ void	ft_castRay(t_data *d, size_t x, size_t y)
 	ft_draw_angeled(d, plyr.x, plyr.y, alpha, len);
 	hor = ft_firstHitHorizontal(d, alpha);
 	vet = ft_firstHitVertical(d, alpha);
-	ft_findCollVertical(d, vet, alpha);
-	ft_findCollHorizontal(d, hor, alpha);
+	vet = ft_findCollVertical(d, vet, alpha);
+	hor = ft_findCollHorizontal(d, hor, alpha);
+	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
+		ft_draw_circle(d, vet.x, vet.y, 3.0, ft_make_trgb(0, 102, 0, 0));
+	else
+		ft_draw_circle(d, hor.x, hor.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 }
