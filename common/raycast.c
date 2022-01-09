@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 18:59:19 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 09:39:18 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 {
 	t_point	diff;
 
-	if (alpha >= 270.0 || alpha <= 90.0)
+	if (alpha >= 180.0 && alpha <= 360.0)
 		diff.y = d->py - floorf(d->py);
 	else
 		diff.y = d->py - ceilf(d->py);
@@ -28,16 +28,11 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 	return (diff);
 }
 
-/* 
- * alpha must be not equal to 0 or 180.
- * in this case diffY would be infinite and program segfaults
- */
-static
 t_point	ft_firstHitVertical(t_data *d, float alpha)
 {
 	t_point	diff;
 
-	if (alpha >= 0.0 && alpha <= 180.0)
+	if (alpha >= 270.0 || alpha <= 90.0)
 		diff.x = ceilf(d->px) - d->px;
 	else
 		diff.x = floorf(d->px) - d->px;
@@ -63,9 +58,9 @@ t_point	ft_find_collision(t_data *data, float alpha, t_point h, t_point v)
 		if (ft_PointDist(hit, v) < ft_PointDist(hit, h))
 		{
 			hit = v;
-			if (alpha >= 0 && alpha <= 180)
+			if (alpha >= 270 || alpha <= 90)
 			{
-				v.x += (float)tdata->win_x / data->mapx);
+				v.x += (float)(data->win_x / data->mapx);
 				v.y += deltaY;
 			}
 			else
@@ -78,15 +73,15 @@ t_point	ft_find_collision(t_data *data, float alpha, t_point h, t_point v)
 		else
 		{
 			hit = h;
-			if (alpha >= 270 && alpha <= 90)
-			{
-				h.x += deltaX;
-				h.y += (float)(data->win_y / data->mapy);
-			}
-			else
+			if (alpha >= 180 && alpha <= 360)
 			{
 				h.x -= deltaX;
 				h.y -= (float)(data->win_y / data->mapy);
+			}
+			else
+			{
+				h.x += deltaX;
+				h.y += (float)(data->win_y / data->mapy);
 			}
 			ft_draw_circle(data, h.x, h.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 		}
