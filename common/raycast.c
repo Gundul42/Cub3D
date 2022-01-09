@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 19:14:50 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 20:06:45 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,47 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	return (h);
 }
 
+void	ft_drawFov(t_data *data)
+{
+	float	i;
+	float	start;
+	float	stop;
+
+	i = (float)(data->fov / 2);
+	start = data->dir - i;
+	stop = data->dir + i;
+	if (start < 0)
+		start += 360.0;
+	if (stop > 360)
+		stop -= 360.0;
+	i = start;
+	while (i <= stop)
+	{
+		ft_castRay(data, i);
+		i += 0.5;
+		if (stop > 360)
+			stop -= 360.0;
+	}
+}
+	  
+void	ft_castRay(t_data *d, float alpha)
+{
+	t_point	plyr;
+	t_point	hor;
+	t_point	vet;
+
+	plyr = ft_getPlayerPoint(d);
+	hor = ft_firstHitHorizontal(d, alpha);
+	vet = ft_firstHitVertical(d, alpha);
+	vet = ft_findCollVertical(d, vet, alpha);
+	hor = ft_findCollHorizontal(d, hor, alpha);
+	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
+		ft_draw_circle(d, vet.x, vet.y, 3.0, ft_make_trgb(0, 102, 0, 0));
+	else
+		ft_draw_circle(d, hor.x, hor.y, 3.0, ft_make_trgb(0, 39, 78, 19));
+}
+
+/*
 void	ft_castRay(t_data *d, size_t x, size_t y)
 {
 	float	alpha;
@@ -107,3 +148,4 @@ void	ft_castRay(t_data *d, size_t x, size_t y)
 	else
 		ft_draw_circle(d, hor.x, hor.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 12:48:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 20:08:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_loop_hook(t_data *img)
 	//mlx_do_sync(img->mlx); documentation says this is auto sync of frames -- tests needed 
 	ft_draw_background(img);
 	ft_draw2dmap(img);
+	ft_drawFov(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	return (0);
 }
@@ -44,6 +45,6 @@ int	ft_key_hook(int code, t_data *data)
 int	ft_mouse_hook(int button, int x, int y, t_data *data)
 {
 	if (button == 1)
-		ft_castRay(data, x, y);
+		ft_castRay(data, x/ y);
 	return (0);
 }
