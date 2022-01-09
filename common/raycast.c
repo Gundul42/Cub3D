@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 10:24:31 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 18:50:18 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,49 +44,50 @@ t_point	ft_firstHitVertical(t_data *d, float alpha)
 	return (diff);
 }
 
-static
-t_point	ft_find_collision(t_data *data, float alpha, t_point h, t_point v)
+static	
+t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 {
-	t_point	hit;
-	float	deltaX;
 	float	deltaY;
 
-	deltaX = ((float)(data->win_x / data->mapx)) / tanf(ft_deg2rad(alpha));
 	deltaY = ((float)(data->win_y / data->mapy)) * tanf(ft_deg2rad(alpha));
-	printf("DeltX %f   DeltaY%f\n", deltaX, deltaY);
-	hit = ft_getPlayerPoint(data);
-		if (ft_PointDist(hit, v) < ft_PointDist(hit, h))
+	while (ft_checkMapNS(data, v, alpha))
+	{
+		if (alpha >= 270 || alpha <= 90)
 		{
-			hit = v;
-			if (alpha >= 270 || alpha <= 90)
-			{
-				v.x += (float)(data->win_x / data->mapx);
-				v.y += deltaY;
-			}
-			else
-			{
-				v.x -= (float)(data->win_x / data->mapx);
-				v.y -= deltaY;
-			}
-			ft_draw_circle(data, v.x, v.y, 3.0, ft_make_trgb(0, 102, 0, 0));
+			v.x += (float)(data->win_x / data->mapx);
+			v.y += deltaY;
+		}
+		else	
+		{
+			v.x -= (float)(data->win_x / data->mapx);
+			v.y -= deltaY;
+		}
+	ft_draw_circle(data, v.x, v.y, 3.0, ft_make_trgb(0, 102, 0, 0));
+	}
+	return (v);
+}
+
+static
+t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
+{
+	float	deltaX;
+
+	deltaX = ((float)(data->win_x / data->mapx)) / tanf(ft_deg2rad(alpha));
+	while (ft_checkMapWE(data, h, alpha))
+	{
+		if (alpha >= 180 && alpha <= 360)
+		{
+			h.x -= deltaX;
+			h.y -= (float)(data->win_y / data->mapy);
 		}
 		else
 		{
-			hit = h;
-			if (alpha >= 180 && alpha <= 360)
-			{
-				h.x -= deltaX;
-				h.y -= (float)(data->win_y / data->mapy);
-			}
-			else
-			{
-				h.x += deltaX;
-				h.y += (float)(data->win_y / data->mapy);
-			}
-			ft_draw_circle(data, h.x, h.y, 3.0, ft_make_trgb(0, 39, 78, 19));
+			h.x += deltaX;
+			h.y += (float)(data->win_y / data->mapy);
 		}
-		ft_printBox(data, hit);
-	return (hit);
+	ft_draw_circle(data, h.x, h.y, 3.0, ft_make_trgb(0, 39, 78, 19));
+	}
+	return (h);
 }
 
 void	ft_castRay(t_data *d, size_t x, size_t y)
@@ -104,5 +105,6 @@ void	ft_castRay(t_data *d, size_t x, size_t y)
 	ft_draw_angeled(d, plyr.x, plyr.y, alpha, len);
 	hor = ft_firstHitHorizontal(d, alpha);
 	vet = ft_firstHitVertical(d, alpha);
-	ft_find_collision(d, alpha, hor, vet);
+	ft_findCollVertical(d, vet, alpha);
+	ft_findCollHorizontal(d, hor, alpha);
 }

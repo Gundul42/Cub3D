@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 09:34:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 09:36:57 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 17:29:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ t_point	ft_getPlayerPoint(t_data *data)
 	plyr.x = x;
 	plyr.y = y;
 	return (plyr);
+}
+
+//translates from pixel to point on the 2D map
+void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y)
+{
+	*x = (size_t)(p.x) / (data->win_x / data->mapx);
+	*y = (size_t)(p.y) / (data->win_y / data->mapy);
 }

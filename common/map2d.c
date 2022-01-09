@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 16:27:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 18:46:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,55 @@ void	ft_movePlayer(t_data *data,int flag)
 	ft_showPlayer(data);
 }
 
-int	ft_checkMap(t_data *data, t_point hit)
+int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 {
 	size_t	x;
 	size_t	y;
-	x = (size_t)(hit.x) / data->win_x / data->mapx;
-	y = (size_t)(hit.y) / data->win_y / data->mapy;
-	if (x >= data->mapx)
-		return (1);
-	if (y >= data->mapy)
-		return (1);
-	//printf("Tile no.: %ld, %ld\n\n", x, y);
+
+	ft_getMapPoint(data, p, &x, &y);
+	//ft_drawBox(data, x, y);
+	printf("%ld %ld\n\n", x, y);
+	if (x < 1 || x > data->mapx || y < 1 || y > data->mapy)
+		return (0);
+	if (alpha > 270 || alpha < 90)
+	{
+		if (data->map[y][x + 1])
+			return (0);
+		else
+			return (1);
+	}
+	else if (alpha < 270 && alpha > 90)
+	{
+		if (data->map[y][x - 1])
+			return (0);
+		else
+			return (1);
+	}
 	return (0);
 }
 
+int	ft_checkMapWE(t_data *data, t_point p, float alpha)
+{
+	size_t	x;
+	size_t	y;
 
-
+	ft_getMapPoint(data, p, &x, &y);
+	//ft_drawBox(data, x, y);	
+	if (x < 1 || x > data->mapx || y < 1 || y > data->mapy)
+		return (0);
+	if (alpha > 180 && alpha < 360)
+	{
+		if (data->map[y - 1][x])
+			return (0);
+		else
+			return (1);
+	}
+	else if (alpha < 180 && alpha > 0)
+	{
+		if (data->map[y + 1][x])
+			return (0);
+		else
+			return (1);
+	}
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 18:53:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 18:11:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
 void	ft_printBox(t_data *data, t_point p);
+void 	ft_drawBox(t_data *data, size_t x, size_t y);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);
@@ -97,25 +98,26 @@ void	ft_initMap(t_data *data, char *path);
 // common: load_map_utils.c
 void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir);
 void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y);
+// common: points.c
 t_point	ft_getPlayerPoint(t_data *data);
+float	ft_PointDist(t_point a, t_point b);
+void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);
 void	ft_movePlayer(t_data *data,int flag);
+int	ft_checkMapNS(t_data *data, t_point p, float alpha);
+int	ft_checkMapWE(t_data *data, t_point p, float alpha);
 // common: math.c
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
 float	ft_getDist(float x1, float y1, float x2, float y2);
-float	ft_PointDist(t_point a, t_point b);
 // common: movePlayer.c
 void	ft_rotatePlayer(t_data *data, int flag);
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
 void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 // common: load_map.c
 void	ft_initMap(t_data *data, char *path);
-// common: map2d.c
-void	ft_draw2dmap(t_data *data);
-int	ft_checkMap(t_data *data, t_point hit);
 // common: raycast.c
 void	ft_castRay(t_data *d, size_t x, size_t y);
 // main

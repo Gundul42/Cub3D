@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/08 18:59:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 18:43:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col)
 {
 	int	x;
 	int	y;
-
+	
+	if (or_x < 0 || or_x > (int)d->win_x || or_y < 0 || or_y > (int)d->win_y)
+		return ;
 	x = or_x - r;
 	while (x <= or_x + r)
 	{
@@ -159,4 +161,15 @@ void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
 	x2 = x + (float)(len) * cosf(ft_deg2rad(alpha));
 	y2 = y + (float)(len) * sinf(ft_deg2rad(alpha));
 	ft_draw_line(data, x, y, x2, y2);
+}
+
+//draw only one mapblocktile
+void	ft_drawBox(t_data *data, size_t x, size_t y)
+{
+	size_t	xstep;
+	size_t	ystep;
+
+	xstep = data->win_x / data->mapx;
+	ystep = data->win_y / data->mapy;
+	ft_draw_rect(data, (x * xstep), (y * ystep), xstep - 1, ystep - 1, 0);
 }
