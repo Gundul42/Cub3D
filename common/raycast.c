@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 09:39:18 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:24:31 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,5 @@ void	ft_castRay(t_data *d, size_t x, size_t y)
 	ft_draw_angeled(d, plyr.x, plyr.y, alpha, len);
 	hor = ft_firstHitHorizontal(d, alpha);
 	vet = ft_firstHitVertical(d, alpha);
-//	printf("%f :: %f\n\n", ft_PointDist(plyr, hor), ft_PointDist(plyr, vet));
 	ft_find_collision(d, alpha, hor, vet);
 }
