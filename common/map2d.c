@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 18:46:07 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 19:18:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 		return (0);
 	if (alpha > 270 || alpha < 90)
 	{
-		if (data->map[y][x + 1])
+		if (data->map[y][x])
 			return (0);
 		else
 			return (1);
@@ -130,7 +130,7 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha)
 	}
 	else if (alpha < 180 && alpha > 0)
 	{
-		if (data->map[y + 1][x])
+		if (data->map[y][x])
 			return (0);
 		else
 			return (1);

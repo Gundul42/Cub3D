@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 19:04:41 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/09 19:14:50 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 	diff.x = diff.y / tanf(ft_deg2rad(alpha));
 	diff.x = (d->px - diff.x) * (float)(d->win_x / d->mapx);
 	diff.y = (d->py - diff.y) * (float)(d->win_y / d->mapy);
-	ft_draw_circle(d, diff.x, diff.y, 3.0, ft_make_trgb(0, 39, 78, 19));
 	return (diff);
 }
 
@@ -39,8 +38,6 @@ t_point	ft_firstHitVertical(t_data *d, float alpha)
 	diff.y = diff.x * tanf(ft_deg2rad(alpha));
 	diff.x = (d->px + diff.x) * (float)(d->win_x / d->mapx);
 	diff.y = (d->py + diff.y) * (float)(d->win_y / d->mapy);
-	if (diff.x > 0.0 && diff.x < d->win_x && diff.y > 0.0 && diff.y < d->win_y)
-		ft_draw_circle(d, diff.x, diff.y, 3.0, ft_make_trgb(0, 102, 0, 0));
 	return (diff);
 }
 
