@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 19:18:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 12:03:22 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,20 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	ft_getMapPoint(data, p, &x, &y);
-	//ft_drawBox(data, x, y);
-	printf("%ld %ld\n\n", x, y);
-	if (x < 1 || x > data->mapx || y < 1 || y > data->mapy)
+	if (p.x >= data->win_x || p.y >= data->win_y)
 		return (0);
+	ft_getMapPoint(data, p, &x, &y);
+	printf("%ld  -- %ld\n", x, y);
 	if (alpha > 270 || alpha < 90)
 	{
-		if (data->map[y][x])
+		if (ft_isWall(data, x, y))
 			return (0);
 		else
 			return (1);
 	}
-	else if (alpha < 270 && alpha > 90)
+	else if (alpha <= 270 && alpha >= 90)
 	{
-		if (data->map[y][x - 1])
+		if (ft_isWall(data, x - 1, y))
 			return (0);
 		else
 			return (1);
@@ -117,20 +116,19 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	ft_getMapPoint(data, p, &x, &y);
-	//ft_drawBox(data, x, y);	
-	if (x < 1 || x > data->mapx || y < 1 || y > data->mapy)
+	if (p.x >= data->win_x || p.y >= data->win_y)
 		return (0);
-	if (alpha > 180 && alpha < 360)
+	ft_getMapPoint(data, p, &x, &y);
+	if (alpha >= 180 && alpha <= 360)
 	{
-		if (data->map[y - 1][x])
+		if (ft_isWall(data, x, y - 1))
 			return (0);
 		else
 			return (1);
 	}
-	else if (alpha < 180 && alpha > 0)
+	else if (alpha < 180 && alpha >= 0)
 	{
-		if (data->map[y][x])
+		if (ft_isWall(data, x, y))
 			return (0);
 		else
 			return (1);

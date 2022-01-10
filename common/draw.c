@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 18:43:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 09:41:04 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || x > (int)data->win_x || y < 0 || y > (int)data->win_y)
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
@@ -79,17 +81,6 @@ void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col)
 	}
 }
 
-void	ft_printBox(t_data *data, t_point p)
-{
-	size_t	stepx;
-	size_t	stepy;
-
-	stepx = (size_t)p.x / (data->win_x / data->mapx);
-	stepy = (size_t)p.y / (data->win_y / data->mapy);
-	printf("%ld - %ld\n\n", stepx, stepy);
-}	
-
-	
 void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col)
 {
 	int	x;

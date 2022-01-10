@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 20:06:45 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 12:08:03 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 {
 	t_point	diff;
 
-	if (alpha >= 180.0 && alpha <= 360.0)
+	if (alpha > 180.0 && alpha < 360.0)
 		diff.y = d->py - floorf(d->py);
 	else
 		diff.y = d->py - ceilf(d->py);
@@ -59,6 +59,7 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 			v.x -= (float)(data->win_x / data->mapx);
 			v.y -= deltaY;
 		}
+		printf("x%f y%f\n\n", v.x, v.y);
 	}
 	return (v);
 }
@@ -88,6 +89,14 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 void	ft_drawFov(t_data *data)
 {
 	float	i;
+
+	i = 0.1;
+	while (i < 80.0)
+	{
+		ft_castRay(data, i);
+		i += 0.1;
+	}
+	/*
 	float	start;
 	float	stop;
 
@@ -99,13 +108,14 @@ void	ft_drawFov(t_data *data)
 	if (stop > 360)
 		stop -= 360.0;
 	i = start;
+	printf("Start %f, stop %f    fov = %f\n\n", start, stop, data->dir);
 	while (i <= stop)
 	{
 		ft_castRay(data, i);
 		i += 0.5;
 		if (stop > 360)
 			stop -= 360.0;
-	}
+	}*/
 }
 	  
 void	ft_castRay(t_data *d, float alpha)
@@ -120,9 +130,9 @@ void	ft_castRay(t_data *d, float alpha)
 	vet = ft_findCollVertical(d, vet, alpha);
 	hor = ft_findCollHorizontal(d, hor, alpha);
 	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
-		ft_draw_circle(d, vet.x, vet.y, 3.0, ft_make_trgb(0, 102, 0, 0));
+		ft_draw_line(d, plyr.x, plyr.y, vet.x, vet.y);
 	else
-		ft_draw_circle(d, hor.x, hor.y, 3.0, ft_make_trgb(0, 39, 78, 19));
+		ft_draw_line(d, plyr.x, plyr.y, hor.x, hor.y);
 }
 
 /*

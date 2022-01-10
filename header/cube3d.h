@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 20:08:06 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 11:36:26 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
-void	ft_printBox(t_data *data, t_point p);
 void 	ft_drawBox(t_data *data, size_t x, size_t y);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
@@ -102,6 +101,7 @@ void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y);
 t_point	ft_getPlayerPoint(t_data *data);
 float	ft_PointDist(t_point a, t_point b);
 void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
+int	ft_isWall(t_data *data, size_t x, size_t y);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_showPlayer(t_data *data);
