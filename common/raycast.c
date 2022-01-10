@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 13:54:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 15:08:56 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	return (h);
 }
 	  
-void	ft_castRay(t_data *d, float alpha)
+t_ray	ft_castRay(t_data *d, float alpha)
 {
 	t_point	plyr;
 	t_point	hor;
 	t_point	vet;
+	t_ray	ray;
 
 	alpha = ft_valAlpha(alpha);
 	plyr = ft_getPlayerPoint(d);
@@ -98,8 +99,18 @@ void	ft_castRay(t_data *d, float alpha)
 	vet = ft_firstHitVertical(d, alpha);
 	vet = ft_findCollVertical(d, vet, alpha);
 	hor = ft_findCollHorizontal(d, hor, alpha);
+	ray.dir = alpha;
 	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
-		ft_draw_line(d, plyr.x, plyr.y, vet.x, vet.y);
+	{
+		ray.p = vet;
+		ray.dist = ft_PointDist(plyr, vet);
+		ray.flag = ft_getSide(0, alpha);
+	}
 	else
-		ft_draw_line(d, plyr.x, plyr.y, hor.x, hor.y);
+	{
+		ray.p = hor;
+		ray.dist = ft_PointDist(plyr, hor);
+		ray.flag = ft_getSide(1, alpha);
+	}
+	return (ray);
 }

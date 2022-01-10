@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 13:54:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 15:09:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct s_color {
 	unsigned char	g;
 	unsigned char	b;
 }	t_color;
+
+typedef struct s_ray {
+	t_point	p;
+	float	dir;
+	float	dist;
+	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W
+}	t_ray;
 
 // the basic data type for handling the minilibx
 typedef struct s_data {
@@ -89,6 +96,8 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
 void 	ft_drawBox(t_data *data, size_t x, size_t y);
+void	ft_drawFov(t_data *data);
+void	ft_dumpRay(t_data *data, t_ray ray);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);
@@ -114,6 +123,7 @@ float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
 float	ft_valAlpha(float alpha);
 float	ft_getDist(float x1, float y1, float x2, float y2);
+int	ft_getSide(int flag, float alpha);
 // common: movePlayer.c
 void	ft_rotatePlayer(t_data *data, int flag);
 void	ft_leftright(t_data *data, float *newx, float *newy, int flag);
@@ -121,9 +131,8 @@ void	ft_forbac(t_data *data, float *newx, float *newy, int flag);
 // common: load_map.c
 void	ft_initMap(t_data *data, char *path);
 // common: raycast.c
-//void	ft_castRay(t_data *d, size_t x, size_t y);
-void	ft_castRay(t_data *d, float alpha);
-void	ft_drawFov(t_data *data);
+//void	ft_castRay(t_data *d, float alpha);
+t_ray	ft_castRay(t_data *d, float alpha);
 // main
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);

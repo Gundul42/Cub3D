@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 13:42:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 15:31:04 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,22 @@ void	ft_drawBox(t_data *data, size_t x, size_t y)
 	ft_draw_rect(data, (x * xstep), (y * ystep), xstep - 1, ystep - 1, 0);
 }
 
+// dumps all info from a Ray, including drawing line in 2D from player 
+// to collison point
+void	ft_dumpRay(t_data *data, t_ray ray)
+{
+	t_point	plyr;
+	char	*d[4] = {"North", "South", "East", "West"};
+
+	plyr = ft_getPlayerPoint(data);
+	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y);
+	printf("\n************************************\n");
+	printf("*** Angle           : %f\n", ray.dir);
+	printf("*** Distance to wall: %f\n", ray.dist);
+	printf("*** Hit wall from   : %s\n", d[ray.flag]);
+	printf("************************************\n\n");
+}
+
 //draw field of view
 void	ft_drawFov(t_data *data)
 {
@@ -177,7 +193,7 @@ void	ft_drawFov(t_data *data)
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ft_castRay(data, start);
+		ft_dumpRay(data, ft_castRay(data, start));
 		start += 0.1;
 		i++;
 	}

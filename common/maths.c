@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 13:53:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 14:56:50 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ float	ft_valAlpha(float alpha)
 float	ft_getDist(float x1, float y1, float x2, float y2)
 {
 	return (sqrtf(powf((x1 - x2), 2) + powf((y1 - y2), 2)));
+}
+
+int	ft_getSide(int flag, float alpha)
+{
+	if (!flag)
+	{
+		if (alpha < 270 && alpha > 90)
+			return (0);
+		else
+			return (1);
+	}
+	if (alpha > 0 && alpha < 180)
+		return (2);
+	else
+		return (3);
 }
