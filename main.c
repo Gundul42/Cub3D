@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 13:05:33 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 17:54:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_data	*ft_blank(t_data *data)
 	data->fov = 90;
 	data->speed = 16;
 	data->rotspeed = 1.5;
+	data->precision = 0.05;		// ray scan precision smaller slower but more accurate
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
 	data->cfloor_near = ft_rgb2col(0, 132, 43, 135);
 	data->csky = ft_make_trgb(0, 135, 206, 235);

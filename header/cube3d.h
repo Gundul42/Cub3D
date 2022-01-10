@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 15:09:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 17:43:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_data {
 	unsigned char	tilesize;		//size of a game tile == texture size in Bit
 	unsigned char	fov;			//field of view of player in degrees
 	unsigned char	speed;			//player speed in pixel of gametile / movement unit
+	float			precision;	//precision of ray scanning the smaller the accurate
 	float			rotspeed;	//player rotation speed;
 	float			dir;		//player look direction
 	float			px;		//player x position

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 15:31:04 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 17:42:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,13 +188,13 @@ void	ft_drawFov(t_data *data)
 	int		max;
 	int		i;
 
-	max = (float)data->fov / 0.1;
+	max = (float)data->fov / data->precision;
 	i = 0;
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
 		ft_dumpRay(data, ft_castRay(data, start));
-		start += 0.1;
+		start += data->precision;
 		i++;
 	}
 }
