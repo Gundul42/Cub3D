@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:08:03 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 12:34:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 	return (diff);
 }
 
+static
 t_point	ft_firstHitVertical(t_data *d, float alpha)
 {
 	t_point	diff;
@@ -59,7 +60,6 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 			v.x -= (float)(data->win_x / data->mapx);
 			v.y -= deltaY;
 		}
-		printf("x%f y%f\n\n", v.x, v.y);
 	}
 	return (v);
 }
@@ -85,38 +85,6 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	}
 	return (h);
 }
-
-void	ft_drawFov(t_data *data)
-{
-	float	i;
-
-	i = 0.1;
-	while (i < 80.0)
-	{
-		ft_castRay(data, i);
-		i += 0.1;
-	}
-	/*
-	float	start;
-	float	stop;
-
-	i = (float)(data->fov / 2);
-	start = data->dir - i;
-	stop = data->dir + i;
-	if (start < 0)
-		start += 360.0;
-	if (stop > 360)
-		stop -= 360.0;
-	i = start;
-	printf("Start %f, stop %f    fov = %f\n\n", start, stop, data->dir);
-	while (i <= stop)
-	{
-		ft_castRay(data, i);
-		i += 0.5;
-		if (stop > 360)
-			stop -= 360.0;
-	}*/
-}
 	  
 void	ft_castRay(t_data *d, float alpha)
 {
@@ -124,6 +92,10 @@ void	ft_castRay(t_data *d, float alpha)
 	t_point	hor;
 	t_point	vet;
 
+	if (alpha < 0.0)
+		alpha += 360.0;
+	if (alpha > 360.0)
+		alpha -= 360.0;
 	plyr = ft_getPlayerPoint(d);
 	hor = ft_firstHitHorizontal(d, alpha);
 	vet = ft_firstHitVertical(d, alpha);
@@ -134,28 +106,3 @@ void	ft_castRay(t_data *d, float alpha)
 	else
 		ft_draw_line(d, plyr.x, plyr.y, hor.x, hor.y);
 }
-
-/*
-void	ft_castRay(t_data *d, size_t x, size_t y)
-{
-	float	alpha;
-	float	len;
-	t_point	plyr;
-	t_point	hor;
-	t_point	vet;
-
-	plyr = ft_getPlayerPoint(d);
-	alpha = atan2f(((float)y - (float)plyr.y), ((float)x - (float)plyr.x));
-	alpha = ft_rad2deg(alpha);
-	len = sqrtf(powf(((float)plyr.x - (float)x), 2) + powf(((float)plyr.y - (float)y), 2));
-	ft_draw_angeled(d, plyr.x, plyr.y, alpha, len);
-	hor = ft_firstHitHorizontal(d, alpha);
-	vet = ft_firstHitVertical(d, alpha);
-	vet = ft_findCollVertical(d, vet, alpha);
-	hor = ft_findCollHorizontal(d, hor, alpha);
-	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
-		ft_draw_circle(d, vet.x, vet.y, 3.0, ft_make_trgb(0, 102, 0, 0));
-	else
-		ft_draw_circle(d, hor.x, hor.y, 3.0, ft_make_trgb(0, 39, 78, 19));
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 11:36:26 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 12:48:03 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data {
 	int				line_length;
 	int				endian;
 	int				type;
+	int			run;		//true after first key is pressed
 	size_t			win_x;		//windowsize x
 	size_t			win_y;		//windowsize y
 	unsigned char	tilesize;		//size of a game tile == texture size in Bit

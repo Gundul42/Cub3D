@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:03:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 12:50:52 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_movePlayer(t_data *data,int flag)
 
 	newx = data->px;
 	newy = data->py;
+	data->run = 1;
 	if (flag == 1 || flag == 2)
 		ft_forbac(data, &newx, &newy, flag);
 	if (flag == 3 || flag == 4)
@@ -93,7 +94,6 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 	if (p.x >= data->win_x || p.y >= data->win_y)
 		return (0);
 	ft_getMapPoint(data, p, &x, &y);
-	printf("%ld  -- %ld\n", x, y);
 	if (alpha > 270 || alpha < 90)
 	{
 		if (ft_isWall(data, x, y))
