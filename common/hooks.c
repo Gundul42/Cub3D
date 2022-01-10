@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:59:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:59:41 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	ft_loop_hook(t_data *img)
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	if (img->run)
+	{
 		ft_drawFov(img);
+		ft_showPlayer(img);
+	}
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/09 09:35:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:53:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ float	ft_rad2deg(float rad)
 	if (deg < 0)
 		return (360.0 + deg);
 	return (deg);
+}
+
+/*
+ * alpha can only be something between 0 >= alpha >= 360 !
+ */
+float	ft_valAlpha(float alpha)
+{
+	if (alpha < 0.0)
+		alpha += 360.0;
+	if (alpha > 360.0)
+		alpha -= 360.0;
+	return (alpha);
 }
 
 /* get distance between two points in float

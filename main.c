@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:56:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:05:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_data	*ft_blank(t_data *data)
 	data->win_x = 1200;
 	data->win_y = 800;
 	data->tilesize = 64;
-	data->fov = 120;
+	data->fov = 90;
 	data->speed = 16;
 	data->rotspeed = 1.5;
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	ft_initMap(img, argv[1]);
-	img->dir = 271.0;
+	img->dir = 283.0;
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	mlx_hook(img->win, 17, 1L << 2, the_end, img);

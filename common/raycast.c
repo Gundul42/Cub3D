@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:34:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:54:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ void	ft_castRay(t_data *d, float alpha)
 	t_point	hor;
 	t_point	vet;
 
-	if (alpha < 0.0)
-		alpha += 360.0;
-	if (alpha > 360.0)
-		alpha -= 360.0;
+	alpha = ft_valAlpha(alpha);
 	plyr = ft_getPlayerPoint(d);
 	hor = ft_firstHitHorizontal(d, alpha);
 	vet = ft_firstHitVertical(d, alpha);

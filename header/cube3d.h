@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:48:03 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:54:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha);
 // common: math.c
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
+float	ft_valAlpha(float alpha);
 float	ft_getDist(float x1, float y1, float x2, float y2);
 // common: movePlayer.c
 void	ft_rotatePlayer(t_data *data, int flag);

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:58:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:42:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,18 +168,17 @@ void	ft_drawBox(t_data *data, size_t x, size_t y)
 //draw field of view
 void	ft_drawFov(t_data *data)
 {
-	float	i;
 	float	start;
-	float	stop;
+	int		max;
+	int		i;
 
-	i = (float)(data->fov / 2);
-	start = data->dir - i;
-	stop = data->dir + i;
-	i = start;
-	printf("Start %f, stop %f    fov = %f\n\n", start, stop, data->dir);
-	while (i != stop)
+	max = (float)data->fov / 0.1;
+	i = 0;
+	start = data->dir - (float)(data->fov / 2);
+	while (i < max)
 	{
-		ft_castRay(data, i);
-		i += 0.5;
+		ft_castRay(data, start);
+		start += 0.1;
+		i++;
 	}
 }

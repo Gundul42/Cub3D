@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 12:50:52 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/10 13:58:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_showPlayer(t_data *data)
 	size_t	y;
 	int	col;
 
-	col = ft_make_trgb(0, 0, 0, 255);
+	col = ft_make_trgb(0, 255, 51, 51);
 	ft_getPlayerPos(data, &x, &y);
 	ft_draw_circle(data, x, y, 4, col);
 	ft_draw_angeled(data, x, y, data->dir, data->tilesize / 4);
