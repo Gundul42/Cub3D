@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 17:43:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 13:36:21 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,20 @@ typedef struct s_ray {
 typedef struct s_data {
 	void			*mlx;
 	void			*win;
+	void			*win2;
 	void			*img;
+	void			*img2;
 	char			*addr;
+	char			*addr1;
+	char			*addr2;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
 	int				type;
-	int			run;		//true after first key is pressed
+	int				bits_per_pixel2;
+	int				line_length2;
+	int				endian2;
+	int				type2;
 	size_t			win_x;		//windowsize x
 	size_t			win_y;		//windowsize y
 	unsigned char	tilesize;		//size of a game tile == texture size in Bit
@@ -74,6 +81,7 @@ typedef struct s_data {
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
 	int				csky;	//sky color
+	int			run;		//true after first key is pressed
 	int				**map;	//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
@@ -99,6 +107,7 @@ void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
 void 	ft_drawBox(t_data *data, size_t x, size_t y);
 void	ft_drawFov(t_data *data);
 void	ft_dumpRay(t_data *data, t_ray ray);
+void	ft_drawBackSimple(t_data *data);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);

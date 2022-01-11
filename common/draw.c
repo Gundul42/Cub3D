@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 17:42:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 13:40:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,34 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_draw_background(t_data *data)
+// simple one color only background
+void	ft_drawBackSimple(t_data *data)
 {
 	size_t	x;
 	size_t	y;
 
 	y = 0;
-	while (y < data->win_y / 3)
+	data->addr = data->addr1;
+	while (y < data->win_y)
+	{
+		x = 0;
+		while (x < data->win_x)
+		{
+			ft_draw_pixel(data, x, y, 0);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_draw_background(t_data *data)
+{
+	size_t	x;
+	size_t	y;
+
+	data->addr = data->addr2;
+	y = 0;
+	while (y < data->win_y / 2)
 	{
 		x = 0;
 		while (x < data->win_x)
@@ -60,6 +81,7 @@ void	ft_draw_background(t_data *data)
 		}
 		y++;
 	}
+	data->addr = data->addr1;
 
 }
 
