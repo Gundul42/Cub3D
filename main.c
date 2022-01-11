@@ -6,14 +6,11 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 13:54:37 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 16:57:14 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cube3d.h"
-
-//./cub3d ./maps/test.cub
-
 
 //clean up all allocated memory for the loaded map
 static
@@ -54,16 +51,21 @@ t_data	*ft_blank(t_data *data)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		exit (1);
-	data->win_x = 600;
-	data->win_y = 400;
 	data->tilesize = 64;
-	data->fov = 90;
+	data->win_x = data->tilesize * 20;
+	data->win_y = data->tilesize * 12;
+	data->dtpp = 256;
+	data->fov = 120;
 	data->speed = 16;
 	data->rotspeed = 1.5;
-	data->precision = 0.1;		// ray scan precision, smaller slower but more accurate
+	data->precision = (float)data->fov / (float)data->win_x;
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
 	data->cfloor_near = ft_rgb2col(0, 132, 43, 135);
 	data->csky = ft_make_trgb(0, 135, 206, 235);
+	data->wall[0] = ft_make_trgb(0, 221, 170, 68); 
+	data->wall[1] = ft_make_trgb(0, 132, 102, 40); 
+	data->wall[2] = ft_make_trgb(0, 176, 136, 54); 
+	data->wall[3] = ft_make_trgb(0, 88, 68, 27); 
 	return (data);
 }
 

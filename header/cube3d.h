@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 13:36:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 16:47:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data {
 	size_t			win_y;		//windowsize y
 	unsigned char	tilesize;		//size of a game tile == texture size in Bit
 	unsigned char	fov;			//field of view of player in degrees
+	unsigned int	dtpp;			//distance to projection plane
 	unsigned char	speed;			//player speed in pixel of gametile / movement unit
 	float			precision;	//precision of ray scanning the smaller the accurate
 	float			rotspeed;	//player rotation speed;
@@ -80,6 +81,7 @@ typedef struct s_data {
 	float			py;		//player y position
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
+	int				wall[4];//wall color depending of orientation
 	int				csky;	//sky color
 	int			run;		//true after first key is pressed
 	int				**map;	//2d array, map representation from cub file
@@ -101,7 +103,7 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_background(t_data *data);
 void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
 void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col);
-void	ft_draw_line(t_data *data, int x, int y, int a, int b);
+void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);
 void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
 void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
 void 	ft_drawBox(t_data *data, size_t x, size_t y);
@@ -143,6 +145,8 @@ void	ft_initMap(t_data *data, char *path);
 // common: raycast.c
 //void	ft_castRay(t_data *d, float alpha);
 t_ray	ft_castRay(t_data *d, float alpha);
+// common: draw3D.c
+void	ft_draw3D(t_data *data, t_ray ray, int i);
 // main
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);

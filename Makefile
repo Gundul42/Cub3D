@@ -6,7 +6,7 @@
 #    By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/09 09:38:03 by graja            ###   ########.fr        #
+#    Updated: 2022/01/11 16:16:12 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/col_rgb2hsv.c common/hooks.c common/load_map.c \
 			common/load_map_utils.c common/map2d.c common/maths.c \
 			common/raycast.c common/movePlayer.c error.c \
-			common/points.c
+			common/points.c common/draw3D.c
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 LIBFT	= libft

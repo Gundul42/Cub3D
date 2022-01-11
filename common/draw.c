@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 13:40:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 16:48:27 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,15 +144,15 @@ void	ft_draw_hit(t_data *data, float x, float y, float r, int col)
 }
 
 
-void	ft_draw_line(t_data *data, int x, int y, int a, int b)
+void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 {
 	float	dist;
 	int	i;
 	float	xstep;
 	float	ystep;
-	int	col;
 
-	col = ft_make_trgb(0, 51, 0, 255);
+	if (col == -1)
+		col = ft_make_trgb(0, 51, 0, 255);
 	dist = sqrt(pow((a - x), 2) + pow((b - y), 2));
 	xstep = (float)(a - x) / dist;
 	ystep = (float)(b - y) / dist;
@@ -173,7 +173,7 @@ void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
 
 	x2 = x + (float)(len) * cosf(ft_deg2rad(alpha));
 	y2 = y + (float)(len) * sinf(ft_deg2rad(alpha));
-	ft_draw_line(data, x, y, x2, y2);
+	ft_draw_line(data, x, y, x2, y2, -1);
 }
 
 //draw only one mapblocktile
@@ -195,7 +195,7 @@ void	ft_dumpRay(t_data *data, t_ray ray)
 	char	*d[4] = {"North", "South", "East", "West"};
 
 	plyr = ft_getPlayerPoint(data);
-	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y);
+	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y, -1);
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);
@@ -209,13 +209,16 @@ void	ft_drawFov(t_data *data)
 	float	start;
 	int		max;
 	int		i;
+	t_ray	ray;
 
 	max = (float)data->fov / data->precision;
 	i = 0;
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ft_dumpRay(data, ft_castRay(data, start));
+		ray = ft_castRay(data, start); 
+		ft_dumpRay(data, ray);
+		ft_draw3D(data, ray, i);
 		start += data->precision;
 		i++;
 	}
