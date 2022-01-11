@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 16:57:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:40:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ t_data	*ft_blank(t_data *data)
 	if (!data)
 		exit (1);
 	data->tilesize = 64;
-	data->win_x = data->tilesize * 20;
-	data->win_y = data->tilesize * 12;
+	data->win_x = data->tilesize * 14;
+	data->win_y = data->tilesize * 10;
 	data->dtpp = 256;
 	data->fov = 120;
-	data->speed = 16;
+	data->speed = 8;
 	data->rotspeed = 1.5;
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);

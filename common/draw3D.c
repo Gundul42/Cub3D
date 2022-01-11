@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:12 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 16:49:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:42:23 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_draw3D(t_data *data, t_ray ray, int i)
 	int	y2;
 
 	height = (float)data->win_y / (float)data->tilesize;
+	height *= 4.0 * (float)(data->win_x / data->win_y);
 	wop = (float)data->dtpp / ray.dist * height;
 	data->addr = data->addr2;
 	y1 = data->win_y / 2 + (int)wop / 2;

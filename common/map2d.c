@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 17:21:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:23:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_movePlayer(t_data *data,int flag)
 
 	newx = data->px;
 	newy = data->py;
-	data->run = 0;
+	data->run = 1;
 	if (flag == 1 || flag == 2)
 		ft_forbac(data, &newx, &newy, flag);
 	if (flag == 3 || flag == 4)
