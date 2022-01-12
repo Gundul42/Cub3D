@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 18:05:06 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 19:09:43 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_key_hook(int code, t_data *data)
 	//printf("Key: %d)\n", code);
 	if (code == 65307)
 		the_end(data);
+	if (code == 99)
+		data->correct = !data->correct;
 	if (code == 119)
 		ft_movePlayer(data, 1);		// W
 	if (code == 115)

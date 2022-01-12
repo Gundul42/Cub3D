@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 16:47:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 19:01:40 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_data {
 	int				wall[4];//wall color depending of orientation
 	int				csky;	//sky color
 	int			run;		//true after first key is pressed
+	int			correct;	//cos wall correction, default off
 	int				**map;	//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map

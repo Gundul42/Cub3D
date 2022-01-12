@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 18:43:51 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 19:06:40 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	printf("NS\n");
 	if (p.x >= data->mapx * data->tilesize || p.y >= data->mapy * data->tilesize)
 		return (0);
 	ft_getMapPoint(data, p, &x, &y);
@@ -115,12 +114,9 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	printf("WE\n");
 	if (p.x  >= data->mapx * data->tilesize || p.y >= data->mapy * data->tilesize)
 		return (0);
 	ft_getMapPoint(data, p, &x, &y);
-	printf("%ld - %ld :: %ld - %ld\n", x, y, data->mapx, data->mapy);
-	printf("%f\n\n", alpha);
 	if (alpha > 180 && alpha < 360)
 	{
 		if (ft_isWall(data, x, y - 1))
