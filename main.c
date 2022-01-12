@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 15:14:03 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 17:58:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_data	*ft_blank(t_data *data)
 	if (!data)
 		exit (1);
 	data->tilesize = 64;
-	data->win_x = data->tilesize * 14;
-	data->win_y = data->tilesize * 10;
+	data->win_x = 1200;
+	data->win_y = 900;
 	data->fov = 100;
 	data->speed = 6;
 	data->rotspeed = 1.5;
@@ -97,9 +97,10 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
+	img->dir = 281.5;
 	ft_draw_background(img);
 	ft_drawBackSimple(img);
-	ft_draw2dmap(img);
+	//ft_draw2dmap(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
 //	mlx_key_hook(img->win, ft_key_hook, img);

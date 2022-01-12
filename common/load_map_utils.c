@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 23:22:15 by flormich          #+#    #+#             */
-/*   Updated: 2022/01/09 09:37:13 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 17:04:00 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir)
 
 void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y)
 {
-	size_t	xstep;
-	size_t	ystep;
-
-	xstep = d->win_x / d->mapx;
-	ystep = d->win_y / d->mapy;
-	*x = d->px * xstep;
-	*y = d->py * ystep;
+	*x = d->px * d->tilesize;
+	*y = d->py * d->tilesize;
 }

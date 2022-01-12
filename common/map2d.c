@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 17:23:07 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 18:43:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 void	ft_draw2dmap(t_data *data)
 {
-	size_t	xstep;
-	size_t	ystep;
 	size_t	x;
 	size_t	y;
+	size_t	step;
 	int	col;
 
 	col = ft_make_trgb(0, 255, 217, 102);
-	xstep = data->win_x / data->mapx;
-	ystep = data->win_y / data->mapy;
-	y = 0;
-	while (y < data->mapy)
+	y = (size_t)data->py - 5;
+	step = data->tilesize;
+	while (y < (size_t)data->py + 5)
 	{
-		x = 0;
-		while (x < data->mapx)
+		x = (size_t)data->px - 5;
+		while (x < (size_t)data->px + 5)
 		{
 			if (data->map[y][x])
-				ft_draw_rect(data, (x * xstep), (y * ystep), xstep - 1, ystep - 1, col);
+				ft_draw_rect(data, (x * step), (y * step), step - 1, step - 1, col);
 			x++;
 		}
 		y++;
 	}
-	ft_showPlayer(data);
+	//ft_showPlayer(data);
 }
 
 /* calculates the player position (which is in maptiles) and shows it in the map
@@ -83,7 +81,7 @@ void	ft_movePlayer(t_data *data,int flag)
 		data->px = newx;
 		data->py = newy;
 	}
-	ft_showPlayer(data);
+	//ft_showPlayer(data);
 }
 
 int	ft_checkMapNS(t_data *data, t_point p, float alpha)
@@ -91,7 +89,8 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	if (p.x >= data->win_x || p.y >= data->win_y)
+	printf("NS\n");
+	if (p.x >= data->mapx * data->tilesize || p.y >= data->mapy * data->tilesize)
 		return (0);
 	ft_getMapPoint(data, p, &x, &y);
 	if (alpha > 270 || alpha < 90)
@@ -101,7 +100,7 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 		else
 			return (1);
 	}
-	else if (alpha <= 270 && alpha >= 90)
+	else if (alpha < 270 && alpha > 90)
 	{
 		if (ft_isWall(data, x - 1, y))
 			return (0);
@@ -116,17 +115,20 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha)
 	size_t	x;
 	size_t	y;
 
-	if (p.x >= data->win_x || p.y >= data->win_y)
+	printf("WE\n");
+	if (p.x  >= data->mapx * data->tilesize || p.y >= data->mapy * data->tilesize)
 		return (0);
 	ft_getMapPoint(data, p, &x, &y);
-	if (alpha >= 180 && alpha <= 360)
+	printf("%ld - %ld :: %ld - %ld\n", x, y, data->mapx, data->mapy);
+	printf("%f\n\n", alpha);
+	if (alpha > 180 && alpha < 360)
 	{
 		if (ft_isWall(data, x, y - 1))
 			return (0);
 		else
 			return (1);
 	}
-	else if (alpha < 180 && alpha >= 0)
+	else if (alpha < 180 && alpha > 0)
 	{
 		if (ft_isWall(data, x, y))
 			return (0);

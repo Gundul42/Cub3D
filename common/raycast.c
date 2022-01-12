@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 13:13:34 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 18:37:34 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 	else
 		diff.y = d->py - ceilf(d->py);
 	diff.x = diff.y / tanf(ft_deg2rad(alpha));
-	diff.x = (d->px - diff.x) * (float)(d->win_x / d->mapx);
-	diff.y = (d->py - diff.y) * (float)(d->win_y / d->mapy);
+	diff.x = (d->px - diff.x) * (float)(d->tilesize);
+	diff.y = (d->py - diff.y) * (float)(d->tilesize);
 	return (diff);
 }
 
@@ -37,8 +37,8 @@ t_point	ft_firstHitVertical(t_data *d, float alpha)
 	else
 		diff.x = floorf(d->px) - d->px;
 	diff.y = diff.x * tanf(ft_deg2rad(alpha));
-	diff.x = (d->px + diff.x) * (float)(d->win_x / d->mapx);
-	diff.y = (d->py + diff.y) * (float)(d->win_y / d->mapy);
+	diff.x = (d->px + diff.x) * (float)(d->tilesize);
+	diff.y = (d->py + diff.y) * (float)(d->tilesize);
 	return (diff);
 }
 
@@ -47,17 +47,17 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 {
 	float	deltaY;
 
-	deltaY = ((float)(data->win_y / data->mapy)) * tanf(ft_deg2rad(alpha));
+	deltaY = ((float)(data->tilesize)) * tanf(ft_deg2rad(alpha));
 	while (ft_checkMapNS(data, v, alpha))
 	{
 		if (alpha >= 270 || alpha <= 90)
 		{
-			v.x += (float)(data->win_x / data->mapx);
+			v.x += (float)(data->tilesize);
 			v.y += deltaY;
 		}
 		else	
 		{
-			v.x -= (float)(data->win_x / data->mapx);
+			v.x -= (float)(data->tilesize);
 			v.y -= deltaY;
 		}
 	}
@@ -69,19 +69,20 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 {
 	float	deltaX;
 
-	deltaX = ((float)(data->win_x / data->mapx)) / tanf(ft_deg2rad(alpha));
+	deltaX = ((float)(data->tilesize)) / tanf(ft_deg2rad(alpha));
 	while (ft_checkMapWE(data, h, alpha))
 	{
 		if (alpha >= 180 && alpha <= 360)
 		{
 			h.x -= deltaX;
-			h.y -= (float)(data->win_y / data->mapy);
+			h.y -= (float)(data->tilesize);
 		}
 		else
 		{
 			h.x += deltaX;
-			h.y += (float)(data->win_y / data->mapy);
+			h.y += (float)(data->tilesize);
 		}
+		printf("COOR %f -- %f\n\n", h.x, h.y);
 	}
 	return (h);
 }

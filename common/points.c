@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 09:34:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 11:46:34 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 16:51:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_point	ft_getPlayerPoint(t_data *data)
 //translates from pixel to point on the 2D map
 void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y)
 {
-	*x = (size_t)(p.x) / (data->win_x / data->mapx);
-	*y = (size_t)(p.y) / (data->win_y / data->mapy);
+	*x = (size_t)(p.x) / (data->tilesize);
+	*y = (size_t)(p.y) / (data->tilesize);
 	if (*x > data->mapx - 1)
 		*x = data->mapx - 1;
 	if (*y > data->mapy - 1)
