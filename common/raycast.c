@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 15:08:56 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 13:13:34 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	}
 	return (h);
 }
-	  
+
 t_ray	ft_castRay(t_data *d, float alpha)
 {
 	t_point	plyr;

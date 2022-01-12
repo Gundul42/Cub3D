@@ -6,11 +6,23 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:12 by graja             #+#    #+#             */
-/*   Updated: 2022/01/11 17:42:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/12 14:28:30 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
+
+/*
+static
+float	ft_rayCorrect(t_data *data, t_ray ray)
+{
+	float	diff;
+
+	if (ray.dist >= ((float)data->dtpp) / 8)
+		return (ray.dist);
+	diff = (data->dir - ray.dir);
+	return (ray.dist * cosf(ft_deg2rad(diff)));
+}*/
 
 void	ft_draw3D(t_data *data, t_ray ray, int i)
 {
@@ -19,8 +31,9 @@ void	ft_draw3D(t_data *data, t_ray ray, int i)
 	int	y1;
 	int	y2;
 
-	height = (float)data->win_y / (float)data->tilesize;
-	height *= 4.0 * (float)(data->win_x / data->win_y);
+	printf("%3d %3.2f\n", data->dtpp, ray.dist);
+	height = 4 * (float)data->win_y / (float)data->tilesize;
+	height *= (float)(data->win_x / data->win_y);
 	wop = (float)data->dtpp / ray.dist * height;
 	data->addr = data->addr2;
 	y1 = data->win_y / 2 + (int)wop / 2;
