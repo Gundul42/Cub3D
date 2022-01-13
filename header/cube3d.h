@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 19:01:40 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 10:40:53 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_ray {
 // the basic data type for handling the minilibx
 typedef struct s_data {
 	void			*mlx;
-	void			*win;
 	void			*win2;
 	void			*img;
 	void			*img2;
@@ -81,11 +80,11 @@ typedef struct s_data {
 	float			py;		//player y position
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
-	int				wall[4];//wall color depending of orientation
-	int				csky;	//sky color
+	int			wall[4];	//wall color depending of orientation
+	int			csky;		//sky color
 	int			run;		//true after first key is pressed
 	int			correct;	//cos wall correction, default off
-	int				**map;	//2d array, map representation from cub file
+	int			**map;		//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 }	t_data;
@@ -127,7 +126,6 @@ void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
 int	ft_isWall(t_data *data, size_t x, size_t y);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
-void	ft_showPlayer(t_data *data);
 void	ft_movePlayer(t_data *data,int flag);
 int	ft_checkMapNS(t_data *data, t_point p, float alpha);
 int	ft_checkMapWE(t_data *data, t_point p, float alpha);

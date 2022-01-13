@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 19:06:40 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 11:08:30 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,10 @@
 
 void	ft_draw2dmap(t_data *data)
 {
-	size_t	x;
-	size_t	y;
-	size_t	step;
-	int	col;
-
-	col = ft_make_trgb(0, 255, 217, 102);
-	y = (size_t)data->py - 5;
-	step = data->tilesize;
-	while (y < (size_t)data->py + 5)
-	{
-		x = (size_t)data->px - 5;
-		while (x < (size_t)data->px + 5)
-		{
-			if (data->map[y][x])
-				ft_draw_rect(data, (x * step), (y * step), step - 1, step - 1, col);
-			x++;
-		}
-		y++;
-	}
-	//ft_showPlayer(data);
-}
-
-/* calculates the player position (which is in maptiles) and shows it in the map
- * now including view direction of the player
- * color is hardcoded because only temp solution
- */
-void	ft_showPlayer(t_data *data)
-{
-	size_t	x;
-	size_t	y;
-	int	col;
-
-	col = ft_make_trgb(0, 255, 51, 51);
-	ft_getPlayerPos(data, &x, &y);
-	ft_draw_circle(data, x, y, 4, col);
-	ft_draw_angeled(data, x, y, data->dir, data->tilesize / 4);
+	printf("\n*******************************\n");
+	printf("**** Px = %5.2f\n", data->px);
+	printf("**** Py = %5.2f\n", data->py);
+	printf("*******************************\n");
 }
 
 /* Flags:
@@ -76,12 +44,11 @@ void	ft_movePlayer(t_data *data,int flag)
 		ft_leftright(data, &newx, &newy, flag);
 	newx += data->px;
 	newy += data->py;
-	if (!data->map[(size_t)(newy - 0.25)][(size_t)(newx)])
+	if (!data->map[(size_t)(newy)][(size_t)(newx)])
 	{
 		data->px = newx;
 		data->py = newy;
 	}
-	//ft_showPlayer(data);
 }
 
 int	ft_checkMapNS(t_data *data, t_point p, float alpha)

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 19:09:43 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 10:58:14 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 int	ft_loop_hook(t_data *img)
 {
-	mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed 
+	//mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed 
 	ft_draw_background(img);
-	ft_drawBackSimple(img);
-//	ft_draw2dmap(img);
+	ft_draw2dmap(img);
 	if (img->run)
-	{
 		ft_drawFov(img);
-		//ft_showPlayer(img);
-	}
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
 	return (0);
 }
