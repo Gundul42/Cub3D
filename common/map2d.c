@@ -6,18 +6,47 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:08:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 13:19:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
+static
+void	ft_mapDot(t_data *data, int x, int y, int color)
+{
+	int	i;
+	int	j;
+	
+	j = 0;
+	while (j < (int)data->miniZ)
+	{
+		i = 0;
+		while (i < (int)data->miniZ)
+		{
+			if (ft_isWall(data, x - (int)data->miniZ / 2 + i, 
+						y - (int)data->miniZ / 2 + j))
+				printf("*");
+			else
+				printf(" ");
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+	printf("\n\n");
+	color++;
+}
+
+//	ft_drawMapPixel(t_data *data, int x, int y, int color)
 void	ft_draw2dmap(t_data *data)
 {
+	
 	printf("\n*******************************\n");
 	printf("**** Px = %5.2f\n", data->px);
 	printf("**** Py = %5.2f\n", data->py);
 	printf("*******************************\n");
+	ft_mapDot(data, data->px, data->py, 0);
 }
 
 /* Flags:

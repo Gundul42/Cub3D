@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:28:27 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 12:37:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int	interpol_color(t_data *data, int now, int max)
 	res = ft_interpolate_hsv(rgb2hsv(data->cfloor_far),
 			rgb2hsv(data->cfloor_near), now, max);
 	return (ft_make_color(hsv2rgb(res)));
+}
+
+void	ft_drawMapPixel(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x > (int)data->win_x / 10 || y < 0 || y > (int)data->win_y / 10)
+		return ;
+	dst = data->addr1 + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	ft_draw_pixel(t_data *data, int x, int y, int color)
@@ -93,7 +103,6 @@ void	ft_dumpRay(t_data *data, t_ray ray)
 	char	*d[4] = {"North", "South", "East", "West"};
 
 	plyr = ft_getPlayerPoint(data);
-//	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y, -1);
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);

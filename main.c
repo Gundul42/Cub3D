@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:15:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 13:23:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_data	*ft_blank(t_data *data)
 	data->win_y = 900;
 	data->fov = 100;
 	data->speed = 6;
+	data->minimap = 10;
+	data->miniZ = 16;
 	data->rotspeed = 1.5;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
@@ -71,7 +73,8 @@ t_data	*ft_blank(t_data *data)
 static
 void	ft_getReady(t_data *data)
 {
-	data->img1 = mlx_new_image(data->mlx, 100, 80 ); //data->win_x, data->win_y);
+	data->img1 = mlx_new_image(data->mlx, data->win_x / 
+			data->minimap, data->win_x / data->minimap);
 	data->addr1 = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	data->win2 = mlx_new_window(data->mlx, data->win_x, data->win_y,

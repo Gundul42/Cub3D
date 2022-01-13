@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:28:40 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 13:19:09 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_data {
 	int				type2;
 	size_t			win_x;		//windowsize x
 	size_t			win_y;		//windowsize y
+	size_t			minimap;	//size of minimap
+	size_t			miniZ;		//zoom faktor of minimap
 	unsigned char	tilesize;		//size of a game tile == texture size in Bit
 	unsigned char	fov;			//field of view of player in degrees
 	unsigned int	dtpp;			//distance to projection plane
