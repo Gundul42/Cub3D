@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:06:58 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 11:15:01 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	the_end(t_data *data)
 {
 	if (data->mapx)
 		ft_cleanupMap(data);
-	mlx_destroy_image(data->mlx, data->img);
+	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
 	mlx_destroy_window(data->mlx, data->win2);
 	mlx_destroy_display(data->mlx);
@@ -71,8 +71,8 @@ t_data	*ft_blank(t_data *data)
 static
 void	ft_getReady(t_data *data)
 {
-	data->img = mlx_new_image(data->mlx, data->win_x, data->win_y);
-	data->addr1 = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+	data->img1 = mlx_new_image(data->mlx, 100, 80 ); //data->win_x, data->win_y);
+	data->addr1 = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	data->win2 = mlx_new_window(data->mlx, data->win_x, data->win_y,
 			"Cube3D");

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 10:40:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 11:28:40 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_ray {
 typedef struct s_data {
 	void			*mlx;
 	void			*win2;
-	void			*img;
+	void			*img1;
 	void			*img2;
 	char			*addr;
 	char			*addr1;
@@ -101,15 +101,9 @@ t_hsv	rgb2hsv(t_color in);
 // common: draw.c
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_background(t_data *data);
-void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col);
-void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);
-void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len);
-void	ft_draw_hit(t_data *data, float x, float y, float r, int col);
-void 	ft_drawBox(t_data *data, size_t x, size_t y);
 void	ft_drawFov(t_data *data);
 void	ft_dumpRay(t_data *data, t_ray ray);
-void	ft_drawBackSimple(t_data *data);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);

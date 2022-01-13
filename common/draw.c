@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 11:07:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 11:28:27 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,8 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 
 	if (x < 0 || x > (int)data->win_x || y < 0 || y > (int)data->win_y)
 		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length2 + x * (data->bits_per_pixel2 / 8));
 	*(unsigned int *)dst = color;
-}
-
-// simple one color only background
-void	ft_drawBackSimple(t_data *data)
-{
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	data->addr = data->addr1;
-	while (y < data->win_y)
-	{
-		x = 0;
-		while (x < data->win_x)
-		{
-			ft_draw_pixel(data, x, y, 0);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	ft_draw_background(t_data *data)
@@ -85,65 +65,6 @@ void	ft_draw_background(t_data *data)
 
 }
 
-void	ft_draw_rect(t_data *data, int x, int y, int l, int w, int col)
-{
-	int	a;
-	int	b;
-
-	b = 0;
-	while (b < w)
-	{
-		a = 0;
-		while (a < l)
-		{
-			ft_draw_pixel(data, x + a, y + b, col);
-			a++;
-		}
-		b++;
-	}
-}
-
-void	ft_draw_circle(t_data *d, int or_x, int or_y, float r, int col)
-{
-	int	x;
-	int	y;
-	
-	if (or_x < 0 || or_x > (int)d->win_x || or_y < 0 || or_y > (int)d->win_y)
-		return ;
-	x = or_x - r;
-	while (x <= or_x + r)
-	{
-		y = or_y - r;
-		while (y <= or_y + r)
-		{
-			if (pow(pow(x - or_x, 2) + pow(y - or_y, 2), 0.5) <= r)
-			{
-				ft_draw_pixel(d, x, y, col);
-			}
-			y++;
-		}
-		x++;
-	}
-}
-
-// draws an empty circle
-void	ft_draw_hit(t_data *data, float x, float y, float r, int col)
-{
-	int	alpha;
-	int	newx;
-	int	newy;
-
-	alpha = 0;
-	while (alpha < 360)
-	{
-		newx = (x + r * cosf(ft_deg2rad((alpha))));
-		newy = (y + r * sinf(ft_deg2rad((alpha)))); 
-		ft_draw_pixel(data, newx, newy, col);  
-		alpha++;
-	}
-}
-
-
 void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 {
 	float	dist;
@@ -162,29 +83,6 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 		ft_draw_pixel(data, x + xstep * i, y + ystep * i, col);
 		i++;
 	}
-}
-
-/* newly added (06/01/22) draw a line beginning from x,y with the length
- * of len in direction of alpha */
-void	ft_draw_angeled(t_data *data, int x, int y, float alpha, int len)
-{
-	int	x2;
-	int	y2;
-
-	x2 = x + (float)(len) * cosf(ft_deg2rad(alpha));
-	y2 = y + (float)(len) * sinf(ft_deg2rad(alpha));
-	ft_draw_line(data, x, y, x2, y2, -1);
-}
-
-//draw only one mapblocktile
-void	ft_drawBox(t_data *data, size_t x, size_t y)
-{
-	size_t	xstep;
-	size_t	ystep;
-
-	xstep = data->win_x / data->mapx;
-	ystep = data->win_y / data->mapy;
-	ft_draw_rect(data, (x * xstep), (y * ystep), xstep - 1, ystep - 1, 0);
 }
 
 // dumps all info from a Ray, including drawing line in 2D from player 
