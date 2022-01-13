@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 13:19:09 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 14:09:21 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ t_color	hsv2rgb(t_hsv in);
 t_hsv	rgb2hsv(t_color in);
 // common: draw.c
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
+void	ft_drawMapPixel(t_data *data, int x, int y, int color);
+void	ft_drawDot(t_data *data, int i, int j);
 void	ft_draw_background(t_data *data);
+void	ft_drawMapBck(t_data *data);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);
 void	ft_drawFov(t_data *data);
 void	ft_dumpRay(t_data *data, t_ray ray);
