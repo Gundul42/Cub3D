@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 09:34:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 16:51:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 10:05:32 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y)
 //check if coordinate is a wall, if exceeding map it is always true
 int	ft_isWall(t_data *data, size_t x, size_t y)
 {
-	if (x >= data->mapx || y >= data->mapy)
+	if (x >= data->mapx - 1 || y >= data->mapy - 1)
 		return (1);
 	else
 		return (data->map[y][x]);

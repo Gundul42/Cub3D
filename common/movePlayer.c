@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:13:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 18:02:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 10:10:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void	ft_rotatePlayer(t_data *data, int flag)
 		data->dir -= 360.0;
 	if (data->dir < 0)
 		data->dir += 360.0;
-	printf("DIR= %10f -- RAD=%10f \n", data->dir, ft_deg2rad(data->dir));
 //	ft_showPlayer(data);
 }

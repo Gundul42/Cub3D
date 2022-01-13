@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 17:58:06 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 10:15:32 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,11 +195,14 @@ void	ft_dumpRay(t_data *data, t_ray ray)
 	char	*d[4] = {"North", "South", "East", "West"};
 
 	plyr = ft_getPlayerPoint(data);
-	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y, -1);
+//	ft_draw_line(data, plyr.x, plyr.y, ray.p.x, ray.p.y, -1);
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);
 	printf("*** Hit wall from   : %s\n", d[ray.flag]);
+	printf("************************************\n");
+	printf("*** Pposx           : %f\n", plyr.x);
+	printf("*** Pposy           : %f\n", plyr.y);
 	printf("************************************\n\n");
 }
 
@@ -217,7 +220,7 @@ void	ft_drawFov(t_data *data)
 	while (i < max)
 	{
 		ray = ft_castRay(data, start); 
-		//ft_dumpRay(data, ray);
+		ft_dumpRay(data, ray);
 		ft_draw3D(data, ray, i);
 		start += data->precision;
 		i++;
