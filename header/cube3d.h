@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 14:09:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 16:06:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_data {
 	int			csky;		//sky color
 	int			run;		//true after first key is pressed
 	int			correct;	//cos wall correction, default off
+	int			mMap;		//miniMap, default off
 	int			**map;		//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
@@ -125,6 +126,7 @@ void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
 int	ft_isWall(t_data *data, size_t x, size_t y);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
+void	ft_MapZoom(t_data *data, int flag);
 void	ft_movePlayer(t_data *data,int flag);
 int	ft_checkMapNS(t_data *data, t_point p, float alpha);
 int	ft_checkMapWE(t_data *data, t_point p, float alpha);

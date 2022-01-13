@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 13:58:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 16:03:40 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	ft_loop_hook(t_data *img)
 {
-	//mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed 
+	mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed 
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	if (img->run)
 		ft_drawFov(img);
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
-	mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
+	if (img->mMap)
+		mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	return (0);
 }
@@ -32,6 +33,12 @@ int	ft_key_hook(int code, t_data *data)
 		the_end(data);
 	if (code == 99)
 		data->correct = !data->correct;
+	if (code == 109)
+		data->mMap = !data->mMap;
+	if (code == 43)
+		ft_MapZoom(data, 1);
+	if (code == 35)
+		ft_MapZoom(data, 0);
 	if (code == 119)
 		ft_movePlayer(data, 1);		// W
 	if (code == 115)

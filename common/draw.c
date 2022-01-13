@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 14:11:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 14:48:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_drawMapPixel(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || x > (int)(data->win_x / data->minimap) || y < 0 || 
-			y > (int)(data->win_y / data->minimap))
+			y > (int)(data->win_x / data->minimap))
 		return ;
 	dst = data->addr1 + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

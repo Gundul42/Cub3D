@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 14:10:31 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 16:11:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	ft_draw2dmap(t_data *data)
 	int	i;
 	int	j;
 	
-	printf("\n*******************************\n");
-	printf("**** Px = %5.2f\n", data->px);
-	printf("**** Py = %5.2f\n", data->py);
-	printf("*******************************\n");
 	j = 0;
 	ft_drawMapBck(data);
 	while (j < (int)data->miniZ)
@@ -34,6 +30,22 @@ void	ft_draw2dmap(t_data *data)
 			i++;
 		}
 		j++;
+	}
+}
+
+void	ft_MapZoom(t_data *data, int flag)
+{
+	if (flag)
+	{
+		data->miniZ += 5;
+		if (data->miniZ > 40)
+		       data->miniZ = 40;
+	}
+	else
+	{
+		data->miniZ -= 5;
+		if (data->miniZ < 5)
+			data->miniZ = 5;
 	}
 }
 
