@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/12 19:07:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 19:35:56 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,14 @@ t_ray	ft_castRay(t_data *d, float alpha)
 	{
 		ray.p = vet;
 		ray.dist = ft_PointDist(plyr, vet);
+		ray.offset = (int)(ray.p.y) % d->tilesize;
 		ray.flag = ft_getSide(0, alpha);
 	}
 	else
 	{
 		ray.p = hor;
 		ray.dist = ft_PointDist(plyr, hor);
+		ray.offset = (int)(ray.p.x) % d->tilesize;
 		ray.flag = ft_getSide(1, alpha);
 	}
 	return (ray);

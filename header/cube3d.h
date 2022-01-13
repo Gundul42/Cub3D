@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 16:06:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 19:26:45 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_ray {
 	t_point	p;
 	float	dir;
 	float	dist;
+	int	offset;
 	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W
 }	t_ray;
 
@@ -90,6 +91,9 @@ typedef struct s_data {
 	int			**map;		//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
+	void			*txtnorth;
+	int				n_txtx;	//width of texture
+	int				n_txty;	//height of texture
 }	t_data;
 
 // common: colors.c
@@ -150,6 +154,7 @@ void	ft_draw3D(t_data *data, t_ray ray, int i);
 // main
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);
+void	ft_loadTextures(t_data *data);
 // error.c
 void	fehlt_map(t_data *data, char *path, int type);
 //void	ft_init_window(t_data *data, int x, int y, int i);

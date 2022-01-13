@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 14:48:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/13 19:34:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void	ft_dumpRay(t_data *data, t_ray ray)
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);
+	printf("*** Offset          : %d\n", ray.offset);
 	printf("*** Hit wall from   : %s\n", d[ray.flag]);
 	printf("************************************\n");
 	printf("*** Pposx           : %f\n", plyr.x);
@@ -166,7 +167,7 @@ void	ft_drawFov(t_data *data)
 	while (i < max)
 	{
 		ray = ft_castRay(data, start); 
-		//ft_dumpRay(data, ray);
+		ft_dumpRay(data, ray);
 		ft_draw3D(data, ray, i);
 		start += data->precision;
 		i++;
