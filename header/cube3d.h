@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 15:12:51 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 17:56:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_data {
 	size_t			win_y;		//windowsize y
 	size_t			minimap;	//size of minimap
 	size_t			miniZ;		//zoom faktor of minimap
-	unsigned char	tilesize;		//size of a game tile == texture size in Bit
+	unsigned char	tilesize;		//size of a game tile == texture size in pixel 
 	unsigned char	fov;			//field of view of player in degrees
 	unsigned int	dtpp;			//distance to projection plane
 	unsigned char	speed;			//player speed in pixel of gametile / movement unit
@@ -83,7 +83,6 @@ typedef struct s_data {
 	float			py;		//player y position
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
-	int			wall[4];	//wall color depending of orientation
 	int			csky;		//sky color
 	int			run;		//true after first key is pressed
 	int			correct;	//cos wall correction, default off

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 10:23:52 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 18:30:03 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	the_end(t_data *data)
 		ft_cleanupMap(data);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
-	mlx_destroy_image(data->mlx, data->txtnorth);
+	if (data->txtnorth)
+		mlx_destroy_image(data->mlx, data->txtnorth);
 	mlx_destroy_window(data->mlx, data->win2);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -55,19 +56,16 @@ t_data	*ft_blank(t_data *data)
 	data->win_x = 1200;
 	data->win_y = 900;
 	data->fov = 60;
-	data->speed = 6;
+	data->speed = 8;
 	data->minimap = 10;
 	data->miniZ = 10;
-	data->rotspeed = 1.5;
+	data->rotspeed = 2.5;
+	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
 	data->cfloor_near = ft_rgb2col(0, 132, 43, 135);
 	data->csky = ft_make_trgb(0, 135, 206, 235);
-	data->wall[0] = ft_make_trgb(0, 221, 170, 68); 
-	data->wall[1] = ft_make_trgb(0, 132, 102, 40); 
-	data->wall[2] = ft_make_trgb(0, 176, 136, 54); 
-	data->wall[3] = ft_make_trgb(0, 88, 68, 27); 
 	return (data);
 }
 

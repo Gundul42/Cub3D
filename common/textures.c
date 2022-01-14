@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 17:21:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 18:15:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_loadTextures(t_data *data)
 {
-	data->txtnorth = mlx_xpm_file_to_image(data->mlx, "./textures/mossycobble2.xpm",
+	data->txtnorth = mlx_xpm_file_to_image(data->mlx, "./textures/cobble.xpm",
 			&(data->n_txtx), &(data->n_txty));
 	if (!data->txtnorth)
 	{
