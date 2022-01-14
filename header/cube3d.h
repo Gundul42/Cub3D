@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 19:26:45 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 15:12:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	ft_drawMapBck(t_data *data);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);
 void	ft_drawFov(t_data *data);
 void	ft_dumpRay(t_data *data, t_ray ray);
+void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray);
 // common: hooks.c
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);
@@ -128,6 +129,7 @@ t_point	ft_getPlayerPoint(t_data *data);
 float	ft_PointDist(t_point a, t_point b);
 void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
 int	ft_isWall(t_data *data, size_t x, size_t y);
+t_point	ft_valPoint(t_data *data, t_point p);
 // common: map2d.c
 void	ft_draw2dmap(t_data *data);
 void	ft_MapZoom(t_data *data, int flag);
@@ -155,6 +157,7 @@ void	ft_draw3D(t_data *data, t_ray ray, int i);
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);
 void	ft_loadTextures(t_data *data);
+int	ft_getTexPixel(t_data *data, int x, int y);
 // error.c
 void	fehlt_map(t_data *data, char *path, int type);
 //void	ft_init_window(t_data *data, int x, int y, int i);

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 19:34:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 17:05:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 
 	if (x < 0 || x > (int)data->win_x || y < 0 || y > (int)data->win_y)
 		return ;
-	dst = data->addr + (y * data->line_length2 + x * (data->bits_per_pixel2 / 8));
+	dst = data->addr2 + (y * data->line_length2 + x * (data->bits_per_pixel2 / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -138,18 +138,17 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 // to collison point
 void	ft_dumpRay(t_data *data, t_ray ray)
 {
-	t_point	plyr;
 	char	*d[4] = {"North", "South", "East", "West"};
 
-	plyr = ft_getPlayerPoint(data);
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);
 	printf("*** Offset          : %d\n", ray.offset);
 	printf("*** Hit wall from   : %s\n", d[ray.flag]);
 	printf("************************************\n");
-	printf("*** Pposx           : %f\n", plyr.x);
-	printf("*** Pposy           : %f\n", plyr.y);
+	printf("*** RayX           : %f\n", ray.p.x);
+	printf("*** RayY           : %f\n", ray.p.y);
+	printf("*** TileSize       : %d\n", data->tilesize);
 	printf("************************************\n\n");
 }
 
@@ -167,9 +166,27 @@ void	ft_drawFov(t_data *data)
 	while (i < max)
 	{
 		ray = ft_castRay(data, start); 
-		ft_dumpRay(data, ray);
+		//ft_dumpRay(data, ray);
 		ft_draw3D(data, ray, i);
 		start += data->precision;
 		i++;
 	}
 }
+
+//draw one colom of the texture or only a part of it depending on distance
+void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray)
+{
+	float	y;
+	int	i;
+
+	y = (float)(data->tilesize) / (p1.y - p2.y);
+	i = 0;
+	while (p1.y > p2.y)
+	{
+			ft_draw_pixel(data, p1.x, p2.y + i, 
+					ft_getTexPixel(data, ray.offset, i * y));
+			i++;
+			p1.y -= 1.0;
+	}
+}
+

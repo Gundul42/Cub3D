@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 19:40:25 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 10:23:52 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_data	*ft_blank(t_data *data)
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->cfloor_far = ft_rgb2col(0, 252, 193, 255);
-	txtnorthdata->cfloor_near = ft_rgb2col(0, 132, 43, 135);
+	data->cfloor_near = ft_rgb2col(0, 132, 43, 135);
 	data->csky = ft_make_trgb(0, 135, 206, 235);
 	data->wall[0] = ft_make_trgb(0, 221, 170, 68); 
 	data->wall[1] = ft_make_trgb(0, 132, 102, 40); 

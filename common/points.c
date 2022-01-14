@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 09:34:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 10:05:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/14 15:33:42 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,18 @@ int	ft_isWall(t_data *data, size_t x, size_t y)
 		return (data->map[y][x]);
 	return (1);
 }
+
+//everything outside windowsize is forbidden !
+t_point	ft_valPoint(t_data *data, t_point p)
+{
+	if (p.y < 0)
+		p.y = 0;
+	if (p.y > (data->win_y))
+		p.y = (data->win_y - 1);
+	if (p.x < 0)
+		p.x = 0;
+	if (p.x > (data->win_x))
+		p.x = (data->win_x - 1);
+	return (p);
+}
+
