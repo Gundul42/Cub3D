@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 09:40:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 13:09:58 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_data {
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
+	void			*sprite;	//sprite bitmaps
 }	t_data;
 
 // common: colors.c
@@ -116,6 +117,7 @@ void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray);
 int		ft_loop_hook(t_data *img);
 int		ft_key_hook(int code, t_data *data);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
+int	ft_test_hook(int x, int y, t_data *data);
 // common: load_map.c
 void	ft_initMap(t_data *data, char *path);
 // common: load_map_utils.c
@@ -157,6 +159,9 @@ void	ft_loadTextures(t_data *data, char **path);
 void	ft_destroy_textures(t_data *data);
 void	ft_texDefault(t_data *data);
 int	ft_getTexPixel(t_data *data, int x, int y, int n);
+void	ft_loadSprites(t_data *data);
+void	ft_destroy_sprites(t_data *data);
+void	ft_drawSpritePixel(t_data *data, int x, int y);
 // error.c
 void	fehlt_map(t_data *data, char *path, int type);
 

@@ -1,7 +1,7 @@
 /* XPM */
 static char * ferns_fern_xpm[] = {
 "64 64 1334 2",
-"  	c None",
+"  	c 0",
 ". 	c #7A9D3A",
 "+ 	c #759C3A",
 "@ 	c #698637",

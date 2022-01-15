@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 10:36:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 13:24:18 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,14 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 {
 	if (button == 1)
 		ft_castRay(data, x/ y);
+	return (0);
+}
+
+int	ft_test_hook(int x, int y, t_data *img)
+{
+	int	offset;
+
+	offset = img->tilesize / 2;
+	ft_drawSpritePixel(img, x - offset, y - offset);
 	return (0);
 }
