@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 12:05:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 17:53:11 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_data	*ft_blank(t_data *data)
 	data->fov = 60;
 	data->speed = 8;
 	data->minimap = 8;
-	data->miniZ = 10;
+	data->miniZ = 8;
 	data->rotspeed = 2.5;
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));

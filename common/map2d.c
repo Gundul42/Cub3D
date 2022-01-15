@@ -6,48 +6,11 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/13 16:11:06 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 16:15:05 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-
-void	ft_draw2dmap(t_data *data)
-{
-	int	i;
-	int	j;
-	
-	j = 0;
-	ft_drawMapBck(data);
-	while (j < (int)data->miniZ)
-	{
-		i = 0;
-		while (i < (int)data->miniZ)
-		{
-			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i, 
-						data->py - (int)data->miniZ / 2 + j))
-				ft_drawDot(data, i, j);
-			i++;
-		}
-		j++;
-	}
-}
-
-void	ft_MapZoom(t_data *data, int flag)
-{
-	if (flag)
-	{
-		data->miniZ += 5;
-		if (data->miniZ > 40)
-		       data->miniZ = 40;
-	}
-	else
-	{
-		data->miniZ -= 5;
-		if (data->miniZ < 5)
-			data->miniZ = 5;
-	}
-}
 
 /* Flags:
  * 		1 = up

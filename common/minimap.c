@@ -6,11 +6,39 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:12:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 10:14:03 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 17:52:48 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
+
+static
+void	ft_mapHeading(t_data *data)
+{
+	int	x;
+	float	alpha;
+	int	len;
+	int	i;
+
+	alpha = data->dir - (float)(data->fov / 2);
+	i = 0;
+	while (i <= data->fov)
+	{
+		x = data->win_x / data->minimap / 2;
+		len = data->win_x / data->minimap / data->miniZ;
+		x += len / 2;
+		len *= 2;
+		while (len)
+		{
+			ft_drawMapPixel(data, x + cos(ft_deg2rad(alpha)) * len, 
+					x + sin(ft_deg2rad(alpha)) * len, 0);
+			printf("%d, %d\n", (int)(x + cos(ft_deg2rad(alpha))), (int)(x + sin(ft_deg2rad(alpha))));
+			len--;
+		}
+		alpha += 8.0;
+		i += 8;
+	}
+}
 
 void	ft_drawMapPixel(t_data *data, int x, int y, int color)
 {
@@ -61,4 +89,41 @@ void	ft_drawDot(t_data *data, int i, int j)
 	}
 }
 
+void	ft_draw2dmap(t_data *data)
+{
+	int	i;
+	int	j;
+	
+	j = 0;
+	ft_drawMapBck(data);
+	while (j < (int)data->miniZ)
+	{
+		i = 0;
+		while (i < (int)data->miniZ)
+		{
+			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i, 
+						data->py - (int)data->miniZ / 2 + j))
+				ft_drawDot(data, i, j);
+			i++;
+		}
+		j++;
+	}
+	ft_mapHeading(data);
+}
+
+void	ft_MapZoom(t_data *data, int flag)
+{
+	if (flag)
+	{
+		data->miniZ += 8;
+		if (data->miniZ > 40)
+		       data->miniZ = 40;
+	}
+	else
+	{
+		data->miniZ -= 8;
+		if (data->miniZ < 8)
+			data->miniZ = 8;
+	}
+}
 
