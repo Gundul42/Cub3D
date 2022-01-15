@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 09:22:13 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 10:23:31 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,6 @@ int	interpol_color(t_data *data, int now, int max)
 	res = ft_interpolate_hsv(rgb2hsv(data->cfloor_far),
 			rgb2hsv(data->cfloor_near), now, max);
 	return (ft_make_color(hsv2rgb(res)));
-}
-
-void	ft_drawMapPixel(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x > (int)(data->win_x / data->minimap) || y < 0 || 
-			y > (int)(data->win_x / data->minimap))
-		return ;
-	dst = data->addr1 + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	ft_drawMapBck(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < (int)(data->win_x / data->minimap))
-	{
-		x = 0;
-		while (x < (int)(data->win_x / data->minimap))
-		{
-			ft_drawMapPixel(data, x, y, data->csky);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	ft_drawDot(t_data *data, int i, int j)
-{
-	int	x;
-	int	y;
-	int	len;
-
-	len = data->win_x / data->minimap / data->miniZ;
-	y = j * len;
-	while (y < (j + 1) * len)
-	{
-		x = i * len;
-		while (x < (i + 1) * len)
-		{
-			ft_drawMapPixel(data, x, y, ft_make_trgb(128, 0, 0, 255));
-			x++;
-		}
-		y++;
-	}
 }
 
 void	ft_draw_pixel(t_data *data, int x, int y, int color)
@@ -190,4 +141,3 @@ void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray)
 			p1.y -= 1.0;
 	}
 }
-
