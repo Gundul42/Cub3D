@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 18:15:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 09:01:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 void	ft_loadTextures(t_data *data)
 {
+	int	x;
+	int	y;
+
 	data->txtnorth = mlx_xpm_file_to_image(data->mlx, "./textures/cobble.xpm",
-			&(data->n_txtx), &(data->n_txty));
+			&x, &y);
 	if (!data->txtnorth)
 	{
-		perror("File not found");
+		perror("ERROR: Texture file not found");
+		the_end(data);
+	}
+	if (x != data->tilesize || y != data->tilesize)
+	{
+		write(2, "ERROR: Wrong texture bitmap size ", 33);
+		ft_putnbr_fd(data->tilesize, 2);
+		write(2, "px only\n", 8);
 		the_end(data);
 	}
 }

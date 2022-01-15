@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 17:56:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 09:00:46 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ typedef struct s_data {
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txtnorth;
-	int				n_txtx;	//width of texture
-	int				n_txty;	//height of texture
 }	t_data;
 
 // common: colors.c
