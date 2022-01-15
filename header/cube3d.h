@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 09:00:46 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 09:40:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_data {
 	int			**map;		//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
-	void			*txtnorth;
+	void			*txt[4];	//texture bitmaps
 }	t_data;
 
 // common: colors.c
@@ -153,10 +153,11 @@ void	ft_draw3D(t_data *data, t_ray ray, int i);
 // main
 t_data	*ft_blank(t_data *data);
 int		the_end(t_data *data);
-void	ft_loadTextures(t_data *data);
-int	ft_getTexPixel(t_data *data, int x, int y);
+void	ft_loadTextures(t_data *data, char **path);
+void	ft_destroy_textures(t_data *data);
+void	ft_texDefault(t_data *data);
+int	ft_getTexPixel(t_data *data, int x, int y, int n);
 // error.c
 void	fehlt_map(t_data *data, char *path, int type);
-//void	ft_init_window(t_data *data, int x, int y, int i);
 
 #endif

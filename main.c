@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 08:41:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 09:40:45 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	the_end(t_data *data)
 		ft_cleanupMap(data);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
-	if (data->txtnorth)
-		mlx_destroy_image(data->mlx, data->txtnorth);
+	ft_destroy_textures(data);
 	mlx_destroy_window(data->mlx, data->win2);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -96,7 +95,7 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
-	ft_loadTextures(img);
+	ft_texDefault(img);
 	ft_draw_background(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/14 17:05:33 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/15 09:22:13 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,8 @@ void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray)
 	while (p1.y > p2.y)
 	{
 			ft_draw_pixel(data, p1.x, p2.y + i, 
-					ft_getTexPixel(data, ray.offset, i * y));
+					ft_getTexPixel(data, ray.offset, 
+						i * y, ray.flag));
 			i++;
 			p1.y -= 1.0;
 	}
