@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:12:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 17:52:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 11:47:43 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_mapHeading(t_data *data)
 		{
 			ft_drawMapPixel(data, x + cos(ft_deg2rad(alpha)) * len, 
 					x + sin(ft_deg2rad(alpha)) * len, 0);
-			printf("%d, %d\n", (int)(x + cos(ft_deg2rad(alpha))), (int)(x + sin(ft_deg2rad(alpha))));
 			len--;
 		}
 		alpha += 8.0;
@@ -116,8 +115,8 @@ void	ft_MapZoom(t_data *data, int flag)
 	if (flag)
 	{
 		data->miniZ += 8;
-		if (data->miniZ > 40)
-		       data->miniZ = 40;
+		if (data->miniZ > 32)
+		       data->miniZ = 32;
 	}
 	else
 	{

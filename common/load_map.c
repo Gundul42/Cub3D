@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/07 10:38:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 14:37:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ int	ft_openFile(t_data *data, char *path)
 	else
 		fd = open("./maps/test.cub", O_RDONLY);
 	if (fd == -1)
-	{
-		if (path)
-			fehlt_map(data, path, 1);
-		else
-			fehlt_map(data, path, 2);
-	}
+		ft_fileNf(data, path);
 	return (fd);
 }
 
@@ -95,10 +90,12 @@ void	ft_initMap(t_data *data, char *path)
 	char	*bck;
 
 	line = NULL;
+	fd = ft_openFile(data, path);
+	ft_checkHead(data, fd);
+	the_end(data);
 	ft_openMap(data, path);
 	if (data->mapx < 3 || data->mapy < 3)
 		the_end(data);
-	fd = ft_openFile(data, path);
 	data->map = ft_calloc(data->mapy, sizeof(int *));
 	y = 0;
 	while (get_next_line(fd, &line))

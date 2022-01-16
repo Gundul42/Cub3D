@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 17:53:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 12:10:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_data	*ft_blank(t_data *data)
 	data->fov = 60;
 	data->speed = 8;
 	data->minimap = 8;
-	data->miniZ = 8;
+	data->miniZ = 16;
 	data->rotspeed = 2.5;
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
@@ -86,11 +86,9 @@ int	main(int argc, char **argv)
 {
 	t_data	*img;
 
-	if (argc == 1)
-		fehlt_map(NULL, NULL, 0);
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
-	if (!img->mlx)
+	if (!img->mlx || argc > 2)
 		return (1);
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
