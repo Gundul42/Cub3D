@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:18:45 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 08:29:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:46:19 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ int	ft_make_color(t_color src)
 
 	col = src.a << 24 | src.r << 16 | src.g << 8 | src.b;
 	return (col);
+}
+
+int	ft_str2col(char *str, t_color *mycol)
+{
+	char	*bck;
+	int	col[3];
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		bck = str;
+		while (*bck && ft_isdigit(*bck))
+			bck++;
+		if (((i < 2) && !*bck) || !ft_isalpha(*bck) || !(str - bck))
+			return (-1);
+		if (*bck && *bck == ',')
+			*bck = '\0';
+		else
+			return (-1);
+		col[i] = ft_atoi(str);
+		if (col[i] < 0 || col[i] > 255)
+			return (-1);
+		str = bck + 1;
+		i++;
+	}
+	*mycol = ft_rgb2col(0, col[0], col[1], col[2]);
+	return ft_make_trgb(0, col[0], col[1], col[2]);
 }
 
 t_color	ft_rgb2col(int t, int r, int g, int b)

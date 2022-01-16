@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 17:42:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:47:04 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,6 @@ void	ft_checkHead(t_data *data, int fd, int err, int chk);
 void	ft_freeTex(char **tex);
 void	ft_readHead(t_data *data, char *path, int fd, int err);
 int	ft_openFile(t_data *data, char *path);
+int	ft_str2col(char *str, t_color *mycol);
 
 #endif

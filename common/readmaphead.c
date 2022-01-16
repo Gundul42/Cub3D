@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 17:46:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:52:22 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 static
 int	ft_loadColor(t_data *data, char *str, int flag)
 {
+	int		col;
+	t_color	mycol;
+
 	str++;
 	while (*str == 32)
 		str++;
-	if (flag)
-		data->cfloor_near = ft_rgb2col(0, 102, 0, 0);
+	col = ft_str2col(str, &mycol);
+	if (col < 0)
+		return (1);
+	if (flag) 
+		data->cfloor_near = mycol;
 	else
-		data->csky = ft_make_trgb(0, 135, 206, 235);
+		data->csky = col;
 	return (0);
 }
 
@@ -64,6 +70,8 @@ int	ft_loadData(t_data *data, char *str, char **tex)
 static
 void	ft_noTex(t_data *data, char **tex, char *path)
 {
+	if (!path)
+		path = "textures/test.cub";
 	write(2, "ERROR: wrong color or texture definition in: ", 45);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);
