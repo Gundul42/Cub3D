@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 13:53:31 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 17:42:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,10 @@ int	ft_getTexPixel(t_data *data, int x, int y, int n);
 void	ft_loadSprites(t_data *data);
 void	ft_destroy_sprites(t_data *data);
 void	ft_drawSpritePixel(t_data *data, int x, int y);
-void	ft_checkHead(t_data *data, int fd);
 void	ft_fileNf(t_data *data, char *path);
+void	ft_checkHead(t_data *data, int fd, int err, int chk);
+void	ft_freeTex(char **tex);
+void	ft_readHead(t_data *data, char *path, int fd, int err);
+int	ft_openFile(t_data *data, char *path);
 
 #endif

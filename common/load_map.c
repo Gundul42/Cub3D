@@ -6,12 +6,12 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 14:37:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 17:57:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-
+/*
 static
 size_t	ft_getll(char *s)
 {
@@ -26,21 +26,6 @@ size_t	ft_getll(char *s)
 	}
 	return (i);
 }
-
-static
-int	ft_openFile(t_data *data, char *path)
-{
-	int	fd;
-
-	if (path)
-		fd = open(path, O_RDONLY);
-	else
-		fd = open("./maps/test.cub", O_RDONLY);
-	if (fd == -1)
-		ft_fileNf(data, path);
-	return (fd);
-}
-
 static
 void	ft_openMap(t_data *data, char *path)
 {
@@ -58,9 +43,10 @@ void	ft_openMap(t_data *data, char *path)
 	}
 	free(line);
 	close(fd);
-}
+}*/
 
 // Display map in the terminal
+/*
 static
 void	ft_dumpMap(t_data *data)
 {
@@ -79,45 +65,27 @@ void	ft_dumpMap(t_data *data)
 		printf("\n");
 		y++;
 	}
+}*/
+
+int	ft_openFile(t_data *data, char *path)
+{
+	int	fd;
+
+	if (path)
+		fd = open(path, O_RDONLY);
+	else
+		fd = open("./maps/test.cub", O_RDONLY);
+	if (fd == -1)
+		ft_fileNf(data, path);
+	return (fd);
 }
 
 void	ft_initMap(t_data *data, char *path)
 {
-	size_t	x;
-	size_t	y;
 	int	fd;
-	char	*line;
-	char	*bck;
 
-	line = NULL;
 	fd = ft_openFile(data, path);
-	ft_checkHead(data, fd);
+	ft_checkHead(data, fd, 0, 0);
+	ft_readHead(data, path, 0, 0);
 	the_end(data);
-	ft_openMap(data, path);
-	if (data->mapx < 3 || data->mapy < 3)
-		the_end(data);
-	data->map = ft_calloc(data->mapy, sizeof(int *));
-	y = 0;
-	while (get_next_line(fd, &line))
-	{
-		x = 0;
-		bck = line;
-		data->map[y] = ft_calloc(data->mapx, sizeof(int));
-		while (*bck)
-		{
-			if (*bck == '1')
-				data->map[y][x] = 1;
-			else if (*bck == 'N' || *bck == 'S' || *bck == 'E'
-				|| *bck == 'W')
-				ft_initialize_player(data, x, y, *bck);
-			if (*bck != 32)
-				x++;
-			bck++;
-		}
-		y++;
-		free(line);
-	}
-	free(line);
-	close(fd);
-	ft_dumpMap(data);
 }

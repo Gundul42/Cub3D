@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 09:53:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 16:54:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_loadTextures(t_data *data, char **path)
 			write(2, "ERROR: Texture file not found: ",31);
 			write(2, path[i], ft_strlen(path[i]));
 			write(2, "\n", 1);
+			ft_freeTex(path);
 			the_end(data);
 		}
 		if (x != data->tilesize || y != data->tilesize)
@@ -67,6 +68,7 @@ void	ft_loadTextures(t_data *data, char **path)
 			write(2, "ERROR: Wrong texture bitmap size ", 33);
 			ft_putnbr_fd(data->tilesize, 2);
 			write(2, "px only\n", 8);
+			ft_freeTex(path);
 			the_end(data);
 		}
 		i++;

@@ -1,16 +1,17 @@
 
                      
-N          
-        E                                       
-                W
-    S
+NO textures/cobble.xpm
+        EA   textures/cobble.xpm
+            
+    SO      textures/wood.xpm
 
+WE  textures/mossycobble.xpm
 
-             F
+                      
                                                                
-      C
+      C   
 
-
+ F 255,255,128
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 1 0 1 1 0 1 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1
