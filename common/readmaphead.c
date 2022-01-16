@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 18:52:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:53:58 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static
 void	ft_noTex(t_data *data, char **tex, char *path)
 {
 	if (!path)
-		path = "textures/test.cub";
+		path = "maps/test.cub";
 	write(2, "ERROR: wrong color or texture definition in: ", 45);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);

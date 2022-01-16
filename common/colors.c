@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:18:45 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 18:46:19 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/16 19:11:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int	ft_str2col(char *str, t_color *mycol)
 		bck = str;
 		while (*bck && ft_isdigit(*bck))
 			bck++;
-		if (((i < 2) && !*bck) || !ft_isalpha(*bck) || !(str - bck))
+		//printf("%d) %s  --  %d  -- %ld\n",i , bck, ft_isalpha(*bck), str - bck);
+		if (*bck && (ft_isalpha(*bck) || !(str - bck)))
+			return (-1);
+		if (i < 2 && !*bck)
 			return (-1);
 		if (*bck && *bck == ',')
 			*bck = '\0';
-		else
-			return (-1);
 		col[i] = ft_atoi(str);
+		//printf("%d\n\n", col[i]);
 		if (col[i] < 0 || col[i] > 255)
 			return (-1);
 		str = bck + 1;
