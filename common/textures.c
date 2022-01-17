@@ -6,30 +6,11 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 11:33:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 14:22:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-/*
-void	ft_texDefault(t_data *data)
-{
-	char	**path;
-	int		i;
-
-	i = 0;
-	path = malloc(sizeof(char *) * 4);
-	while (i < 4)
-	{
-		path[i] = ft_calloc(255, sizeof(char));
-		i++;
-	}
-	path[0] = "./textures/cobble.xpm";
-	path[1] = "./textures/stone_macadam.xpm";
-	path[2] = "./textures/mossycobble.xpm";
-	path[3] = "./textures/stone_brick.xpm";
-	ft_loadTextures(data, path);
-}*/
 
 void	ft_destroy_textures(t_data *data)
 {
