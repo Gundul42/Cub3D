@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 12:38:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:05:55 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_data {
 	float			dir;		//player look direction
 	float			px;		//player x position
 	float			py;		//player y position
+	float			rotmouse;	//mouse rotation speed
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
 	int			csky;		//sky color
@@ -114,6 +115,7 @@ float	ft_rad2deg(float rad);
 float	ft_PointDist(t_point a, t_point b);
 float	ft_valAlpha(float alpha);
 float	ft_getDist(float x1, float y1, float x2, float y2);
+void	ft_mouseRotPlayer(t_data *data);
 void	ft_map2Mem(t_data *data, char *path, int fd, int skip);
 void	ft_loadTextures(t_data *data, char **path);
 void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);

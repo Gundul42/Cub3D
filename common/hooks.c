@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 13:24:18 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:24:13 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_loop_hook(t_data *img)
 	if (img->mMap)
 		mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
+	ft_mouseRotPlayer(img);
 	return (0);
 }
 
@@ -63,9 +64,8 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 
 int	ft_test_hook(int x, int y, t_data *img)
 {
-	int	offset;
-
-	offset = img->tilesize / 2;
-	ft_drawSpritePixel(img, x - offset, y - offset);
+	if (y || !y)
+		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3); 
+	printf("MouseMove : %f  \n", img->rotmouse);
 	return (0);
 }

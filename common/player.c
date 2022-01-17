@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 14:41:57 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:19:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,15 @@ void	ft_movePlayer(t_data *data,int flag)
 		data->px = newx;
 		data->py = newy;
 	}
+}
+
+void	ft_mouseRotPlayer(t_data *data)
+{
+	if (fabsf(data->rotmouse) < 0.06)
+		data->rotmouse = 0.0;
+	data->dir += data->rotspeed * data->rotmouse * -1.0;
+	if (data->dir > 360.0)
+		data->dir -= 360.0;
+	if (data->dir < 0)
+		data->dir += 360.0;
 }
