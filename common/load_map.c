@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 08:31:56 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 09:52:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ size_t	ft_getll(char *s)
 	}
 	return (i);
 }
+
 static
 void	ft_openMap(t_data *data, char *path)
 {

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 17:00:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 09:51:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_cleanupMap(t_data *data)
 //to be called at program termination for cleanup.
 int	the_end(t_data *data)
 {
-	if (data->mapx)
+	if (data->map)
 		ft_cleanupMap(data);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
@@ -52,6 +52,7 @@ t_data	*ft_blank(t_data *data)
 	if (!data)
 		exit (1);
 	data->tilesize = 64;
+	data->map = NULL;
 	data->win_x = 800;
 	data->win_y = 600;
 	data->fov = 60;
