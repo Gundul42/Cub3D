@@ -1,7 +1,7 @@
 
                      
 NO textures/cobble.xpm
-        EA   textures/cobble.xpm
+        EA   textures/sandstone_brick.xpm
             
     SO      textures/wood.xpm
 
@@ -9,9 +9,9 @@ WE  textures/mossycobble.xpm
 
                       
                                                                
-      C  128,0,3120 
+      C  135,206,235 
 
- F 255,255,128
+ F 102,0,0
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 1 0 1 1 0 1 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1

@@ -6,7 +6,7 @@
 #    By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/16 17:39:50 by graja            ###   ########.fr        #
+#    Updated: 2022/01/17 08:39:07 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= cub3d
 SRCS		= main.c
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/col_rgb2hsv.c common/hooks.c common/load_map.c \
-			common/load_map_utils.c common/map2d.c common/maths.c \
+			common/player.c common/map2d.c common/maths.c \
 			common/raycast.c common/movePlayer.c common/points.c \
 			common/draw3D.c common/textures.c common/minimap.c \
 			common/sprites.c common/checkmap.c common/errors.c \
