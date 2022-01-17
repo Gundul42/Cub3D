@@ -6,12 +6,12 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 09:52:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 13:33:21 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-
+/*
 static
 size_t	ft_getll(char *s)
 {
@@ -25,7 +25,7 @@ size_t	ft_getll(char *s)
 		s++;
 	}
 	return (i);
-}
+}*/
 
 static
 void	ft_openMap(t_data *data, char *path)
@@ -46,8 +46,8 @@ void	ft_openMap(t_data *data, char *path)
 		}
 		if (skip)	
 		{
-			if (data->mapx < ft_getll(line))
-				data->mapx = ft_getll(line);
+			if (data->mapx < ft_strlen(line))
+				data->mapx = ft_strlen(line);
 			(data->mapy)++;
 		}
 		free(line);
@@ -68,7 +68,7 @@ void	ft_dumpMap(t_data *data)
 		x = 0;
 		while (x < data->mapx)
 		{
-			printf("%d ",data->map[y][x]);
+			printf("%d",data->map[y][x]);
 			x++;
 		}
 		printf("\n");
@@ -97,5 +97,11 @@ void	ft_initMap(t_data *data, char *path)
 	ft_checkHead(data, fd, 0, 0);
 	ft_readHead(data, path, 0, 0);
 	ft_openMap(data, path);
-	the_end(data);
+	if (data->mapx < 3 || data->mapy < 3)
+	{
+		write(2, "ERROR: Map too small\n", 22);
+		the_end(data);
+	}
+	ft_map2Mem(data, path, 0, 0);
+	ft_dumpMap(data);
 }

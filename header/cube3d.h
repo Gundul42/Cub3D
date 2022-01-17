@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 08:29:49 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 12:38:53 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,13 @@ int		ft_getSide(int flag, float alpha);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
 int		ft_isWall(t_data *data, size_t x, size_t y);
 int		ft_test_hook(int x, int y, t_data *data);
+int		ft_parseMapLine(t_data *data, char *line);
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
 float	ft_PointDist(t_point a, t_point b);
 float	ft_valAlpha(float alpha);
 float	ft_getDist(float x1, float y1, float x2, float y2);
+void	ft_map2Mem(t_data *data, char *path, int fd, int skip);
 void	ft_loadTextures(t_data *data, char **path);
 void	ft_getMapPoint(t_data *data, t_point p, size_t *x, size_t *y);
 void	ft_draw3D(t_data *data, t_ray ray, int i);

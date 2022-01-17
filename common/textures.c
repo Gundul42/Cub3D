@@ -6,12 +6,12 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 16:54:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 11:33:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-
+/*
 void	ft_texDefault(t_data *data)
 {
 	char	**path;
@@ -29,7 +29,7 @@ void	ft_texDefault(t_data *data)
 	path[2] = "./textures/mossycobble.xpm";
 	path[3] = "./textures/stone_brick.xpm";
 	ft_loadTextures(data, path);
-}
+}*/
 
 void	ft_destroy_textures(t_data *data)
 {
