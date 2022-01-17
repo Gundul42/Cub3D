@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 08:48:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 14:41:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir)
 {
-	d->px = x;
-	d->py = y;
+	d->px = x + 0.4;
+	d->py = y + 0.4;
 	if (dir == 'W')
 		d->dir = 270.0;
 	else if (dir == 'E')
