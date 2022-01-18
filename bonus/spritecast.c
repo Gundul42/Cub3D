@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 16:31:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:53:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 			v.y -= deltaY;
 		}
 	}
-	if (ft_checkSpriteNS(data, v, alpha) < 0)
+	if (ft_checkSpriteNS(data, v, alpha) < 2)
 		v.x = -666.6;
 	return (v);
 }
@@ -88,7 +88,7 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 		}
 		t++;
 	}
-	if (ft_checkSpriteWE(data, h, alpha) < 0)
+	if (ft_checkSpriteWE(data, h, alpha) < 2)
 		h.x = -666.6;
 	return (h);
 }
@@ -180,7 +180,7 @@ int	ft_isSprite(t_data *data, size_t x, size_t y)
 {
 	if (x >= data->mapx - 1 || y >= data->mapy - 1)
 		return (-1);
-	else if (data->map[y][x] > 1)
+	else if (data->map[y][x] > 0)
 		return (data->map[y][x]);
 	return (0);
 }
