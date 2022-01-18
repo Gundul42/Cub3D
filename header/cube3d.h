@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 17:24:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 19:32:48 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ typedef struct s_ray {
 	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W
 }	t_ray;
 
+typedef struct s_test
+{
+	int		*first;
+	int		*last;
+}	t_test;
+
+
 // the basic data type for handling the minilibx
 typedef struct s_data {
 	void			*mlx;
@@ -72,7 +79,7 @@ typedef struct s_data {
 	size_t			win_y;		//windowsize y
 	size_t			minimap;	//size of minimap
 	size_t			miniZ;		//zoom faktor of minimap
-	unsigned char	tilesize;		//size of a game tile == texture size in pixel 
+	unsigned char	tilesize;		//size of a game tile == texture size in pixel
 	unsigned char	fov;			//field of view of player in degrees
 	unsigned int	dtpp;			//distance to projection plane
 	unsigned char	speed;			//player speed in pixel of gametile / movement unit
@@ -97,7 +104,7 @@ typedef struct s_data {
 }	t_data;
 
 int		ft_loop_hook(t_data *img);
-int		the_end(t_data *data);
+int		the_end(t_data *data, char *txt, int err);
 int		ft_openFile(t_data *data, char *path);
 int		ft_getTexPixel(t_data *data, int x, int y, int n);
 int		ft_checkMapNS(t_data *data, t_point p, float alpha);
@@ -150,6 +157,7 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);
 void	ft_drawFov(t_data *data);
 void	ft_dumpRay(t_data *data, t_ray ray);
 void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray);
+void	ft_check_closed_map(t_data *data);
 t_data	*ft_blank(t_data *data);
 t_color	hsv2rgb(t_hsv in);
 t_color	ft_rgb2col(int t, int r, int g, int b);

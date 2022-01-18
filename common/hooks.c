@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 17:28:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 19:33:14 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_loop_hook(t_data *img)
 {
-	mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed 
+	mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	if (img->run)
 		ft_drawFov(img);
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
 	if (img->mMap)
-		mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
+		mlx_put_image_to_window(img->mlx, img->win2, img->img1,
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
@@ -32,7 +32,7 @@ int	ft_key_hook(int code, t_data *data)
 {
 	//printf("Key: %d)\n", code);
 	if (code == 65307)
-		the_end(data);
+		the_end(data, NULL, 0);
 	if (code == 99)
 		data->correct = !data->correct;
 	if (code == 109)
@@ -68,7 +68,7 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 int	ft_test_hook(int x, int y, t_data *img)
 {
 	if (y || !y)
-		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3); 
+		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3);
 	//printf("MouseMove : %f  \n", img->rotmouse);
 	return (0);
 }

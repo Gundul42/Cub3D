@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 19:09:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 19:32:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void	ft_cleanupMap(t_data *data)
 }
 
 //to be called at program termination for cleanup.
-int	the_end(t_data *data)
+int	the_end(t_data *data, char *txt, int err)
 {
+	if (err == 1)
+		write(2, "Error\n", 6);
+	if (txt)
+		write(2, txt, ft_strlen(txt));
 	if (data->map)
 		ft_cleanupMap(data);
 	mlx_destroy_image(data->mlx, data->img1);
@@ -71,7 +75,7 @@ t_data	*ft_blank(t_data *data)
 static
 void	ft_getReady(t_data *data)
 {
-	data->img1 = mlx_new_image(data->mlx, data->win_x / 
+	data->img1 = mlx_new_image(data->mlx, data->win_x /
 			data->minimap, data->win_x / data->minimap);
 	data->addr1 = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 			&data->line_length, &data->endian);

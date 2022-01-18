@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 13:33:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:52:38 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	ft_openMap(t_data *data, char *path)
 	{
 		if (!skip)
 		{
-			if (*line && ft_isdigit(*line))
+			if (*line && (ft_isdigit(*line) || *line == 32))
 				skip = 1;
 		}
-		if (skip)	
+		if (skip)
 		{
 			if (data->mapx < ft_strlen(line))
 				data->mapx = ft_strlen(line);
@@ -97,11 +97,7 @@ void	ft_initMap(t_data *data, char *path)
 	ft_checkHead(data, fd, 0, 0);
 	ft_readHead(data, path, 0, 0);
 	ft_openMap(data, path);
-	if (data->mapx < 3 || data->mapy < 3)
-	{
-		write(2, "ERROR: Map too small\n", 22);
-		the_end(data);
-	}
 	ft_map2Mem(data, path, 0, 0);
 	ft_dumpMap(data);
+	ft_check_closed_map(data);
 }

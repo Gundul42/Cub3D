@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 14:08:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:52:16 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	ft_map2Mem(t_data *data, char *path, int fd, int skip)
 	fd = ft_openFile(data, path);
 	data->map = ft_calloc(data->mapy, sizeof(int *));
 	if (!data->map)
-		the_end(data);
+		the_end(data, "Couldn't malloc map array\n", 1);
 	while (get_next_line(fd, &line))
 	{
 		if (!skip)
 		{
-			if (*line && ft_isdigit(*line))
+			if (*line && (ft_isdigit(*line) || *line == 32))
 				skip = 1;
 		}
 		if (skip > 0)
@@ -35,7 +35,7 @@ void	ft_map2Mem(t_data *data, char *path, int fd, int skip)
 	free(line);
 	close(fd);
 	if (skip < 0 || data->px == 0 || data->py == 0)
-		the_end(data);
+		the_end(data, "Map NOK\n", 1);
 }
 
 int	ft_checkMapNS(t_data *data, t_point p, float alpha)
