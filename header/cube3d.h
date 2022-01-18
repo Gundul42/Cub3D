@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 16:05:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 17:24:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_data {
 	int			run;		//true after first key is pressed
 	int			correct;	//cos wall correction, default off
 	int			mMap;		//miniMap, default off
+	int			mouse;		//rotate by mouse on/off
 	int			**map;		//2d array, map representation from cub file
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map

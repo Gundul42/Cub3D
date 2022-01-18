@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 16:43:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/17 17:28:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_loop_hook(t_data *img)
 	if (img->mMap)
 		mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
-	ft_mouseRotPlayer(img);
+	if (img->mouse)
+		ft_mouseRotPlayer(img);
 	return (0);
 }
 
@@ -36,6 +37,8 @@ int	ft_key_hook(int code, t_data *data)
 		data->correct = !data->correct;
 	if (code == 109)
 		data->mMap = !data->mMap;
+	if (code == 114)
+		data->mouse = !data->mouse;
 	if (code == 43)
 		ft_MapZoom(data, 1);
 	if (code == 35)
