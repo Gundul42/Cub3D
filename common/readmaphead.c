@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readmaphead.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 13:34:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:45:52 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_loadColor(t_data *data, char *str, int flag)
 	col = ft_str2col(str, &mycol);
 	if (col < 0)
 		return (1);
-	if (flag) 
+	if (flag)
 		data->cfloor_near = mycol;
 	else
 		data->csky = col;
@@ -72,11 +72,11 @@ void	ft_noTex(t_data *data, char **tex, char *path)
 {
 	if (!path)
 		path = "maps/test.cub";
-	write(2, "ERROR: wrong color or texture definition in: ", 45);
+	write(2, "Wrong color or texture definition in: ", 45);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);
 	ft_freeTex(tex);
-	the_end(data);
+	the_end(data, "What happen here ft_no_text ?\n", 1);
 }
 
 void	ft_readHead(t_data *data, char *path, int fd, int err)
@@ -89,7 +89,7 @@ void	ft_readHead(t_data *data, char *path, int fd, int err)
 	line = NULL;
 	tex = ft_calloc(4, sizeof(char *));
 	if (!tex)
-		the_end(data);
+		the_end(data, "Couldn't malloc tex\n", 1);
 	while (get_next_line(fd, &line))
 	{
 		bck = line;

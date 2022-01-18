@@ -1,0 +1,28 @@
+ERROR ENCOUTERED OPEN*********************************************************
+
+flo - Immediately close of the window with the X generate a seg. fault
+
+
+
+
+
+
+ERROR ENCOUTERED CLOSED*********************************************************
+
+flo - Map without texture seg, fault
+=> done (18.01). !MORE TEST TO BE DONE
+
+flo - On error => give a text argument to "the_end" with index sucess/error ?
+ the_end(t_data *d, char *txt, int err)
+=> done (18.01)
+
+flo	- if map begin so, the 1st line is NOT loaded
+   1111111111111111111111111111000000000000
+10000000001100000000000000001
+1011010001110000000000001001
+0> done (18.01)
+
+
+
+
+QUESTION / NOTICE / IDEAS*******************************************************

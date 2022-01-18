@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:18:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 16:08:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 12:54:59 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int	ft_isAllowed(char *c)
 }
 
 static
-void	ft_noHead(t_data *data)
-{
-	write(2, "Invalid head of .cub map file\n", 30);
-	the_end(data);
-}
-
-static
 int	ft_doChecks(char *alpha, char *line)
 {
 	char	*bck;
@@ -57,7 +50,7 @@ int	ft_doChecks(char *alpha, char *line)
 		alpha[(int)(*bck)] = 1;
 		return (1);
 	}
-	else 
+	else
 		return (-2);
 	return (0);
 }
@@ -69,7 +62,7 @@ char	*ft_checkInit(t_data *data, char **line, int *valid)
 
 	alpha = ft_calloc(256, sizeof(char));
 	if (!alpha)
-		the_end(data);
+		the_end(data, "Could't malloc ft_check_init", 1);
 	*valid = 0;
 	*line = NULL;
 	return (alpha);
@@ -100,5 +93,5 @@ void	ft_checkHead(t_data *data, int fd, int err, int chk)
 	free(alpha);
 	close(fd);
 	if (err)
-		ft_noHead(data);
+		the_end(data, "Invalid head of .cub map file\n", 1);
 }

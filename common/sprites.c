@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/15 13:15:05 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 12:52:43 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ void	ft_loadSprites(t_data *data)
 	char	*path;
 
 	path = "./textures/ferns_fern.xpm";
-	data->sprite = mlx_xpm_file_to_image(data->mlx, 
+	data->sprite = mlx_xpm_file_to_image(data->mlx,
 			path, &x, &y);
 	if (!data->sprite)
 	{
-		write(2, "ERROR: Texture file not found: ",31);
+		write(2, "Texture file not found: ",31);
 		write(2, path, ft_strlen(path));
 		write(2, "\n", 1);
-		the_end(data);
+		the_end(data, "Fix the problem and run the program again\n", 1);
 	}
 	if (x != data->tilesize)
 	{
-		write(2, "ERROR: Wrong texture bitmap size ", 33);
+		write(2, "Wrong texture bitmap size ", 33);
 		ft_putnbr_fd(data->tilesize, 2);
 		write(2, "px in x direction only\n", 8);
-		the_end(data);
+		the_end(data, "Fix the problem and run the program again\n", 1);
 	}
 }
