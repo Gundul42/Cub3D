@@ -6,7 +6,7 @@
 #    By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/18 15:54:37 by graja            ###   ########.fr        #
+#    Updated: 2022/01/18 17:38:02 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ clean		:	$(LIBFT) $(MLX)
 
 fclean		:	$(LIBFT) $(MLX)
 	rm -f $(NAME)
+	rm -f $(BNAME)
 	rm -f $(MLX)/libmlx.a
 	rm -f $(MLX)/libmlx_$(shell uname).a
 	make fclean -C $(LIBFT)

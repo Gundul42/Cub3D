@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 17:28:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 19:05:50 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ int	ft_test_hook(int x, int y, t_data *img)
 {
 	if (y || !y)
 		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3); 
-	//printf("MouseMove : %f  \n", img->rotmouse);
 	return (0);
 }

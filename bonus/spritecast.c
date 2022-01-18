@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 16:53:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:07:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 	vet = ft_findCollVertical(d, vet, alpha);
 	hor = ft_findCollHorizontal(d, hor, alpha);
 	ray->dir = alpha;
-	if (hor.x < 0 || vet.x < 0)
+	if (hor.x < 0 && vet.x < 0)
 		return (NULL);
-	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
+	if (hor.x < 0)
 	{
 		ray->p = vet;
 		ray->dist = ft_PointDist(plyr, vet);
@@ -179,8 +179,6 @@ int	ft_checkSpriteWE(t_data *data, t_point p, float alpha)
 int	ft_isSprite(t_data *data, size_t x, size_t y)
 {
 	if (x >= data->mapx - 1 || y >= data->mapy - 1)
-		return (-1);
-	else if (data->map[y][x] > 0)
-		return (data->map[y][x]);
-	return (0);
+		return (1);
+	return (data->map[y][x]);
 }
