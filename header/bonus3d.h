@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 15:48:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 17:19:26 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@ int		ft_checkSpriteNS(t_data *data, t_point p, float alpha);
 void	ft_drawSpriteFov(t_data *data);
 int	ft_sprite_hook(t_data *img);
 t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray);
+void	ft_draw3DSprite(t_data *data, t_ray ray, int i);
+int	ft_getSpritePixel(t_data *data, int x, int y);
+void	ft_drawSprite(t_data *data, t_point p1, t_point p2, t_ray ray);
 
 #endif
