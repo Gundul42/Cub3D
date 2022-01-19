@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 14:30:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/18 20:21:58 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_draw_background(t_data *data)
 		x = 0;
 		while (x < data->win_x)
 		{
-			ft_draw_pixel(data, x, y, interpol_color(data, y, data->win_y));
+			ft_draw_pixel(data, x, y, interpol_color(data, y - (data->win_y /2), (data->win_y) / 2));
 			x++;
 		}
 		y++;
