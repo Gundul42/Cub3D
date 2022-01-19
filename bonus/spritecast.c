@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 18:07:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/19 18:03:41 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,29 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	return (h);
 }
 
+static
+t_point	ft_spriteCenter(t_data *data, t_point inp, float alpha, int flag)
+{
+	size_t	x;
+	size_t	y;
+
+	ft_getMapPoint(data, inp, &x, &y);
+	if (!flag && alpha < 270.0 && alpha > 90.0)
+		x--;
+	if (flag && alpha >= 180.0 && alpha < 360.0)
+		y--;
+	inp.x = (float)((x * data->tilesize) + data->tilesize / 2); 
+	inp.y = (float)((y * data->tilesize) + data->tilesize / 2);
+	return (inp);
+}
+
 t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 {
 	t_point	plyr;
 	t_point	hor;
 	t_point	vet;
+	static int	lastx = 0;
+	static int	lasty = 0;
 
 	alpha = ft_valAlpha(alpha);
 	plyr = ft_getPlayerPoint(d);
@@ -105,23 +123,19 @@ t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 	vet = ft_firstHitVertical(d, alpha);
 	vet = ft_findCollVertical(d, vet, alpha);
 	hor = ft_findCollHorizontal(d, hor, alpha);
-	ray->dir = alpha;
 	if (hor.x < 0 && vet.x < 0)
 		return (NULL);
 	if (hor.x < 0)
-	{
-		ray->p = vet;
-		ray->dist = ft_PointDist(plyr, vet);
-		ray->offset = (int)(ray->p.y) % d->tilesize;
-		ray->flag = ft_getSide(0, alpha);
-	}
+		ray->p = ft_spriteCenter(d, vet, alpha, 0);
 	else
-	{
-		ray->p = hor;
-		ray->dist = ft_PointDist(plyr, hor);
-		ray->offset = (int)(ray->p.x) % d->tilesize;
-		ray->flag = ft_getSide(1, alpha);
-	}
+		ray->p = ft_spriteCenter(d, hor, alpha, 1);
+	if (ray->p.x == lastx && ray->p.y == lasty)
+		return (NULL);
+	ray->dir = ft_valAlpha(ft_rad2deg(atanf((ray->p.y - plyr.y) / (ray->p.x - plyr.x))));
+	//printf("%5.2f) %f  --  %f\n", d->dir, alpha, ray->dir);
+	lastx = ray->p.x;
+	lasty = ray->p.y;
+	ray->dist = ft_PointDist(plyr, ray->p);
 	return (ray);
 }
 

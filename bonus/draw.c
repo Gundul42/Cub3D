@@ -6,21 +6,42 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 17:32:52 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/19 17:53:55 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
-static
 float	ft_rayCorrect(t_data *data, t_ray ray)
 {
 	float	diff;
 
-	if (!data->correct)
+	if (data->correct)
 		return (ray.dist);
 	diff = (data->dir - ray.dir);
 	return (ray.dist * cosf(ft_deg2rad(diff)));
+}
+
+void	ft_drawOneSprite(t_data *data, t_ray ray)
+{
+	int	i;
+	float	max;
+	float	start;
+	float	step;
+
+	max = (float)data->fov / data->precision;
+	i = 0;
+	start = data->dir - (float)(data->fov / 2);
+	step = ft_rad2deg(atanf((float)(data->tilesize / 2) / ray.dist));
+	while (i < max)
+	{
+
+		ray.offset = i % 64;
+		if (start > ray.dir - step && start < ray.dir + step)
+			ft_draw3DSprite(data, ray, i);
+		start += data->precision;
+		i++;
+	}
 }
 
 void	ft_drawSpriteFov(t_data *data)
@@ -28,20 +49,28 @@ void	ft_drawSpriteFov(t_data *data)
 	float	start;
 	int		max;
 	int		i;
-	t_ray	ray;
+	int		s;
+	t_ray	ray_w;
+	t_ray	ray_s[100];
 
 	max = (float)data->fov / data->precision;
 	i = 0;
+	s = 0;
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ray = ft_castRay(data, start); 
-		//ft_dumpRay(data, ray);
-		ft_draw3D(data, ray, i);
-		if (ft_spriteRay(data, start, &ray))
-			ft_draw3DSprite(data, ray, i);
+		ray_w = ft_castRay(data, start); 
+		ft_draw3D(data, ray_w, i);
+		if (ft_spriteRay(data, start, &ray_s[s]) && (ray_s[s].dist < ray_w.dist))
+			s++;
 		start += data->precision;
 		i++;
+	}
+	s--;
+	while (s > 0)
+	{
+		ft_drawOneSprite(data, ray_s[s]);
+		s--;
 	}
 }
 
