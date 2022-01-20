@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map2d.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 14:19:13 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 13:52:16 by flormich         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
@@ -48,14 +37,14 @@ int	ft_checkMapNS(t_data *data, t_point p, float alpha)
 	ft_getMapPoint(data, p, &x, &y);
 	if (alpha >= 270 || alpha < 90)
 	{
-		if (ft_isWall(data, x, y))
+		if (ft_isWall(data, x, y) == 1)
 			return (0);
 		else
 			return (1);
 	}
 	else if (alpha < 270 && alpha >= 90)
 	{
-		if (ft_isWall(data, x - 1, y))
+		if (ft_isWall(data, x - 1, y) == 1)
 			return (0);
 		else
 			return (1);
@@ -73,14 +62,14 @@ int	ft_checkMapWE(t_data *data, t_point p, float alpha)
 	ft_getMapPoint(data, p, &x, &y);
 	if (alpha >= 180 && alpha < 360)
 	{
-		if (ft_isWall(data, x, y - 1))
+		if (ft_isWall(data, x, y - 1) == 1)
 			return (0);
 		else
 			return (1);
 	}
 	else if (alpha < 180 && alpha >= 0)
 	{
-		if (ft_isWall(data, x, y))
+		if (ft_isWall(data, x, y) == 1)
 			return (0);
 		else
 			return (1);

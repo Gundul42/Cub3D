@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 13:43:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 19:32:48 by graja            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
@@ -21,6 +10,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+# ifndef CUBEBONUS
+#  define CUBEBONUS 0
+# endif
 
 // a typedef for points
 typedef	struct s_point {
