@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/20 17:45:09 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/20 17:58:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,9 @@ t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 	if (ray->p.x == lastx && ray->p.y == lasty)
 		return (NULL);
 	ray->dir = ft_valAlpha(ft_rad2deg(atanf((ray->p.y - plyr.y) / (ray->p.x - plyr.x))));
-	//printf("%5.2f) %f  --  %f\n", d->dir, alpha, ray->dir);
+	if (d->dir > 90.0 && d->dir < 270.0)
+		ray->dir += 180.0;
+	printf("%5.2f)   %5.2f  --  %f5.2\n", d->dir, alpha, ray->dir);
 	lastx = ray->p.x;
 	lasty = ray->p.y;
 	ray->dist = ft_PointDist(plyr, ray->p);
