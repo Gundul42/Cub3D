@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/19 17:53:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/20 17:42:35 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,30 @@ float	ft_rayCorrect(t_data *data, t_ray ray)
 
 void	ft_drawOneSprite(t_data *data, t_ray ray)
 {
+	float	height;
+	float	faktor;
+	int	wop;
 	int	i;
-	float	max;
-	float	start;
-	float	step;
+	int	x;
 
-	max = (float)data->fov / data->precision;
 	i = 0;
-	start = data->dir - (float)(data->fov / 2);
-	step = ft_rad2deg(atanf((float)(data->tilesize / 2) / ray.dist));
-	while (i < max)
+	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	height = faktor * (float)data->win_y / (float)data->tilesize;
+	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
+	x = ft_valAlpha(data->dir - (float)data->fov / 2);
+	if (x > 270 && x <= 360 && ray.dir > 0.0 && ray.dir <= 90.0)
+		x = ray.dir + 360.0  - (float)x;
+	else
+		x = ray.dir - x;
+	x /= data->precision;
+	x -= wop / 2;
+	while ( i < wop)
 	{
-
-		ray.offset = i % 64;
-		if (start > ray.dir - step && start < ray.dir + step)
-			ft_draw3DSprite(data, ray, i);
-		start += data->precision;
+		ray.offset = (float)data->tilesize / (float)wop * (float)i;
+		ft_draw3DSprite(data, ray, x + i);
 		i++;
+		ray.flag = 0;
+		//ft_dumpRay(data, ray);
 	}
 }
 
@@ -66,10 +73,9 @@ void	ft_drawSpriteFov(t_data *data)
 		start += data->precision;
 		i++;
 	}
-	s--;
-	while (s > 0)
+	while (s)
 	{
-		ft_drawOneSprite(data, ray_s[s]);
+		ft_drawOneSprite(data, ray_s[s - 1]);
 		s--;
 	}
 }
@@ -119,7 +125,6 @@ void	ft_draw3DSprite(t_data *data, t_ray ray, int i)
 
 	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
 	height = faktor * (float)data->win_y / (float)data->tilesize;
-	height *= (float)(data->win_x / data->win_y);
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	p1.y = (float)(data->win_y / 2) + wop / 2.0;
 	p2.y = (float)(data->win_y / 2) - wop / 2.0;

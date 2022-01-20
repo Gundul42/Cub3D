@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/10 14:56:50 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/20 16:53:21 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	ft_rad2deg(float rad)
  */
 float	ft_valAlpha(float alpha)
 {
-	if (alpha < 0.0)
+	if (alpha <= 0.0)
 		alpha += 360.0;
 	if (alpha > 360.0)
 		alpha -= 360.0;

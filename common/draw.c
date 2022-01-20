@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 20:21:58 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/19 18:53:31 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ void	ft_dumpRay(t_data *data, t_ray ray)
 	printf("************************************\n");
 	printf("*** RayX           : %f\n", ray.p.x);
 	printf("*** RayY           : %f\n", ray.p.y);
+	printf("************************************\n");
+	printf("*** PlayerX        : %f\n", data->px * data->tilesize);
+	printf("*** PlayerY        : %f\n", data->py * data->tilesize);
+	printf("*** DTPP           : %d\n", data->dtpp);
 	printf("*** TileSize       : %d\n", data->tilesize);
 	printf("************************************\n\n");
 }
