@@ -6,12 +6,11 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 15:30:29 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/20 18:19:43 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
-
 //clean up all allocated memory for the loaded map
 static
 void	ft_cleanupMap(t_data *data)
@@ -29,8 +28,12 @@ void	ft_cleanupMap(t_data *data)
 }
 
 //to be called at program termination for cleanup.
-int	the_end(t_data *data)
+int	the_end(t_data *data, char *txt, int err)
 {
+	if (err == 1)
+		write(2, "Error\n", 6);
+	if (txt)
+		write(2, txt, ft_strlen(txt));
 	if (data->map)
 		ft_cleanupMap(data);
 	mlx_destroy_image(data->mlx, data->img1);

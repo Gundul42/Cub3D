@@ -57,11 +57,7 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 int	ft_test_hook(int x, int y, t_data *img)
 {
 	if (y || !y)
-<<<<<<< HEAD
 		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3);
 	//printf("MouseMove : %f  \n", img->rotmouse);
-=======
-		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3); 
->>>>>>> bonus
 	return (0);
 }
