@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/20 17:42:35 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/21 13:45:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,24 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 {
 	float	height;
 	float	faktor;
-	int	wop;
+	float	wop;
+	float	x;
 	int	i;
-	int	x;
 
 	i = 0;
 	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
 	height = faktor * (float)data->win_y / (float)data->tilesize;
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	x = ft_valAlpha(data->dir - (float)data->fov / 2);
-	if (x > 270 && x <= 360 && ray.dir > 0.0 && ray.dir <= 90.0)
-		x = ray.dir + 360.0  - (float)x;
+	if (x > 270.0 && x <= 360.0 && ray.dir > 0.0 && ray.dir <= 90.0)
+		x = ray.dir + 360.0  - x;
 	else
 		x = ray.dir - x;
 	x /= data->precision;
 	x -= wop / 2;
 	while ( i < wop)
 	{
-		ray.offset = (float)data->tilesize / (float)wop * (float)i;
+		ray.offset = (float)data->tilesize / wop * (float)i;
 		ft_draw3DSprite(data, ray, x + i);
 		i++;
 		ray.flag = 0;

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/20 17:58:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/21 13:57:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 	t_point	plyr;
 	t_point	hor;
 	t_point	vet;
-	static int	lastx = 0;
-	static int	lasty = 0;
+	static float	lastx = 0.0;
+	static float	lasty = 0.0;
 
 	alpha = ft_valAlpha(alpha);
 	plyr = ft_getPlayerPoint(d);
@@ -134,7 +134,7 @@ t_ray	*ft_spriteRay(t_data *d, float alpha, t_ray *ray)
 	ray->dir = ft_valAlpha(ft_rad2deg(atanf((ray->p.y - plyr.y) / (ray->p.x - plyr.x))));
 	if (d->dir > 90.0 && d->dir < 270.0)
 		ray->dir += 180.0;
-	printf("%5.2f)   %5.2f  --  %f5.2\n", d->dir, alpha, ray->dir);
+	printf("x%5.2f   y%5.2f\n", ray->p.x, ray->p.y);
 	lastx = ray->p.x;
 	lasty = ray->p.y;
 	ray->dist = ft_PointDist(plyr, ray->p);
