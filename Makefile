@@ -6,7 +6,7 @@
 #    By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/28 18:22:38 by graja             #+#    #+#              #
-#    Updated: 2022/01/17 21:47:06 by flormich         ###   ########.fr        #
+#    Updated: 2022/01/21 13:16:18 by flormich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,19 +23,19 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= libft
 FLGFT	= -Llibft -lft
-APLFLG	= -L/usr/X11/include -L/usr/X11/lib
-FLGMLX	= -Lminilibx -lmlx -lXext -lX11 -lm
+FLGMLX	= -L /usr/X11/lib -lXext -lX11 -lm 
+APLFLGMLX	= -L /usr/X11/lib -lXext -lX11 -lm 
 MLX		= minilibx
 
 $(NAME)		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGFT) ./minilibx/libmlx.a $(FLGMLX) -o $(NAME)
 
 apple		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(APLFLG) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGFT) ./minilibx/libmlx.a $(APLFLGMLX) -o $(NAME)
 
 all		:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 12:47:29 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/21 14:08:53 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_loop_hook(t_data *img)
 
 int	ft_key_hook(int code, t_data *data)
 {
-	//printf("Key: %d)\n", code);
+	printf("Key: %d)\n", code);
 	if (code == 65307)
 		the_end(data, NULL, 0);
 	if (code == 99)
@@ -40,9 +40,9 @@ int	ft_key_hook(int code, t_data *data)
 		ft_MapZoom(data, 1);
 	if (code == 35)
 		ft_MapZoom(data, 0);
-	if (code == 119)
+	if (code == 119 || code == 65362)
 		ft_movePlayer(data, 1);		// W
-	if (code == 115)
+	if (code == 115 || code == 65364)
 		ft_movePlayer(data, 2);		// S
 	if (code == 100)
 		ft_movePlayer(data, 3);		// A
@@ -64,8 +64,10 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 
 int	ft_test_hook(int x, int y, t_data *img)
 {
-	if (y || !y)
+	if (x > 20 && x < (int)img->mapx - 20 && y > 20 && y < (int)img->mapy - 20 )
 		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3);
+	else
+		img->rotmouse = 0;
 	//printf("MouseMove : %f  \n", img->rotmouse);
 	return (0);
 }

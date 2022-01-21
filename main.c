@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 12:43:19 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:44:55 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	the_end(t_data *data, char *txt, int err)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free(data);
-	exit (0);
+	//exit (0);
 	return (0);
 }
 
