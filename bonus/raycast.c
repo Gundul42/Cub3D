@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 13:12:57 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 13:14:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 13:44:36 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
 	val = ft_checkMapNS(data, v, alpha);
 	while (val)
 	{
-		ft_insertSprite(data, v, val);
+		ft_insertSprite(data, v, val, 1);
 		if (alpha >= 270 || alpha <= 90)
 		{
 			v.x += (float)(data->tilesize);
@@ -78,7 +78,7 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	val = ft_checkMapWE(data, h, alpha);
 	while (val)
 	{
-		ft_insertSprite(data, h, val);
+		ft_insertSprite(data, h, val, 0);
 		if (alpha >= 180 && alpha <= 360)
 		{
 			h.x -= deltaX;

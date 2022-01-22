@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/20 18:19:43 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 14:02:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ t_data	*ft_blank(t_data *data)
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
+	data->slist = ft_calloc(data->win_x * data->win_y, sizeof(t_sprite));
+	if (!data->slist)
+		the_end(data, "No memory available\n", 1);
 	return (data);
 }
 

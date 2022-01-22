@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 13:15:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 15:16:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	ft_drawSpriteFov(t_data *data)
 	int		i;
 	t_ray	ray_w;
 
-	data->slist = ft_calloc(data->win_x * data->win_y, sizeof(t_sprite));
-	if (!data->slist)
-		the_end(data, "No memory available\n", 1);
 	max = (float)data->fov / data->precision;
 	i = 0;
 	start = data->dir - (float)(data->fov / 2);
@@ -70,7 +67,8 @@ void	ft_drawSpriteFov(t_data *data)
 		start += data->precision;
 		i++;
 	}
-	free(data->slist);
+	ft_showSprites(data);
+	ft_bzero(data->slist, data->win_x * data->win_y * sizeof(t_sprite));
 }
 
 //draw one colom of the texture or only a part of it depending on distance
