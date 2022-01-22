@@ -32,9 +32,9 @@ int	ft_key_hook(int code, t_data *data)
 		ft_MapZoom(data, 1);
 	if (code == 35)
 		ft_MapZoom(data, 0);
-	if (code == 119)
+	if (code == 119 || code == 65362)
 		ft_movePlayer(data, 1);		// W
-	if (code == 115)
+	if (code == 115 || code == 65364)
 		ft_movePlayer(data, 2);		// S
 	if (code == 100)
 		ft_movePlayer(data, 3);		// A

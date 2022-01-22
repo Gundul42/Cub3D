@@ -14,24 +14,29 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= libft
 FLGFT	= -Llibft -lft
-APLFLG	= -L/usr/X11/include -L/usr/X11/lib
-FLGMLX	= -Lminilibx -lmlx -lXext -lX11 -lm
+APLFLG	= -L /usr/X11/lib -lXext -lX11 -lm
+WINFLG	= -Lminilibx -lmlx -lXext -lX11 -lm
 MLX		= minilibx
 
 $(NAME)		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(WINFLG) $(FLGFT) -o $(NAME)
 
-$(BNAME)	:	$(BONUS) $(MLX) $(COMMON) $(LIBFT) 
+$(BNAME)	:	$(BONUS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(BONUS) $(COMMON) $(FLAGS) $(FLGMLX) $(FLGFT) -o $(BNAME)
+	$(CC) $(BONUS) $(COMMON) $(FLAGS) $(WINFLG) $(FLGFT) -o $(BNAME)
 
 apple		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 	make bonus -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGMLX) $(APLFLG) $(FLGFT) -o $(NAME)
+	$(CC) $(SRCS) $(COMMON) $(FLAGS) $(FLGFT) $(APLFLG) ./minilibx/libmlx.a -o $(NAME)
+
+apple_bonus	:	$(BONUS) $(MLX) $(COMMON) $(LIBFT)
+	make bonus -C $(LIBFT)
+	make -C $(MLX)
+	$(CC) $(BONUS) $(COMMON) $(FLAGS)  $(FLGFT) $(APLFLG) ./minilibx/libmlx.a -o $(BNAME)
 
 all		:	$(NAME)
 
