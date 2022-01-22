@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/21 13:45:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 13:15:53 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 		ft_draw3DSprite(data, ray, x + i);
 		i++;
 		ray.flag = 0;
-		//ft_dumpRay(data, ray);
 	}
 }
 
@@ -56,28 +55,22 @@ void	ft_drawSpriteFov(t_data *data)
 	float	start;
 	int		max;
 	int		i;
-	int		s;
 	t_ray	ray_w;
-	t_ray	ray_s[100];
 
+	data->slist = ft_calloc(data->win_x * data->win_y, sizeof(t_sprite));
+	if (!data->slist)
+		the_end(data, "No memory available\n", 1);
 	max = (float)data->fov / data->precision;
 	i = 0;
-	s = 0;
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ray_w = ft_castRay(data, start); 
+		ray_w = ft_SpriteRay(data, start); 
 		ft_draw3D(data, ray_w, i);
-		if (ft_spriteRay(data, start, &ray_s[s]) && (ray_s[s].dist < ray_w.dist))
-			s++;
 		start += data->precision;
 		i++;
 	}
-	while (s)
-	{
-		ft_drawOneSprite(data, ray_s[s - 1]);
-		s--;
-	}
+	free(data->slist);
 }
 
 //draw one colom of the texture or only a part of it depending on distance

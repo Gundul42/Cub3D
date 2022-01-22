@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/21 13:57:57 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 13:06:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
 	return (h);
 }
 
-static
 t_point	ft_spriteCenter(t_data *data, t_point inp, float alpha, int flag)
 {
 	size_t	x;

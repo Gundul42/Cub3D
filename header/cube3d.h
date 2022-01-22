@@ -50,6 +50,14 @@ typedef struct s_test
 	int		*last;
 }	t_test;
 
+typedef struct s_sprite
+{
+	t_point	p;
+	float	dir;
+	float	dist;
+	int	init;
+	int	val;
+}	t_sprite;
 
 // the basic data type for handling the minilibx
 typedef struct s_data {
@@ -94,6 +102,7 @@ typedef struct s_data {
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
 	void			*sprite;	//sprite bitmaps
+	t_sprite		*slist;		//list of sprites
 }	t_data;
 
 int		ft_loop_hook(t_data *img);
