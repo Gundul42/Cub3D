@@ -3,7 +3,7 @@ NAME		= cub3d
 BNAME		= bcub3d
 SRCS		= main.c
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
-			common/col_rgb2hsv.c common/hooks.c common/load_map.c \
+			common/col_rgb2hsv.c common/hooks.c common/hooks_2.c common/load_map.c \
 			common/player.c common/map2d.c common/maths.c \
 			common/raycast.c common/movePlayer.c common/points.c \
 			common/draw3D.c common/textures.c common/minimap.c \

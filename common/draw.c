@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/19 18:53:31 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 18:14:31 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 	}
 }
 
-// dumps all info from a Ray, including drawing line in 2D from player 
+// dumps all info from a Ray, including drawing line in 2D from player
 // to collison point
 void	ft_dumpRay(t_data *data, t_ray ray)
 {
@@ -120,7 +120,7 @@ void	ft_drawFov(t_data *data)
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ray = ft_castRay(data, start); 
+		ray = ft_castRay(data, start);
 		//ft_dumpRay(data, ray);
 		ft_draw3D(data, ray, i);
 		start += data->precision;
@@ -136,9 +136,9 @@ void	ft_drawTex(t_data *data, t_point p1, t_point p2, t_ray ray)
 
 	y = (float)(data->tilesize) / (p1.y - p2.y);
 	i = 0;
-	while ((int)p1.y > (int)p2.y)
+	while ((int)p1.y > (int)p2.y && p1.y > 0 && p1.y < data ->mapy)
 	{
-		ft_draw_pixel(data, p1.x, p2.y + i, 
+		ft_draw_pixel(data, p1.x, p2.y + i,
 		ft_getTexPixel(data, ray.offset, i * y, ray.flag));
 		i++;
 		p1.y -= 1.0;
