@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 16:13:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 19:14:48 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	ft_checkRayDir(t_data *data, t_ray ray, float *x)
 	ok = 0;
 	dirmax = 360.0 - (float)data->fov / 2.0;
 	*x = (float)data->fov / 2;
+	*x -= data->dir - ray.dir; 
 	if (dirmax - data->dir > 0 && data->dir > (float)data->fov / 2)
 		ok = 1;
 	if (ok && fabsf(data->dir - ray.dir) <= (float)(data->fov / 2.0))
-	{
-		*x -= data->dir - ray.dir; 
 		return (1);
-	}
+	else if (!ok && data->dir >= dirmax && fabsf(data->dir - ray.dir) <= (float)(data->fov / 2.0))
+		return (1);
 	return (0);
 }
 
@@ -54,10 +54,10 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	if (!ft_checkRayDir(data, ray, &x))
 		return ;
-	printf("ray %5.2f   dir %5.2f\n", ray.dir, data->dir);
+	//printf("ray %5.2f   dir %5.2f\n", ray.dir, data->dir);
 	x /= data->precision;
 	x -= wop / 2;
-	printf("x = %5.2f wop = %5.2f\n\n", x, wop);
+	//printf("x = %5.2f wop = %5.2f\n\n", x, wop);
 	while (i < wop)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;

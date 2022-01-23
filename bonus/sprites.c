@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 13:48:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 19:15:23 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ float	ft_findAlpha(t_data *data, int i)
 	plyr = ft_getPlayerPoint(data);
         alpha =	ft_rad2deg(acosf((plyr.x - data->slist[i].p.x) / 
 				data->slist[i].dist));
-	if (data->slist[i].p.x < plyr.x)
+	if (data->dir >= 180.0 && data->dir <= 360.0)
 		alpha += 180.0;
-	return(alpha);
+	if (data->dir <= 180.0 && data->dir >= 90.0)
+		alpha += 180.0;
+	return(alpha)r
 }
 
 void	ft_updateSpriteData(t_data *data)
@@ -67,7 +69,8 @@ void	ft_updateSpriteData(t_data *data)
 	{
 		data->slist[i].dist = ft_PointDist(plyr, data->slist[i].p);
 		data->slist[i].dir = ft_findAlpha(data, i);
-		//ft_dumpSprite(data->slist[i]);
+		printf("DIR %5.2f Pposx %5.2f  --  Pposy %5.2f\n", data->dir, plyr.x, plyr.y);
+		ft_dumpSprite(data->slist[i]);
 		i++;
 	}
 }
