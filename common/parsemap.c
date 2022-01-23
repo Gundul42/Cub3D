@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 13:50:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/22 17:24:53 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ int	ft_playerOrient(char c)
 	       return (c);
 	else 
 		return (0);
+}
+
+static
+void	ft_writeCell(t_data *data, int x, int y, char c)
+{
+
+	data->map[y][x] = c - '0';
+	if (c - '0' > 1)
+		data->snbr++;
 }
 
 static
@@ -42,7 +51,7 @@ int	ft_readline(t_data *data, char *line, int y, int plyr)
 			}
 		}
 		else
-			data->map[y][x] = *line - '0';
+			ft_writeCell(data, x, y, *line);
 		x++;
 		line++;
 	}

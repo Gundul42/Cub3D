@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 14:02:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 09:02:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ t_data	*ft_blank(t_data *data)
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
-	data->slist = ft_calloc(data->win_x * data->win_y, sizeof(t_sprite));
-	if (!data->slist)
-		the_end(data, "No memory available\n", 1);
 	return (data);
 }
 
@@ -98,9 +95,10 @@ int	main(int argc, char **argv)
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
 	ft_loadSprites(img);
+	ft_initSprites(img);
 	ft_draw_background(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
-	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
+	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook_bonus, img);
 	mlx_hook(img->win2, 6, 1L << 6, ft_test_hook, img);
 	mlx_mouse_hook(img->win2, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_sprite_hook, img);
