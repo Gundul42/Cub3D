@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 09:37:35 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 13:48:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,14 @@ static
 float	ft_findAlpha(t_data *data, int i)
 {
 	t_point	plyr;
+	float	alpha;
 
 	plyr = ft_getPlayerPoint(data);
-	return(ft_rad2deg(acosf((plyr.x - data->slist[i].p.x) / data->slist[i].dist)));
-}
-
-void	ft_dumpSprite(t_sprite s)
-{
-	printf("****************************************************\n");
-	printf("Position            : x%5.2f -- y%5.2f\n", s.p.x, s.p.y);
-	printf("angle to player     : %5.2f degrees\n", s.dir);
-	printf("distance to player  : %5.2f pixels\n",s.dist);
-	printf("code                : %d\n", s.code);
-	printf("is walkable         : %d\n", s.walkable);
-	printf("is collectable      : %d\n", s.collectable);
-	printf("can move            : %d\n", s.canmove);
-	printf("****************************************************\n\n");
+        alpha =	ft_rad2deg(acosf((plyr.x - data->slist[i].p.x) / 
+				data->slist[i].dist));
+	if (data->slist[i].p.x < plyr.x)
+		alpha += 180.0;
+	return(alpha);
 }
 
 void	ft_updateSpriteData(t_data *data)
@@ -75,7 +67,7 @@ void	ft_updateSpriteData(t_data *data)
 	{
 		data->slist[i].dist = ft_PointDist(plyr, data->slist[i].p);
 		data->slist[i].dir = ft_findAlpha(data, i);
-		ft_dumpSprite(data->slist[i]);
+		//ft_dumpSprite(data->slist[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 09:00:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 10:33:22 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_dumpSprite(t_sprite s);
 void	ft_updateSpriteData(t_data *data);
 void	ft_moveBonusPlayer(t_data *data,int flag);
 int	ft_key_hook_bonus(int code, t_data *data);
+void	ft_drawFovBonus(t_data *data);
 
 #endif

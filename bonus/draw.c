@@ -6,11 +6,25 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 16:49:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 15:12:11 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
+
+int	ft_checkRayDir(t_data *data, t_ray *ray)
+{
+	float	dirmax;
+	int	ok;
+
+	ok = 0;
+	dirmax = 360.0 - (float)data->fov / 2.0;
+	if (dirmax - data->dir > 0 && data->dir > (float)data->fov / 2)
+		ok = 1;
+	if (ok && fabsf(data->dir - ray->dir) < (float)(data->fov / 2.0))
+		return (1);
+	return (0);
+}
 
 float	ft_rayCorrect(t_data *data, t_ray ray)
 {
@@ -33,18 +47,18 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	i = 0;
 	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
 	height = faktor * (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
-	x = ft_valAlpha(data->dir - (float)data->fov / 2);
-	if (x > 270.0 && x <= 360.0 && ray.dir > 0.0 && ray.dir <= 90.0)
-		x = ray.dir + 360.0  - x;
-	else
-		x = ray.dir - x;
+	wop = (float)data->dtpp / ray.dist * height;
+	if (!ft_checkRayDir(data, &ray))
+		return ;
+	x = data->dir - ray.dir;
+	printf("x = %5.2f wop = %5.2f\n", x, wop);
 	x /= data->precision;
 	x -= wop / 2;
-	while ( i < wop)
+	while (i < wop)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;
-		ft_draw3DSprite(data, ray, x + i);
+		if (data->zbuf[(int)x+i] > ray.dist)
+			ft_draw3DSprite(data, ray, x + i);
 		i++;
 		ray.flag = 0;
 	}

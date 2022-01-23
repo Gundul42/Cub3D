@@ -106,6 +106,7 @@ typedef struct s_data {
 	void			*sprite;	//sprite bitmaps
 	t_sprite		*slist;		//list of sprites
 	int				snbr;	//total number of found sprites
+	float			*zbuf;		//z buffer for distances of all rays
 }	t_data;
 
 int		ft_loop_hook(t_data *img);

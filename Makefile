@@ -1,6 +1,6 @@
 
 NAME		= cub3d
-BNAME		= bcub3d
+BNAME		= b3d
 SRCS		= main.c
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/col_rgb2hsv.c common/hooks.c common/load_map.c \
@@ -10,7 +10,7 @@ COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/sprites.c common/checkmap.c common/errors.c \
 			common/readmaphead.c common/parsemap.c common/checkmap_close.c
 BONUS		= bonus/main.c bonus/spritecast.c bonus/draw.c bonus/hooks.c \
-		  bonus/sprites.c
+		  bonus/sprites.c bonus/fov.c bonus/debug.c
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= libft
@@ -37,6 +37,10 @@ apple		:	$(SRCS) $(MLX) $(COMMON) $(LIBFT)
 all		:	$(NAME)
 
 bonus		:	$(BNAME)
+
+norme		:	$(SRC) $(COMMON) $(BONUS) $(LIBFT)
+	norminette $(SRC) $(COMMON) $(BONUS) $(LIBFT)
+ 
 
 clean		:	$(LIBFT) $(MLX)
 	make clean -C $(LIBFT)

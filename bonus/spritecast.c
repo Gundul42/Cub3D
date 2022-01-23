@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 18:09:36 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 10:41:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ t_point	ft_spriteCenter(t_data *data, t_point inp, float alpha, int flag)
 	inp.y = (float)((y * data->tilesize) + data->tilesize / 2);
 	return (inp);
 }
-	
+
 void	ft_showSprites(t_data *data)
 {
 	int	i;
 	t_ray	ray;
 
 	i = 0;
-	while (data->snbr)
+	while (i < data->snbr)
 	{
 		ray = ft_sprite2ray(data->slist[i]);
 		ft_drawOneSprite(data, ray);
 		i++;
 	}
-	printf("%d\n", i);
 }
