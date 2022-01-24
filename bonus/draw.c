@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 19:14:48 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/24 18:32:01 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,43 @@
 int	ft_checkRayDir(t_data *data, t_ray ray, float *x)
 {
 	float	dirmax;
+	float	hfov;
 	int	ok;
 
 	ok = 0;
-	dirmax = 360.0 - (float)data->fov / 2.0;
-	*x = (float)data->fov / 2;
-	*x -= data->dir - ray.dir; 
-	if (dirmax - data->dir > 0 && data->dir > (float)data->fov / 2)
+	hfov = (float)data->fov / 2.0;
+	dirmax = 360.0 - hfov;
+	*x = hfov;
+	*x -= data->dir - ray.dir;
+	//out of problem scope dirmax <= alpha <= 360
+	if (data->dir < dirmax && data->dir > (float)data->fov)
 		ok = 1;
-	if (ok && fabsf(data->dir - ray.dir) <= (float)(data->fov / 2.0))
+	if (ok && fabsf(data->dir - ray.dir) <= hfov)
 		return (1);
-	else if (!ok && data->dir >= dirmax && fabsf(data->dir - ray.dir) <= (float)(data->fov / 2.0))
+	// PROBLEM ZONE both angles between dirmax and 360
+	if (!ok && data->dir > dirmax && ray.dir > dirmax)
+	{
+		printf("Match 1\n");
 		return (1);
+	}
+	// PROBLEM ZONE both angles between 0 and fov
+	if (!ok && data->dir < (float)data->fov && ray.dir < (float)data->fov)
+	{
+		printf("Match 1\n");
+		return (2);
+	}
+	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
+	if (!ok && data->dir > dirmax && ray.dir >= 0.0 && ray.dir <= (float)data->fov)
+	{
+		printf("Match 1\n");
+		return (3);
+	}
+	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
+	if (!ok && ray.dir > dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov)
+	{
+		printf("Match 1\n");
+		return (4);
+	}
 	return (0);
 }
 
