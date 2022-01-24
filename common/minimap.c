@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:12:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 11:47:43 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 19:29:19 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_mapHeading(t_data *data)
 		len *= 2;
 		while (len)
 		{
-			ft_drawMapPixel(data, x + cos(ft_deg2rad(alpha)) * len, 
+			ft_drawMapPixel(data, x + cos(ft_deg2rad(alpha)) * len,
 					x + sin(ft_deg2rad(alpha)) * len, 0);
 			len--;
 		}
@@ -43,7 +43,7 @@ void	ft_drawMapPixel(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x > (int)(data->win_x / data->minimap) || y < 0 || 
+	if (x < 0 || x > (int)(data->win_x / data->minimap) || y < 0 ||
 			y > (int)(data->win_x / data->minimap))
 		return ;
 	dst = data->addr1 + (y * data->line_length + x * (data->bits_per_pixel / 8));
@@ -92,7 +92,7 @@ void	ft_draw2dmap(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	j = 0;
 	ft_drawMapBck(data);
 	while (j < (int)data->miniZ)
@@ -100,7 +100,7 @@ void	ft_draw2dmap(t_data *data)
 		i = 0;
 		while (i < (int)data->miniZ)
 		{
-			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i, 
+			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
 						data->py - (int)data->miniZ / 2 + j))
 				ft_drawDot(data, i, j);
 			i++;

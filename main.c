@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 19:32:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/23 12:56:20 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ int	the_end(t_data *data, char *txt, int err)
 {
 	if (err == 1)
 		write(2, "Error\n", 6);
-	if (txt)
+	if (txt && txt != NULL)
 		write(2, txt, ft_strlen(txt));
-	if (data->map)
+	//if (data->map)
+	//	ft_cleanupMap(data);
+	if (err != 2)
+	{
 		ft_cleanupMap(data);
-	mlx_destroy_image(data->mlx, data->img1);
-	mlx_destroy_image(data->mlx, data->img2);
-	ft_destroy_textures(data);
-	mlx_destroy_window(data->mlx, data->win2);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free(data);
+		mlx_destroy_image(data->mlx, data->img1);
+		mlx_destroy_image(data->mlx, data->img2);
+		ft_destroy_textures(data);
+		mlx_destroy_window(data->mlx, data->win2);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		free(data);
+	}
 	exit (0);
 	return (0);
 }
@@ -99,9 +103,10 @@ int	main(int argc, char **argv)
 	ft_initMap(img, argv[1]);
 	ft_loadSprites(img);
 	ft_draw_background(img);
-	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
+	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
-	mlx_hook(img->win2, 6, 1L << 6, ft_test_hook, img);
+	mlx_hook(img->win2, 6, 1L << 6, ft_mouse_in_hook, img);
+	mlx_hook(img->win2, 8, 1L << 5, ft_mouse_out_hook, img);
 	mlx_mouse_hook(img->win2, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_loop_hook, img);
 	mlx_loop(img->mlx);

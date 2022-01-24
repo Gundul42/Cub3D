@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 13:07:50 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/22 12:36:32 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_destroy_textures(t_data *data)
 	}
 }
 
+//modif flo lg 42 path[i] instead of path[0] to avoid seg fault if 1st texture NOK
 void	ft_loadTextures(t_data *data, char **path)
 {
 	int	x;
@@ -38,7 +39,7 @@ void	ft_loadTextures(t_data *data, char **path)
 				path[i], &x, &y);
 		if (!data->txt[i])
 		{
-			if (path && path[0] != NULL)
+			if (path && path[i] != NULL)
 			{
 				write(2, path[i], ft_strlen(path[i]));
 				write(2, "\n", 1);

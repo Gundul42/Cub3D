@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
 /*   Updated: 2022/01/23 10:24:27 by graja            ###   ########.fr       */
@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
+
 //clean up all allocated memory for the loaded map
 static
 void	ft_cleanupMap(t_data *data)
@@ -76,7 +77,7 @@ t_data	*ft_blank(t_data *data)
 static
 void	ft_getReady(t_data *data)
 {
-	data->img1 = mlx_new_image(data->mlx, data->win_x / 
+	data->img1 = mlx_new_image(data->mlx, data->win_x /
 			data->minimap, data->win_x / data->minimap);
 	data->addr1 = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
@@ -104,9 +105,10 @@ int	main(int argc, char **argv)
 	ft_loadSprites(img);
 	ft_initSprites(img);
 	ft_draw_background(img);
-	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
-	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook_bonus, img);
-	mlx_hook(img->win2, 6, 1L << 6, ft_test_hook, img);
+	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
+	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
+	mlx_hook(img->win2, 6, 1L << 6, ft_mouse_in_hook, img);
+	mlx_hook(img->win2, 8, 1L << 5, ft_mouse_out_hook, img);
 	mlx_mouse_hook(img->win2, ft_mouse_hook, img);
 	mlx_loop_hook(img->mlx, ft_sprite_hook, img);
 	mlx_loop(img->mlx);

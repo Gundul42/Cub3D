@@ -6,8 +6,7 @@ int	ft_loop_hook(t_data *img)
 	mlx_do_sync(img->mlx); //documentation says this is auto sync of frames -- tests needed
 	ft_draw_background(img);
 	ft_draw2dmap(img);
-	if (img->run)
-		ft_drawFov(img);
+	ft_drawFov(img);
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
 	if (img->mMap)
 		mlx_put_image_to_window(img->mlx, img->win2, img->img1,
@@ -21,7 +20,7 @@ int	ft_key_hook(int code, t_data *data)
 {
 	//printf("Key: %d)\n", code);
 	if (code == 65307)
-		the_end(data, NULL, 0);
+		the_end(data, "See you soon :-)", 0);
 	if (code == 99)
 		data->correct = !data->correct;
 	if (code == 109)
@@ -54,10 +53,17 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-int	ft_test_hook(int x, int y, t_data *img)
+int	ft_mouse_in_hook(int x, int y, t_data *img)
 {
 	if (y || !y)
 		img->rotmouse = (float) ((int)(img->win_x / 2) - x) / (int)(img->win_x / 3);
+	//printf("MouseMove : %f  \n", img->rotmouse);
+	return (0);
+}
+
+int	ft_mouse_out_hook(t_data *img)
+{
+	img->rotmouse = 0;
 	//printf("MouseMove : %f  \n", img->rotmouse);
 	return (0);
 }
