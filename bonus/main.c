@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 12:47:27 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/23 10:24:27 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	the_end(t_data *data, char *txt, int err)
 		write(2, txt, ft_strlen(txt));
 	if (data->map)
 		ft_cleanupMap(data);
+	if (data->zbuf)
+		free(data->zbuf);
+	if (data->slist)
+		free(data->slist);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
 	ft_destroy_textures(data);
@@ -83,6 +87,9 @@ void	ft_getReady(t_data *data)
 	data->addr2 = mlx_get_data_addr(data->img2, &data->bits_per_pixel2,
 			&data->line_length2, &data->endian2);
 	data->addr = data->addr1;
+	data->zbuf = ft_calloc(data->win_x, sizeof(float));
+	if (!data->zbuf)
+		the_end(data, "Out of Memory\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -96,6 +103,7 @@ int	main(int argc, char **argv)
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
 	ft_loadSprites(img);
+	ft_initSprites(img);
 	ft_draw_background(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
