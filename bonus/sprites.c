@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 19:15:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/24 09:17:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ float	ft_findAlpha(t_data *data, int i)
 		alpha += 180.0;
 	if (data->dir <= 180.0 && data->dir >= 90.0)
 		alpha += 180.0;
-	return(alpha)r
+	if (plyr.y < data->slist[i].p.y)
+		alpha = 360.0 - alpha;
+	return(alpha);
 }
 
 void	ft_updateSpriteData(t_data *data)
