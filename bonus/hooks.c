@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 14:57:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/24 15:31:39 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_moveBonusPlayer(t_data *data,int flag)
 	{
 		data->px = newx;
 		data->py = newy;
-		ft_updateSpriteData(data);
 	}
 }
 
@@ -52,6 +51,7 @@ int	ft_sprite_hook(t_data *img)
 	if (img->run)
 	{
 		ft_drawFovBonus(img);
+		ft_updateSpriteData(img);
 		ft_showSprites(img);
 	}
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
