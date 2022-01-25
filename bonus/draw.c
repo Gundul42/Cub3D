@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 06:52:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 12:43:43 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 
 	ok = 0;
 	hfov = (float)data->fov / 2.0;
-	dirmax = 360.0 - hfov;
+	hfov +=  atanf((float)(data->tilesize) / ( ray->dist));
+	dirmax = 360.0 - (float)data->fov;
 	*x = hfov;
 	*x -= data->dir - ray->dir;
 	//out of problem scope dirmax <= alpha <= 360
@@ -31,13 +32,13 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	// PROBLEM ZONE both angles between dirmax and 360
 	if (!ok && data->dir >= dirmax && ray->dir >= dirmax)
 	{
-		printf("Match 1\n");
+	//	printf("Match 1\n");
 		return (1);
 	}
 	// PROBLEM ZONE both angles between 0 and fov
 	if (!ok && data->dir <= (float)data->fov && ray->dir <= (float)data->fov)
 	{
-		printf("Match 2\n");
+	//	printf("Match 2\n");
 		return (1);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
@@ -45,18 +46,19 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	{
 		*x = hfov;
 		*x += (360.0 - data->dir) + ray->dir; 
-		printf("Match 3\n");
-		return (1);
+	//	printf("Match 3\n");
+		if (*x <= (float)data->fov)
+			return (1);
+		return (0);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
 	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov)
 	{
 		*x = hfov;
 		*x -= (360.0 - ray->dir) + data->dir; 
-		printf("Match 4\n");
+	//	printf("Match 4\n");
 		return (1);
 	}
-	printf("NO match\n");
 	return (0);
 }
 
@@ -84,10 +86,10 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	if (!ft_checkRayDir(data, &ray, &x))
 		return ;
-	//printf("ray %5.2f   dir %5.2f\n", ray.dir, data->dir);
+	//printf("x = %5.2f, ray %5.2f   dir %5.2f\n", x, ray.dir, data->dir);
 	x /= data->precision;
 	x -= wop / 2;
-	printf("x = %5.2f wop = %5.2f\n\n", x, wop);
+	//printf("x = %5.2f wop = %5.2f\n\n", x, wop);
 	while (i < wop)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;
