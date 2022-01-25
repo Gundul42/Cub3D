@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 13:45:52 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:36:14 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	ft_noTex(t_data *data, char **tex, char *path)
 {
 	if (!path)
 		path = "maps/test.cub";
-	write(2, "Wrong color or texture definition in: ", 45);
+	write(2, "Wrong color or texture definition in: ", 39);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);
 	ft_freeTex(tex);
-	the_end(data, "What happen here ft_no_text ?\n", 1);
+	the_end(data, "Please correct the map\n", 1);
 }
 
 void	ft_readHead(t_data *data, char *path, int fd, int err)
