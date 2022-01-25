@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 12:43:43 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 19:37:12 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	int	i;
 
 	i = 0;
-	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
 	height = faktor * (float)data->win_y / (float)data->tilesize;
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	if (!ft_checkRayDir(data, &ray, &x))
@@ -143,7 +145,9 @@ void	ft_draw3DSprite(t_data *data, t_ray ray, int i)
 	t_point	p1;
 	t_point	p2;
 
-	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
 	height = faktor * (float)data->win_y / (float)data->tilesize;
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	p1.y = (float)(data->win_y / 2) + wop / 2.0;

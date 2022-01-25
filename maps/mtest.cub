@@ -1,7 +1,7 @@
 NO textures/256cobble.xpm
 WE textures/256mosscobble.xpm
-EA textures/256mosscobble.xpm
-SO textures/256cobble.xpm
+SO textures/256mosscobble.xpm
+EA textures/256cobble.xpm
 
 
 C 135,206,235
