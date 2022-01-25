@@ -6,13 +6,13 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/24 18:32:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 06:52:55 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
-int	ft_checkRayDir(t_data *data, t_ray ray, float *x)
+int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 {
 	float	dirmax;
 	float	hfov;
@@ -22,36 +22,41 @@ int	ft_checkRayDir(t_data *data, t_ray ray, float *x)
 	hfov = (float)data->fov / 2.0;
 	dirmax = 360.0 - hfov;
 	*x = hfov;
-	*x -= data->dir - ray.dir;
+	*x -= data->dir - ray->dir;
 	//out of problem scope dirmax <= alpha <= 360
 	if (data->dir < dirmax && data->dir > (float)data->fov)
 		ok = 1;
-	if (ok && fabsf(data->dir - ray.dir) <= hfov)
+	if (ok && fabsf(data->dir - ray->dir) <= hfov)
 		return (1);
 	// PROBLEM ZONE both angles between dirmax and 360
-	if (!ok && data->dir > dirmax && ray.dir > dirmax)
+	if (!ok && data->dir >= dirmax && ray->dir >= dirmax)
 	{
 		printf("Match 1\n");
 		return (1);
 	}
 	// PROBLEM ZONE both angles between 0 and fov
-	if (!ok && data->dir < (float)data->fov && ray.dir < (float)data->fov)
+	if (!ok && data->dir <= (float)data->fov && ray->dir <= (float)data->fov)
 	{
-		printf("Match 1\n");
-		return (2);
+		printf("Match 2\n");
+		return (1);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && data->dir > dirmax && ray.dir >= 0.0 && ray.dir <= (float)data->fov)
+	if (!ok && data->dir >= dirmax && ray->dir >= 0.0 && ray->dir <= (float)data->fov)
 	{
-		printf("Match 1\n");
-		return (3);
+		*x = hfov;
+		*x += (360.0 - data->dir) + ray->dir; 
+		printf("Match 3\n");
+		return (1);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && ray.dir > dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov)
+	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov)
 	{
-		printf("Match 1\n");
-		return (4);
+		*x = hfov;
+		*x -= (360.0 - ray->dir) + data->dir; 
+		printf("Match 4\n");
+		return (1);
 	}
+	printf("NO match\n");
 	return (0);
 }
 
@@ -77,12 +82,12 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
 	height = faktor * (float)data->win_y / (float)data->tilesize;
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
-	if (!ft_checkRayDir(data, ray, &x))
+	if (!ft_checkRayDir(data, &ray, &x))
 		return ;
 	//printf("ray %5.2f   dir %5.2f\n", ray.dir, data->dir);
 	x /= data->precision;
 	x -= wop / 2;
-	//printf("x = %5.2f wop = %5.2f\n\n", x, wop);
+	printf("x = %5.2f wop = %5.2f\n\n", x, wop);
 	while (i < wop)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;

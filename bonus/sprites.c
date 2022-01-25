@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/24 19:04:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 06:04:18 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,14 @@ float	ft_findAlpha(t_data *data, int i)
 	float	alpha;
 
 	plyr = ft_getPlayerPoint(data);
-        alpha =	ft_rad2deg(acosf((plyr.x - data->slist[i].p.x) / 
+        alpha =	ft_rad2deg(acosf((data->slist[i].p.x - plyr.x) /
 				data->slist[i].dist));
-	if (data->dir >= 270.0 || data->dir <= 90.0)
-		alpha = ft_valAlpha(alpha - 180.0);
-	else
-	{
-		alpha = ft_valAlpha(alpha + 180.0);
-		if (plyr.y < data->slist[i].p.y)
-			alpha = 360.0 - alpha;
-	}
+	if (data->dir >= 180.0 || data->dir <= 360.0)
+		alpha = 360.0 - alpha;
+	if (plyr.y < data->slist[i].p.y)
+		alpha = 360.0 - alpha;
+	if (data->dir >= 270.0 && data->dir <= 90.0 && plyr.y > data->slist[i].p.y)
+		alpha = 360.0 + alpha;
 	return(alpha);
 }
 
