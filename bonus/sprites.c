@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 12:20:03 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 13:01:53 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,35 @@ float	ft_findAlpha(t_data *data, int i)
 	return(alpha);
 }
 
+//BubbleSort Sprites, long distances will be drawn first !
+static
+void	ft_sortSprites(t_data *data)
+{
+	t_sprite	s;
+	int			moved;
+	int			i;
+
+	if (data->snbr < 2)
+		return ;
+	moved = 1;
+	while (moved)
+	{
+		i = 0;
+		moved = 0;
+		while (i < data->snbr - 1)
+		{
+			if (data->slist[i].dist < data->slist[i + 1].dist)
+			{
+				s = data->slist[i];
+				data->slist[i] = data->slist[i + 1];
+				data->slist[i + 1] = s;
+				moved = 1;
+			}
+			i++;
+		}
+	}
+}
+
 void	ft_updateSpriteData(t_data *data)
 {
 	t_point	plyr;
@@ -75,6 +104,7 @@ void	ft_updateSpriteData(t_data *data)
 		//ft_dumpSprite(data->slist[i]);
 		i++;
 	}
+	ft_sortSprites(data);
 }
 
 void	ft_initSprites(t_data *data)
