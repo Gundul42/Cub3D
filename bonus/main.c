@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 18:57:50 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 20:00:13 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_data	*ft_blank(t_data *data)
 		exit (1);
 	data->tilesize = 256;
 	data->map = NULL;
-	data->win_x = 800;
+	data->win_x = 800; 
 	data->win_y = 600;
 	data->fov = 60;
 	data->speed = data->tilesize / 10;
