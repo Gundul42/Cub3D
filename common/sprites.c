@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 12:52:43 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:50:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_loadSprites(t_data *data)
 	int	y;
 	char	*path;
 
-	path = "./textures/ferns_fern.xpm";
+	path = "./textures/256fern.xpm";
 	data->sprite = mlx_xpm_file_to_image(data->mlx,
 			path, &x, &y);
 	if (!data->sprite)
@@ -67,7 +67,7 @@ void	ft_loadSprites(t_data *data)
 		write(2, "\n", 1);
 		the_end(data, "Fix the problem and run the program again\n", 1);
 	}
-	if (x != data->tilesize)
+	if ((unsigned int)x != data->tilesize)
 	{
 		write(2, "Wrong texture bitmap size ", 33);
 		ft_putnbr_fd(data->tilesize, 2);

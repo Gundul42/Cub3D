@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:12 by graja             #+#    #+#             */
-/*   Updated: 2022/01/24 15:46:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/25 19:17:45 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	ft_draw3D(t_data *data, t_ray ray, int i)
 	t_point	p1;
 	t_point	p2;
 
-	faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
 	height = faktor * (float)data->win_y / (float)data->tilesize;
 	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
 	if (wop > 2500.0)

@@ -82,10 +82,10 @@ typedef struct s_data {
 	size_t			win_y;		//windowsize y
 	size_t			minimap;	//size of minimap
 	size_t			miniZ;		//zoom faktor of minimap
-	unsigned char	tilesize;		//size of a game tile == texture size in pixel
+	unsigned int	tilesize;		//size of a game tile == texture size in pixel
 	unsigned char	fov;			//field of view of player in degrees
 	unsigned int	dtpp;			//distance to projection plane
-	unsigned char	speed;			//player speed in pixel of gametile / movement unit
+	unsigned int	speed;			//player speed in pixel of gametile / movement unit
 	float			precision;	//precision of ray scanning the smaller the accurate
 	float			rotspeed;	//player rotation speed;
 	float			dir;		//player look direction

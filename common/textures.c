@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 12:36:32 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:39:11 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_loadTextures(t_data *data, char **path)
 			}
 			the_end(data, "Fix the textures files and run the program again\n", 1);
 		}
-		if (x != data->tilesize || y != data->tilesize)
+		if ((unsigned int)x != data->tilesize || (unsigned int)y != data->tilesize)
 		{
 			write(2, "Wrong texture bitmap size ", 33);
 			ft_putnbr_fd(data->tilesize, 2);

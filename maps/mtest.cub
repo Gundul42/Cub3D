@@ -1,11 +1,11 @@
-NO textures/employee64.xpm
-WE textures/innerglass64.xpm
-EA textures/window64.xpm
-SO textures/plainwall64.xpm
+NO textures/256cobble.xpm
+WE textures/256mosscobble.xpm
+EA textures/256mosscobble.xpm
+SO textures/256cobble.xpm
 
 
-C 135, 206, 235
-F 127, 0, 0
+C 135,206,235
+F 127,0,0
 
 
 11111111111111111111111111111

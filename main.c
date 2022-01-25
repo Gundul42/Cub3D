@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 12:56:20 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:59:35 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_data	*ft_blank(t_data *data)
 	data->win_x = 800;
 	data->win_y = 600;
 	data->fov = 60;
-	data->speed = 6;
+	data->speed = data->tilesize / 10;
 	data->minimap = 8;
 	data->miniZ = 16;
 	data->rotspeed = 2.5;
