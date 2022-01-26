@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/24 12:17:34 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/26 13:37:43 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y)
 	*y = d->py * d->tilesize;
 }
 
+static
+int	ft_whatishere(int map)
+{
+	if (!map || map == 5)
+		return (0);
+	return (1);
+}
 /* Flags:
  * 		1 = up
  * 		2 = down
@@ -56,7 +63,7 @@ void	ft_movePlayer(t_data *data,int flag)
 		ft_leftright(data, &newx, &newy, flag);
 	newx += data->px;
 	newy += data->py;
-	if (!data->map[(size_t)(newy)][(size_t)(newx)])
+	if (!ft_whatishere(data->map[(size_t)(newy)][(size_t)(newx)]))
 	{
 		data->px = newx;
 		data->py = newy;
