@@ -6,11 +6,23 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 18:39:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/26 09:29:10 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
+
+void	ft_texAutodetect(t_data *data, unsigned int x, unsigned int y)
+{
+	printf("\n\nTexture size: %dpxs\n", x);
+	if (x != y)
+	{
+		write(2, "asymmetric textures not allowed.\n", 33); 
+		return ;
+	}
+	data->tilesize = x;
+	data->speed = data->tilesize / 10;
+}
 
 void	ft_destroy_textures(t_data *data)
 {
@@ -47,6 +59,8 @@ void	ft_loadTextures(t_data *data, char **path)
 			}
 			the_end(data, "Fix the textures files and run the program again\n", 1);
 		}
+		if (!data->tilesize)
+			ft_texAutodetect(data, x, y);
 		if ((unsigned int)x != data->tilesize || (unsigned int)y != data->tilesize)
 		{
 			write(2, "Wrong texture bitmap size ", 33);

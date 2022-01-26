@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   loadsprite.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 20:26:07 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/26 09:38:36 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ void	ft_loadSprites(t_data *data)
 	}
 	if ((unsigned int)x != data->tilesize)
 	{
-		write(2, "Wrong sprite texture bitmap size ", 33);
+		write(2, "Wrong sprite texture size ", 26);
+		ft_putnbr_fd(x, 2);
+		write(2, "px in file, ",12);
 		ft_putnbr_fd(data->tilesize, 2);
-		write(2, "px in x direction only\n", 23);
+		write(2, "px needed\n", 10);
 		the_end(data, "Fix the problem and run the program again\n", 1);
 	}
 }
