@@ -7,10 +7,10 @@ COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/player.c common/map2d.c common/maths.c \
 			common/raycast.c common/movePlayer.c common/points.c \
 			common/draw3D.c common/textures.c common/minimap.c \
-			common/sprites.c common/checkmap.c common/errors.c \
-			common/readmaphead.c common/parsemap.c common/checkmap_close.c
+			common/checkmap.c common/errors.c common/readmaphead.c common/parsemap.c \
+			common/checkmap_close.c
 BONUS		= bonus/main.c bonus/spritecast.c bonus/draw.c bonus/hooks.c \
-		  bonus/sprites.c bonus/fov.c bonus/debug.c
+		  bonus/sprites.c bonus/fov.c bonus/debug.c bonus/loadsprite.c
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= libft

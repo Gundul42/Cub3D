@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 18:59:35 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/26 09:05:00 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_getReady(img);
 	ft_initMap(img, argv[1]);
-	ft_loadSprites(img);
 	ft_draw_background(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook, img);
