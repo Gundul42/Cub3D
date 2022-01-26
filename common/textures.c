@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/26 09:29:10 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/26 10:02:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	ft_texAutodetect(t_data *data, unsigned int x, unsigned int y)
 {
 	printf("\n\nTexture size: %dpxs\n", x);
-	if (x != y)
+	if (x != y || x < 64 || y < 64 || x > 1024 || y > 1024)
 	{
+		write(2, "Allowed texture range from 64 - 1024px\n", 39);
 		write(2, "asymmetric textures not allowed.\n", 33); 
 		return ;
 	}
@@ -63,9 +64,11 @@ void	ft_loadTextures(t_data *data, char **path)
 			ft_texAutodetect(data, x, y);
 		if ((unsigned int)x != data->tilesize || (unsigned int)y != data->tilesize)
 		{
-			write(2, "Wrong texture bitmap size ", 33);
+			write(2, "Wrong texture bitmap size ", 26);
+			ft_putnbr_fd(x, 2);
+			write(2, "px found, ", 10);
 			ft_putnbr_fd(data->tilesize, 2);
-			write(2, " px only\n", 8);
+			write(2, "px needed.\n", 11);
 			ft_freeTex(path);
 			the_end(data, "Fix the problem and run the program again\n", 1);
 		}
