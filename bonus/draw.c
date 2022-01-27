@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/27 11:31:49 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/27 16:21:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	*x = hfov;
 	*x -= data->dir - ray->dir;
 	//out of problem scope dirmax <= alpha <= 360
-	if (data->dir < dirmax && data->dir > (float)data->fov)
+	if (data->dir <= dirmax && data->dir > (float)data->fov)
 		ok = 1;
 	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
+	{
+	//	printf(" OK\n");
 		return (1);
+	}
 	// PROBLEM ZONE both angles between dirmax and 360
 	if (!ok && data->dir >= dirmax && ray->dir >= dirmax)
 	{
@@ -59,6 +62,7 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	//	printf("Match 4\n");
 		return (1);
 	}
+	//printf("NoMatch\n");
 	return (0);
 }
 
