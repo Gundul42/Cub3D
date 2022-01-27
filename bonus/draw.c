@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 19:37:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/27 11:31:49 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	ok = 0;
 	hfov = (float)data->fov / 2.0;
 	hfov +=  atanf((float)(data->tilesize) / ( ray->dist));
-	dirmax = 360.0 - (float)data->fov;
+	dirmax = 360.0 - (float)data->fov * 1.5;
 	*x = hfov;
 	*x -= data->dir - ray->dir;
 	//out of problem scope dirmax <= alpha <= 360
 	if (data->dir < dirmax && data->dir > (float)data->fov)
 		ok = 1;
-	if (ok && fabsf(data->dir - ray->dir) <= hfov)
+	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
 		return (1);
 	// PROBLEM ZONE both angles between dirmax and 360
 	if (!ok && data->dir >= dirmax && ray->dir >= dirmax)
@@ -36,23 +36,23 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 		return (1);
 	}
 	// PROBLEM ZONE both angles between 0 and fov
-	if (!ok && data->dir <= (float)data->fov && ray->dir <= (float)data->fov)
+	if (!ok && data->dir <= (float)data->fov && ray->dir <= (float)data->fov * 1.5)
 	{
 	//	printf("Match 2\n");
 		return (1);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && data->dir >= dirmax && ray->dir >= 0.0 && ray->dir <= (float)data->fov)
+	if (!ok && data->dir >= dirmax && ray->dir >= 0.0 && ray->dir <= (float)data->fov * 1.5)
 	{
 		*x = hfov;
 		*x += (360.0 - data->dir) + ray->dir; 
 	//	printf("Match 3\n");
-		if (*x <= (float)data->fov)
+		if (*x <= (float)data->fov * 1.5)
 			return (1);
 		return (0);
 	}
 	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov)
+	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov * 1.5)
 	{
 		*x = hfov;
 		*x -= (360.0 - ray->dir) + data->dir; 
