@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/27 12:53:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/27 16:28:08 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	ft_sprite_hook(t_data *img)
 	runner++;
 	mlx_do_sync(img->mlx);
 	ft_draw_background(img);
+	ft_draw2dmap(img);
 	if (img->run)
 	{
 		ft_drawFovBonus(img);
