@@ -6,13 +6,14 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 10:33:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/27 12:11:31 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BONUS3D_H
 # define BONUS3D_H
 # include "./cube3d.h"
+# include <sys/timeb.h>
 
 int		ft_sprite_hook(t_data *img);
 int		ft_getSpritePixel(t_data *data, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/24 15:31:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/27 12:53:23 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,32 @@ void	ft_moveBonusPlayer(t_data *data,int flag)
 		data->py = newy;
 	}
 }
+static
+int	ft_checktime(struct timeb start, struct timeb end, int *r)
+{
+	int	diff;
+	static int	fps = 0;
+
+	diff = (int)(1000.0 * (end.time - start.time) + (end.millitm - start.millitm));
+	if (diff < 999)
+		return (fps);
+	fps = *r;
+	*r = 0;
+	return (fps);
+}
 
 int	ft_sprite_hook(t_data *img)
 {
+	static struct timeb	start;
+	static struct timeb	end;
+	static int	runner = 0;
+	int			fps;
+
+	if (!runner)
+		ftime(&start);
+	runner++;
 	mlx_do_sync(img->mlx);
 	ft_draw_background(img);
-	ft_draw2dmap(img);
 	if (img->run)
 	{
 		ft_drawFovBonus(img);
@@ -60,7 +80,10 @@ int	ft_sprite_hook(t_data *img)
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
-
+	ftime(&end);
+	fps = ft_checktime(start, end, &runner);
+	mlx_string_put(img->mlx, img->win2, 380, 10, 0, ft_itoa(fps));
+	mlx_string_put(img->mlx, img->win2, 400, 10, 0, "FPS");
 	return (0);
 }
 
