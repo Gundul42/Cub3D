@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/27 17:50:05 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/28 16:30:30 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_loadSprites(t_data *data)
 	char	*path;
 
 	//path = "./sprites/256steeldooor.xpm";
-	path = "./sprites/265grate.xpm";
+	path = "./sprites/256gate.xpm";
 	data->sprite = mlx_xpm_file_to_image(data->mlx,
 			path, &x, &y);
 	if (!data->sprite)

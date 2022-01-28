@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/27 16:28:08 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/28 19:10:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_moveBonusPlayer(t_data *data,int flag)
 		data->py = newy;
 	}
 }
+
 static
 int	ft_checktime(struct timeb start, struct timeb end, int *r)
 {
@@ -66,7 +67,7 @@ int	ft_sprite_hook(t_data *img)
 	if (!runner)
 		ftime(&start);
 	runner++;
-	mlx_do_sync(img->mlx);
+	//mlx_do_sync(img->mlx);
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	if (img->run)
@@ -81,6 +82,8 @@ int	ft_sprite_hook(t_data *img)
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
+	if (img->chkdoor)
+		ft_opendoor(img);
 	ftime(&end);
 	fps = ft_checktime(start, end, &runner);
 	mlx_string_put(img->mlx, img->win2, 380, 10, 0, ft_itoa(fps));
@@ -95,6 +98,8 @@ int	ft_key_hook_bonus(int code, t_data *data)
 		the_end(data, NULL, 0);
 	if (code == 99)
 		data->correct = !data->correct;
+	if (code == 32)
+		data->chkdoor = 1;
 	if (code == 109)
 		data->mMap = !data->mMap;
 	if (code == 114)

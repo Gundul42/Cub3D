@@ -10,7 +10,8 @@ COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/checkmap.c common/errors.c common/readmaphead.c common/parsemap.c \
 			common/checkmap_close.c
 BONUS		= bonus/main.c bonus/spritecast.c bonus/draw.c bonus/hooks.c \
-		  bonus/sprites.c bonus/fov.c bonus/debug.c bonus/loadsprite.c
+		  bonus/sprites.c bonus/fov.c bonus/debug.c bonus/loadsprite.c \
+		  bonus/doors.c
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= libft
