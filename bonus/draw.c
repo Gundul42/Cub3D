@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 17:41:49 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 19:00:42 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	float	wop;
 	float	x;
 	int	i;
+	int	sav;
 
 	i = 0;
 	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
@@ -113,6 +114,9 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	x /= data->precision;
 	x -= wop / 2;
 //	printf("x = %5.2f wop = %5.2f code = %d\n\n", x, wop, ray.flag);
+	sav = data->dopen;
+	if (ray.flag != 2)
+		data->dopen = 0;
 	while (i < wop - data->dopen)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;
@@ -122,6 +126,7 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 		}
 		i++;
 	}
+	data->dopen = sav;
 }
 
 //draw one colom of the texture or only a part of it depending on distance
