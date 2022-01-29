@@ -41,7 +41,7 @@ typedef struct s_ray {
 	float	dir;
 	float	dist;
 	int	offset;
-	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W
+	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W, if sprite == sprite number
 }	t_ray;
 
 typedef struct s_test
@@ -59,6 +59,7 @@ typedef struct s_sprite
 	int	walkable;
 	int	collectable;
 	int	canmove;
+	int	isdoor;
 }	t_sprite;
 
 // the basic data type for handling the minilibx

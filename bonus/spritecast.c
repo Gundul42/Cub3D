@@ -6,12 +6,15 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 10:41:38 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 17:01:10 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
+/* allowed sprites start with number 2 and go until 9, to get the
+ * right array index ray.sprite must be code - 2.
+ */
 static
 t_ray	ft_sprite2ray(t_sprite s)
 {
@@ -20,8 +23,8 @@ t_ray	ft_sprite2ray(t_sprite s)
 	ray.p = s.p;
 	ray.dir = s.dir;
 	ray.dist = s.dist;
+	ray.flag = s.code - 2;
 	ray.offset = 0;
-	ray.flag = 0;
 	return (ray);
 }
 

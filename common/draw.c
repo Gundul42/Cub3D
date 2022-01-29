@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:12:54 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 18:25:29 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:30:13 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,11 @@ void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col)
 // to collison point
 void	ft_dumpRay(t_data *data, t_ray ray)
 {
-	char	*d[4] = {"North", "South", "East", "West"};
-
 	printf("\n************************************\n");
 	printf("*** Angle           : %f\n", ray.dir);
 	printf("*** Distance to wall: %f\n", ray.dist);
 	printf("*** Offset          : %d\n", ray.offset);
-	printf("*** Hit wall from   : %s\n", d[ray.flag]);
+	printf("*** Hit wall from   : %d\n", ray.flag);
 	printf("************************************\n");
 	printf("*** RayX           : %f\n", ray.p.x);
 	printf("*** RayY           : %f\n", ray.p.y);
