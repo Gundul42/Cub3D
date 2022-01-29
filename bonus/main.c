@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 16:19:18 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 16:36:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	the_end(t_data *data, char *txt, int err)
 		free(data->zbuf);
 	if (data->slist)
 		free(data->slist);
-	if (data->sprite)
-		mlx_destroy_image(data->mlx, data->sprite);
+	if (data->sprite[0])
+		ft_destroy_sprites(data);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
 	ft_destroy_textures(data);

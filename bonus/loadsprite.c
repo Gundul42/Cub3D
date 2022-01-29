@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 16:16:51 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 16:34:42 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,21 @@ void	ft_destroy_sprites(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 3)
 	{
-		if (data->sprite)
-			mlx_destroy_image(data->mlx, data->sprite);
+		if (data->sprite[i])
+			mlx_destroy_image(data->mlx, data->sprite[i]);
 		i++;
 	}
 }
 
-void	ft_loadSprites(t_data *data)
+static
+void	ft_loadSprite(t_data *data, char *path, int i)
 {
 	int	x;
 	int	y;
-	char	*path;
 
-	path = ft_strdup("./sprites/64fern.xpm");
-	data->sprite = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
+	data->sprite[i] = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
 	if (!data->sprite)
 	{
 		write(2, "Sprite texture file not found: ", 31);
@@ -79,3 +78,18 @@ void	ft_loadSprites(t_data *data)
 	}
 	free(path);
 }
+
+void	ft_loadSprites(t_data *data)
+{
+	char	*path1;
+	char	*path2;
+	char	*path3;
+
+	path1 = ft_strdup("./sprites/256fern.xpm");
+	path2 = ft_strdup("./sprites/256mushroom.xpm");
+	path3 = ft_strdup("./sprites/256gate.xpm");
+	ft_loadSprite(data, path1, 0);
+	ft_loadSprite(data, path2, 1);
+	ft_loadSprite(data, path3, 2);
+}
+
