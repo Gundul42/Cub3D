@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 14:00:00 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 16:16:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_loadSprites(t_data *data)
 	int	y;
 	char	*path;
 
-	path = ft_strdup("./sprites/256gate.xpm");
+	path = ft_strdup("./sprites/64fern.xpm");
 	data->sprite = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
 	if (!data->sprite)
 	{
@@ -75,7 +75,7 @@ void	ft_loadSprites(t_data *data)
 		ft_putnbr_fd(data->tilesize, 2);
 		write(2, "px needed\n", 10);
 		free(path);
-		the_end(data, "Fix the problem and run the program again\n", 1);
+		the_end(data, "Fix the problem and run the program again\n", 0);
 	}
 	free(path);
 }
