@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/28 19:10:33 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 12:13:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int	ft_sprite_hook(t_data *img)
 	static struct timeb	end;
 	static int	runner = 0;
 	int			fps;
+	char		*num;
 
 	if (!runner)
 		ftime(&start);
 	runner++;
-	//mlx_do_sync(img->mlx);
+	mlx_do_sync(img->mlx);
 	ft_draw_background(img);
 	ft_draw2dmap(img);
 	if (img->run)
@@ -86,8 +87,10 @@ int	ft_sprite_hook(t_data *img)
 		ft_opendoor(img);
 	ftime(&end);
 	fps = ft_checktime(start, end, &runner);
-	mlx_string_put(img->mlx, img->win2, 380, 10, 0, ft_itoa(fps));
+	num = ft_itoa(fps); 
+	mlx_string_put(img->mlx, img->win2, 380, 10, 0, num);
 	mlx_string_put(img->mlx, img->win2, 400, 10, 0, "FPS");
+	free(num);
 	return (0);
 }
 
