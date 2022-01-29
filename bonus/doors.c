@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/01/28 19:47:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 10:22:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_dynopen(t_data *data, int rev)
 		else
 			data->dopen /= 2;
 	}
-	printf("%d\n", data->dopen);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 15:36:14 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:35:28 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	ft_readHead(t_data *data, char *path, int fd, int err)
 	if (err)
 		ft_noTex(data, tex, path);
 	ft_loadTextures(data, tex);
+	ft_freeTex(tex);
 }
 
 /*
