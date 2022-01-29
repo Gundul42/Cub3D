@@ -6,17 +6,20 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 10:22:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 18:43:19 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
 static
-float	ft_checktime(struct timeb start, struct timeb end)
+int	ft_checktime(struct timeb start, struct timeb end)
 {
+	int	diff;
 
-	return((end.time - start.time) + (end.millitm - start.millitm));
+        diff = (int) 1000 * (end.time - start.time) + 
+		(end.millitm - start.millitm);
+	return(diff);
 }
 
 static
@@ -50,7 +53,7 @@ int	ft_opendoor(t_data *data)
 		ftime(&start);
 	chk = 1;
 	ftime(&end);
-	if (ft_checktime(start, end) < 0.8)
+	if (ft_checktime(start, end) < 50)
 		return (0);
 	ft_dynopen(data, rev);
 	chk = 0;

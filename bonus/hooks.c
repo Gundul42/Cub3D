@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 12:13:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 18:32:34 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	ft_moveBonusPlayer(t_data *data,int flag)
 		ft_leftright(data, &newx, &newy, flag);
 	newx += data->px;
 	newy += data->py;
-	if (!data->map[(size_t)(newy)][(size_t)(newx)])
+	if (data->map[(size_t)(newy)][(size_t)(newx)] == 0 ||
+		data->map[(size_t)(newy)][(size_t)(newx)] == 2 ||
+		data->map[(size_t)(newy)][(size_t)(newx)] == 3)
 	{
 		data->px = newx;
 		data->py = newy;
@@ -49,7 +51,8 @@ int	ft_checktime(struct timeb start, struct timeb end, int *r)
 	int	diff;
 	static int	fps = 0;
 
-	diff = (int)(1000.0 * (end.time - start.time) + (end.millitm - start.millitm));
+	diff = (int)(1000.0 * (end.time - start.time) + 
+			(end.millitm - start.millitm));
 	if (diff < 999)
 		return (fps);
 	fps = *r;
