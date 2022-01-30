@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 16:36:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/30 18:24:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void	ft_cleanupMap(t_data *data)
 	while (y < data->mapy)
 	{
 		free(data->map[y]);
+		free(data->doors[y]);
+		free(data->dopen[y]);
 		y++;
 	}
 	free(data->map);
+	free(data->doors);
+	free(data->dopen);
 }
 
 //to be called at program termination for cleanup.

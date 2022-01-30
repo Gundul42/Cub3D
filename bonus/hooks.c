@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 18:32:34 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/30 19:10:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_sprite_hook(t_data *img)
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
 	if (img->chkdoor)
-		ft_opendoor(img);
+		ft_opendoor(img, 3, 24);
 	ftime(&end);
 	fps = ft_checktime(start, end, &runner);
 	num = ft_itoa(fps); 
@@ -105,7 +105,10 @@ int	ft_key_hook_bonus(int code, t_data *data)
 	if (code == 99)
 		data->correct = !data->correct;
 	if (code == 32)
+	{
 		data->chkdoor = 1;
+		data->doors[24][3] = 2;
+	}
 	if (code == 109)
 		data->mMap = !data->mMap;
 	if (code == 114)

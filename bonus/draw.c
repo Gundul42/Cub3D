@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 19:00:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/30 19:15:37 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,21 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	x /= data->precision;
 	x -= wop / 2;
 //	printf("x = %5.2f wop = %5.2f code = %d\n\n", x, wop, ray.flag);
-	sav = data->dopen;
-	if (ray.flag != 2)
-		data->dopen = 0;
-	while (i < wop - data->dopen)
+	sav = 0;
+//	printf("%ld -- %ld\n", (size_t)ray.p.x / 256, (size_t)ray.p.y / 256); 
+	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
+			[(size_t)ray.p.x / data->tilesize] == 2)
+		sav = data->dopen[(size_t)ray.p.y / data->tilesize]
+				[(size_t)ray.p.x / data->tilesize];
+	while (i < wop - sav)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;
 		if (data->zbuf[(int)x+i] > ray.dist)
 		{
-			ft_draw3DSprite(data, ray, x + i + data->dopen);
+			ft_draw3DSprite(data, ray, x + i + sav);
 		}
 		i++;
 	}
-	data->dopen = sav;
 }
 
 //draw one colom of the texture or only a part of it depending on distance

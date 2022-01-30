@@ -101,13 +101,14 @@ typedef struct s_data {
 	int			mMap;		//miniMap, default off
 	int			mouse;		//rotate by mouse on/off
 	int			**map;		//2d array, map representation from cub file
+	int			**doors;
+	int			**dopen;
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
 	void			*sprite[3];	//sprite bitmaps
 	t_sprite		*slist;		//list of sprites
 	int				snbr;	//total number of found sprites
-	int				dopen;
 	int				chkdoor;
 	float			*zbuf;		//z buffer for distances of all rays
 }	t_data;
