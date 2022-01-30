@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/28 16:30:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 16:34:42 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,27 @@ void	ft_destroy_sprites(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 3)
 	{
-		if (data->sprite)
-			mlx_destroy_image(data->mlx, data->sprite);
+		if (data->sprite[i])
+			mlx_destroy_image(data->mlx, data->sprite[i]);
 		i++;
 	}
 }
 
-void	ft_loadSprites(t_data *data)
+static
+void	ft_loadSprite(t_data *data, char *path, int i)
 {
 	int	x;
 	int	y;
-	char	*path;
 
-	//path = "./sprites/256steeldooor.xpm";
-	path = "./sprites/256gate.xpm";
-	data->sprite = mlx_xpm_file_to_image(data->mlx,
-			path, &x, &y);
+	data->sprite[i] = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
 	if (!data->sprite)
 	{
 		write(2, "Sprite texture file not found: ", 31);
 		write(2, path, ft_strlen(path));
 		write(2, "\n", 1);
+		free(path);
 		the_end(data, "Fix the problem and run the program again\n", 1);
 	}
 	if ((unsigned int)x != data->tilesize)
@@ -75,6 +73,23 @@ void	ft_loadSprites(t_data *data)
 		write(2, "px in file, ",12);
 		ft_putnbr_fd(data->tilesize, 2);
 		write(2, "px needed\n", 10);
-		the_end(data, "Fix the problem and run the program again\n", 1);
+		free(path);
+		the_end(data, "Fix the problem and run the program again\n", 0);
 	}
+	free(path);
 }
+
+void	ft_loadSprites(t_data *data)
+{
+	char	*path1;
+	char	*path2;
+	char	*path3;
+
+	path1 = ft_strdup("./sprites/256fern.xpm");
+	path2 = ft_strdup("./sprites/256mushroom.xpm");
+	path3 = ft_strdup("./sprites/256gate.xpm");
+	ft_loadSprite(data, path1, 0);
+	ft_loadSprite(data, path2, 1);
+	ft_loadSprite(data, path3, 2);
+}
+

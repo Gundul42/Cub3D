@@ -6,26 +6,31 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 19:47:45 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/30 20:03:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-/*
-static
-size_t	ft_getll(char *s)
-{
-	size_t	i;
 
-	i = 0;
-	while (*s)
+static
+void	ft_initdoors(t_data *data)
+{
+	size_t	y;
+
+	data->doors = ft_calloc(data->mapy, sizeof(int *));
+	data->dopen = ft_calloc(data->mapy, sizeof(int *));
+	if (!data->doors || !data->dopen)
+		the_end(data, "Out of memory !\n", 1);
+	y = 0;
+	while (y < data->mapy)
 	{
-		if (*s != 32)
-			i++;
-		s++;
+		data->doors[y] = ft_calloc(data->mapx, sizeof(int));
+		data->dopen[y] = ft_calloc(data->mapx, sizeof(int));
+		if (!data->doors[y] || !data->dopen[y])
+			the_end(data, "Out of memory !\n", 1);
+		y++;
 	}
-	return (i);
-}*/
+}
 
 static
 void	ft_openMap(t_data *data, char *path)
@@ -102,6 +107,7 @@ void	ft_initMap(t_data *data, char *path)
 	ft_readHead(data, path, 0, 0);
 	ft_openMap(data, path);
 	ft_map2Mem(data, path, 0, 0);
-	//ft_dumpMap(data);
+	ft_dumpMap(data);
+	ft_initdoors(data);
 	ft_check_closed_map(data);
 }

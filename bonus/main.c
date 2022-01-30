@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 19:30:38 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/30 20:04:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void	ft_cleanupMap(t_data *data)
 	while (y < data->mapy)
 	{
 		free(data->map[y]);
+		free(data->doors[y]);
+		free(data->dopen[y]);
 		y++;
 	}
 	free(data->map);
+	free(data->doors);
+	free(data->dopen);
 }
 
 //to be called at program termination for cleanup.
@@ -33,7 +37,7 @@ int	the_end(t_data *data, char *txt, int err)
 {
 	if (err == 1)
 		write(2, "Error\n", 6);
-	if (txt)
+	if (txt && *txt)
 		write(2, txt, ft_strlen(txt));
 	if (data->map)
 		ft_cleanupMap(data);
@@ -41,6 +45,8 @@ int	the_end(t_data *data, char *txt, int err)
 		free(data->zbuf);
 	if (data->slist)
 		free(data->slist);
+	if (data->sprite[0])
+		ft_destroy_sprites(data);
 	mlx_destroy_image(data->mlx, data->img1);
 	mlx_destroy_image(data->mlx, data->img2);
 	ft_destroy_textures(data);
@@ -49,7 +55,7 @@ int	the_end(t_data *data, char *txt, int err)
 	free(data->mlx);
 	free(data);
 	exit (0);
-	return (0);
+	return (1);
 }
 
 //alloc memory for datatype and set everything to 0
@@ -104,7 +110,7 @@ int	main(int argc, char **argv)
 	ft_loadSprites(img);
 	ft_initSprites(img);
 	ft_draw_background(img);
-	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
+	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook_bonus, img);
 	mlx_hook(img->win2, 6, 1L << 6, ft_mouse_in_hook, img);
 	mlx_hook(img->win2, 8, 1L << 5, ft_mouse_out_hook, img);

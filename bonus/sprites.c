@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 13:01:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 17:46:45 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_defSprite(t_data *data, int count)
 	if (data->slist[count].code == 3)
 		data->slist[count].walkable = 1;
 	if (data->slist[count].code == 4)
-		data->slist[count].collectable = 1;
-	if (data->slist[count].code == 5)
-		data->slist[count].canmove = 1;
+		data->slist[count].isdoor = 1;
+	if (data->slist[count].code == 2)
+		data->slist[count].walkable = 1;
 }
 
 static

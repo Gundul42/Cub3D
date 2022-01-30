@@ -41,7 +41,7 @@ typedef struct s_ray {
 	float	dir;
 	float	dist;
 	int	offset;
-	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W
+	int	flag;		// 0 = N, 1 = S, 2 = E, 3 = W, if sprite == sprite number
 }	t_ray;
 
 typedef struct s_test
@@ -59,6 +59,7 @@ typedef struct s_sprite
 	int	walkable;
 	int	collectable;
 	int	canmove;
+	int	isdoor;
 }	t_sprite;
 
 // the basic data type for handling the minilibx
@@ -100,13 +101,14 @@ typedef struct s_data {
 	int			mMap;		//miniMap, default off
 	int			mouse;		//rotate by mouse on/off
 	int			**map;		//2d array, map representation from cub file
+	int			**doors;
+	int			**dopen;
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
-	void			*sprite;	//sprite bitmaps
+	void			*sprite[3];	//sprite bitmaps
 	t_sprite		*slist;		//list of sprites
 	int				snbr;	//total number of found sprites
-	int				dopen;
 	int				chkdoor;
 	float			*zbuf;		//z buffer for distances of all rays
 	int				part;

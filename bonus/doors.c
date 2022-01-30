@@ -6,40 +6,43 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 10:22:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/30 18:50:35 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
 static
-float	ft_checktime(struct timeb start, struct timeb end)
+int	ft_checktime(struct timeb start, struct timeb end)
 {
+	int	diff;
 
-	return((end.time - start.time) + (end.millitm - start.millitm));
+        diff = (int) 1000 * (end.time - start.time) + 
+		(end.millitm - start.millitm);
+	return(diff);
 }
 
 static
-void	ft_dynopen(t_data *data, int rev)
+void	ft_dynopen(t_data *data, int rev, size_t x, size_t y)
 {
 	if (!rev)
 	{
-		if ((float)data->dopen < (float)data->tilesize * 1.5)
-			data->dopen += 6;
+		if ((float)data->dopen[y][x] < (float)data->tilesize * 1.5)
+			data->dopen[y][x] += 6;
 		else
-			data->dopen *= 2;
+			data->dopen[y][x] *= 2;
 	}
 	else
 	{
-		if (data->dopen < (int)data->tilesize * 2)
-			data->dopen -=6;
+		if (data->dopen[y][x] < (int)data->tilesize * 2)
+			data->dopen[y][x] -=6;
 		else
-			data->dopen /= 2;
+			data->dopen[y][x] /= 2;
 	}
 }
 
 
-int	ft_opendoor(t_data *data)
+int	ft_opendoor(t_data *data, size_t x, size_t y)
 {
 	static struct timeb	start;
 	static struct timeb	end;
@@ -50,16 +53,16 @@ int	ft_opendoor(t_data *data)
 		ftime(&start);
 	chk = 1;
 	ftime(&end);
-	if (ft_checktime(start, end) < 0.8)
+	if (ft_checktime(start, end) < 25)
 		return (0);
-	ft_dynopen(data, rev);
+	ft_dynopen(data, rev, x, y);
 	chk = 0;
-	if (data->dopen > (int)data->tilesize * 5)
+	if (data->dopen[y][x] > (int)data->tilesize * 5)
 	{
 		rev = 1;
 		data->chkdoor = 0;
 	}
-	if (rev && data->dopen == 0)
+	if (rev && data->dopen[y][x] == 0)
 	{
 		rev = 0;
 		data->chkdoor = 0;
