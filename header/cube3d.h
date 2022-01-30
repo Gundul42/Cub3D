@@ -109,6 +109,7 @@ typedef struct s_data {
 	int				dopen;
 	int				chkdoor;
 	float			*zbuf;		//z buffer for distances of all rays
+	int				part;
 }	t_data;
 
 int		ft_loop_hook(t_data *img);

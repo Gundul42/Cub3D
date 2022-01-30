@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/28 19:13:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 19:30:38 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_data	*ft_blank(t_data *data)
 	if (!data)
 		exit (1);
 	data->map = NULL;
-	data->win_x = 800; 
+	data->win_x = 800;
 	data->win_y = 600;
 	data->fov = 60;
 	data->minimap = 8;
@@ -69,6 +69,7 @@ t_data	*ft_blank(t_data *data)
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
+	data->part = 2;
 	return (data);
 }
 
