@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 11:36:39 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/29 19:47:45 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_openMap(t_data *data, char *path)
 	free(line);
 	close(fd);
 }
-
+/*
 // Display map in the terminal
 void	ft_dumpMap(t_data *data)
 {
@@ -75,15 +75,19 @@ void	ft_dumpMap(t_data *data)
 		y++;
 	}
 }
-
+*/
 int	ft_openFile(t_data *data, char *path)
 {
 	int	fd;
 
 	if (path)
 		fd = open(path, O_RDONLY);
+	else if (data->part == 1)
+		fd = open("./maps/mandatory.cub", O_RDONLY);
+	else if (data->part == 2)
+		fd = open("./maps/bonus.cub", O_RDONLY);
 	else
-		fd = open("./maps/test.cub", O_RDONLY);
+		fd = -1;
 	if (fd == -1)
 		ft_fileNf(data, path);
 	return (fd);
@@ -98,6 +102,6 @@ void	ft_initMap(t_data *data, char *path)
 	ft_readHead(data, path, 0, 0);
 	ft_openMap(data, path);
 	ft_map2Mem(data, path, 0, 0);
-	ft_dumpMap(data);
+	//ft_dumpMap(data);
 	ft_check_closed_map(data);
 }

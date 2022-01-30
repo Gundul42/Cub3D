@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:43:37 by flormich          #+#    #+#             */
-/*   Updated: 2022/01/29 11:12:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/30 18:13:13 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static	void	ft_test_ligne(t_data *d, size_t y)
 	size_t	x;
 
 	x = 0;
-	while (d->map[y][x] == 0 && x < d->mapx)
+	while (x < d->mapx && d->map[y][x] == 0)
 		x++;
-	if (d->map[y][x] != 1)
+	if (x < d->mapx && d->map[y][x] != 1)
 		the_end(d, "Unclosed map (1st or last line)\n", 1);
 	else
 	{
-		while (d->map[y][x] == 1 && x < d->mapx)
+		while (x < d->mapx && d->map[y][x] == 1)
 			x++;
-		while (d->map[y][x] == 0 && x < d->mapx)
+		while (x < d->mapx && d->map[y][x] == 0)
 			x++;
 		if (x < d->mapx - 1)
 			the_end(d, "Unclosed map (1st or last line)\n", 1);
