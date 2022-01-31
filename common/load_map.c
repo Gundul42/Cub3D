@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/30 20:03:29 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/31 12:08:31 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_openMap(t_data *data, char *path)
 	free(line);
 	close(fd);
 }
-/*
+
 // Display map in the terminal
 void	ft_dumpMap(t_data *data)
 {
@@ -80,7 +80,7 @@ void	ft_dumpMap(t_data *data)
 		y++;
 	}
 }
-*/
+
 int	ft_openFile(t_data *data, char *path)
 {
 	int	fd;
