@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 16:34:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 13:33:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,15 @@ void	ft_loadSprites(t_data *data)
 	char	*path1;
 	char	*path2;
 	char	*path3;
+	char	*path4;
 
 	path1 = ft_strdup("./sprites/256fern.xpm");
 	path2 = ft_strdup("./sprites/256mushroom.xpm");
 	path3 = ft_strdup("./sprites/256gate.xpm");
+	path4 = ft_strdup("./sprites/256torch.xpm");
 	ft_loadSprite(data, path1, 0);
 	ft_loadSprite(data, path2, 1);
 	ft_loadSprite(data, path3, 2);
+	ft_loadSprite(data, path4, 3);
 }
 

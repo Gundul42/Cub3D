@@ -106,7 +106,7 @@ typedef struct s_data {
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
-	void			*sprite[3];	//sprite bitmaps
+	void			*sprite[4];	//sprite bitmaps
 	t_sprite		*slist;		//list of sprites
 	int				snbr;	//total number of found sprites
 	int				chkdoor;

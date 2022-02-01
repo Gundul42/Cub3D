@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:54:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 12:04:26 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ void	the_doors(t_data *data)
 	ft_get_next_door(data, &x, &y);
 	if (data->chkdoor || data->map[y][x] != 4 || data->doors[y][x])
 	{
-		printf("No door at %ld, %ld\n", x, y);
+		//printf("No door at %ld, %ld\n", x, y);
 		return ;
 	}
-	printf("Door is %ld, %ld\n", x, y);
+	//printf("Door is %ld, %ld\n", x, y);
 	data->doorx = x;
 	data->doory = y;
 	data->chkdoor = 1;
