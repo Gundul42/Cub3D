@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 13:33:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 13:52:56 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_destroy_sprites(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		if (data->sprite[i])
 			mlx_destroy_image(data->mlx, data->sprite[i]);
