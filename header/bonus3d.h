@@ -29,6 +29,8 @@ void	ft_updateSpriteData(t_data *data);
 void	ft_moveBonusPlayer(t_data *data,int flag);
 int		ft_key_hook_bonus(int code, t_data *data);
 void	ft_drawFovBonus(t_data *data);
-int		ft_opendoor(t_data *data, size_t x, size_t y);
+int	ft_opendoor(t_data *data, size_t x, size_t y);
+void	the_doors(t_data *data);
+int	ft_player_in_door(t_data *data);
 
 #endif

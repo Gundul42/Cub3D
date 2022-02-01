@@ -38,7 +38,8 @@ void	ft_moveBonusPlayer(t_data *data,int flag)
 	newy += data->py;
 	if (data->map[(size_t)(newy)][(size_t)(newx)] == 0 ||
 		data->map[(size_t)(newy)][(size_t)(newx)] == 2 ||
-		data->map[(size_t)(newy)][(size_t)(newx)] == 3)
+		data->map[(size_t)(newy)][(size_t)(newx)] == 3 ||
+		data->doors[(size_t)(newy)][(size_t)(newx)] == 1)
 	{
 		data->px = newx;
 		data->py = newy;
@@ -87,7 +88,7 @@ int	ft_sprite_hook(t_data *img)
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
 	if (img->chkdoor)
-		ft_opendoor(img, 3, 24);
+		ft_opendoor(img, img->doorx, img->doory);
 	ftime(&end);
 	fps = ft_checktime(start, end, &runner);
 	num = ft_itoa(fps);
@@ -105,10 +106,7 @@ int	ft_key_hook_bonus(int code, t_data *data)
 	if (code == 99)
 		data->correct = !data->correct;
 	if (code == 32)
-	{
-		data->chkdoor = 1;
-		data->doors[24][3] = 2;
-	}
+		the_doors(data);
 	if (code == 109)
 		data->mMap = !data->mMap;
 	if (code == 114)

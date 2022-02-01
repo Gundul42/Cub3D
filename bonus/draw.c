@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/30 19:15:37 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 11:51:44 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	sav = 0;
 //	printf("%ld -- %ld\n", (size_t)ray.p.x / 256, (size_t)ray.p.y / 256); 
 	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
-			[(size_t)ray.p.x / data->tilesize] == 2)
+			[(size_t)ray.p.x / data->tilesize] > 0)
 		sav = data->dopen[(size_t)ray.p.y / data->tilesize]
 				[(size_t)ray.p.x / data->tilesize];
 	while (i < wop - sav)
@@ -125,7 +125,8 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 		ray.offset = (float)data->tilesize / wop * (float)i;
 		if (data->zbuf[(int)x+i] > ray.dist)
 		{
-			ft_draw3DSprite(data, ray, x + i + sav);
+			if (ray.flag !=2 || ray.dist > (float)data->tilesize / 2)
+				ft_draw3DSprite(data, ray, x + i + sav);
 		}
 		i++;
 	}

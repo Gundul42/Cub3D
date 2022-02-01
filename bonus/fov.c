@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 10:07:37 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 14:13:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 11:06:37 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,10 @@ void	ft_drawFovBonus(t_data *data)
 	}
 }
 
+int	ft_player_in_door(t_data *data)
+{
+	if (data->doorx == (size_t)floorf(data->px) && (data->doory ==
+				(size_t)floorf(data->py)))
+		return (1);
+	return (0);
+}
