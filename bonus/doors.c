@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:12:07 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 11:54:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 		chk = 0;
 		return (0);
 	}
-	if (rev < 0 && ft_checktime(start, end) < 5000)
+	if (rev < 0 && ft_checktime(start, end) < 1500)
 		return (0);
 	else if (rev < 0)
 	{
