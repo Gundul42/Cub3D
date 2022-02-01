@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:12:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/23 19:29:19 by flormich         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:26:35 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_drawMapBck(t_data *data)
 	}
 }
 
-void	ft_drawDot(t_data *data, int i, int j)
+void	ft_drawDot(t_data *data, int i, int j, int color)
 {
 	int	x;
 	int	y;
@@ -81,7 +81,7 @@ void	ft_drawDot(t_data *data, int i, int j)
 		x = i * len;
 		while (x < (i + 1) * len)
 		{
-			ft_drawMapPixel(data, x, y, ft_make_trgb(128, 0, 0, 255));
+			ft_drawMapPixel(data, x, y, color);
 			x++;
 		}
 		y++;
@@ -101,8 +101,17 @@ void	ft_draw2dmap(t_data *data)
 		while (i < (int)data->miniZ)
 		{
 			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
-						data->py - (int)data->miniZ / 2 + j))
-				ft_drawDot(data, i, j);
+						data->py - (int)data->miniZ / 2 + j) == 1)
+				ft_drawDot(data, i, j, ft_make_trgb(128, 0, 0, 255));
+			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
+						data->py - (int)data->miniZ / 2 + j) == 2)
+				ft_drawDot(data, i, j, ft_make_trgb(0, 0, 255, 0));
+			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
+						data->py - (int)data->miniZ / 2 + j) == 3)
+				ft_drawDot(data, i, j, ft_make_trgb(0, 128, 64, 0));
+			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
+						data->py - (int)data->miniZ / 2 + j) == 4)
+				ft_drawDot(data, i, j, ft_make_trgb(0, 58, 157, 35));
 			i++;
 		}
 		j++;
