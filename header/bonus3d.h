@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:07:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/31 12:14:41 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_initSprites(t_data *data);
 void	ft_dumpSprite(t_sprite s);
 void	ft_updateSpriteData(t_data *data);
 void	ft_moveBonusPlayer(t_data *data,int flag);
-int	ft_key_hook_bonus(int code, t_data *data);
+int		ft_key_hook_bonus(int code, t_data *data);
 void	ft_drawFovBonus(t_data *data);
 int	ft_opendoor(t_data *data, size_t x, size_t y);
 void	the_doors(t_data *data);

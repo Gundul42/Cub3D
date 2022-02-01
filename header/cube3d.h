@@ -95,14 +95,14 @@ typedef struct s_data {
 	float			rotmouse;	//mouse rotation speed
 	t_color			cfloor_far;	//floor color
 	t_color			cfloor_near;	//floor color
-	int			csky;		//sky color
-	int			run;		//true after first key is pressed
-	int			correct;	//cos wall correction, default off
-	int			mMap;		//miniMap, default off
-	int			mouse;		//rotate by mouse on/off
-	int			**map;		//2d array, map representation from cub file
-	int			**doors;
-	int			**dopen;
+	int				csky;		//sky color
+	int				run;		//true after first key is pressed
+	int				correct;	//cos wall correction, default off
+	int				mMap;		//miniMap, default off
+	int				mouse;		//rotate by mouse on/off
+	int				**map;		//2d array, map representation from cub file
+	int				**doors;
+	int				**dopen;
 	size_t			mapx;
 	size_t			mapy;		//dimension of loaded map
 	void			*txt[4];	//texture bitmaps
@@ -165,7 +165,7 @@ void	ft_readHead(t_data *data, char *path, int fd, int err);
 void	ft_dumpMap(t_data *data);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
 void	ft_drawMapPixel(t_data *data, int x, int y, int color);
-void	ft_drawDot(t_data *data, int i, int j);
+void	ft_drawDot(t_data *data, int i, int j, int color);
 void	ft_draw_background(t_data *data);
 void	ft_drawMapBck(t_data *data);
 void	ft_draw_line(t_data *data, int x, int y, int a, int b, int col);

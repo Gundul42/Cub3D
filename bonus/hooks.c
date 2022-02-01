@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:19:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/31 11:59:22 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_checktime(struct timeb start, struct timeb end, int *r)
 	int	diff;
 	static int	fps = 0;
 
-	diff = (int)(1000.0 * (end.time - start.time) + 
+	diff = (int)(1000.0 * (end.time - start.time) +
 			(end.millitm - start.millitm));
 	if (diff < 999)
 		return (fps);
@@ -83,7 +83,7 @@ int	ft_sprite_hook(t_data *img)
 	}
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
 	if (img->mMap)
-		mlx_put_image_to_window(img->mlx, img->win2, img->img1, 
+		mlx_put_image_to_window(img->mlx, img->win2, img->img1,
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	if (img->mouse)
 		ft_mouseRotPlayer(img);
@@ -91,7 +91,7 @@ int	ft_sprite_hook(t_data *img)
 		ft_opendoor(img, img->doorx, img->doory);
 	ftime(&end);
 	fps = ft_checktime(start, end, &runner);
-	num = ft_itoa(fps); 
+	num = ft_itoa(fps);
 	mlx_string_put(img->mlx, img->win2, 380, 10, 0, num);
 	mlx_string_put(img->mlx, img->win2, 400, 10, 0, "FPS");
 	free(num);
@@ -115,9 +115,9 @@ int	ft_key_hook_bonus(int code, t_data *data)
 		ft_MapZoom(data, 1);
 	if (code == 35)
 		ft_MapZoom(data, 0);
-	if (code == 119)
+	if (code == 119 || code == 65362)
 		ft_moveBonusPlayer(data, 1);		// W
-	if (code == 115)
+	if (code == 115 || code == 65364)
 		ft_moveBonusPlayer(data, 2);		// S
 	if (code == 100)
 		ft_moveBonusPlayer(data, 3);		// A

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/30 20:04:25 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/01 19:06:01 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	ft_cleanupMap(t_data *data)
 
 	while (y < data->mapy)
 	{
-		free(data->map[y]);
-		free(data->doors[y]);
-		free(data->dopen[y]);
+		if (data->map && data->map[y])
+			free(data->map[y]);
+		if (data->doors && data->doors[y])
+			free(data->doors[y]);
+		if (data->dopen && data->dopen[y])
+			free(data->dopen[y]);
 		y++;
 	}
 	free(data->map);
@@ -39,21 +42,23 @@ int	the_end(t_data *data, char *txt, int err)
 		write(2, "Error\n", 6);
 	if (txt && *txt)
 		write(2, txt, ft_strlen(txt));
-	if (data->map)
+	if (err != 2)
+	{
+		if (data && data->zbuf)
+			free(data->zbuf);
+		if (data->slist)
+			free(data->slist);
+		if (data->sprite[0])
+			ft_destroy_sprites(data);
 		ft_cleanupMap(data);
-	if (data->zbuf)
-		free(data->zbuf);
-	if (data->slist)
-		free(data->slist);
-	if (data->sprite[0])
-		ft_destroy_sprites(data);
-	mlx_destroy_image(data->mlx, data->img1);
-	mlx_destroy_image(data->mlx, data->img2);
-	ft_destroy_textures(data);
-	mlx_destroy_window(data->mlx, data->win2);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free(data);
+		mlx_destroy_image(data->mlx, data->img1);
+		mlx_destroy_image(data->mlx, data->img2);
+		ft_destroy_textures(data);
+		mlx_destroy_window(data->mlx, data->win2);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		free(data);
+	}
 	exit (0);
 	return (1);
 }
@@ -110,7 +115,7 @@ int	main(int argc, char **argv)
 	ft_loadSprites(img);
 	ft_initSprites(img);
 	ft_draw_background(img);
-	mlx_hook(img->win2, 17, 1L << 2, the_end, img);
+	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);
 	mlx_hook(img->win2, 2, 1L << 0, ft_key_hook_bonus, img);
 	mlx_hook(img->win2, 6, 1L << 6, ft_mouse_in_hook, img);
 	mlx_hook(img->win2, 8, 1L << 5, ft_mouse_out_hook, img);

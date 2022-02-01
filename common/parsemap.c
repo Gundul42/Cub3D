@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 17:24:53 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/31 21:45:10 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-static	
-int	ft_playerOrient(char c)
+static
+int	ft_playerOrient(t_data *d, char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-	       return (c);
-	else 
-		return (0);
+		return (c);
+	else if (ft_isalpha(c) == 1)
+		the_end(d,"Player must be W, E, S or N.\n", 1);
+	return (0);
 }
 
 static
@@ -26,8 +27,12 @@ void	ft_writeCell(t_data *data, int x, int y, char c)
 {
 
 	data->map[y][x] = c - '0';
-	if (c - '0' > 1)
+	if (c - '0' > 1 && c - '0' < 5)
 		data->snbr++;
+	if (data->part == 1 && c - '0' > 1)
+		the_end(data, "Only wall are allowed => Number = 0 oder 1\n", 1);
+	if (data->part == 2 && c - '0' > 4)
+		the_end(data, "Number cannot be over 4\n", 1);
 }
 
 static
@@ -41,7 +46,7 @@ int	ft_readline(t_data *data, char *line, int y, int plyr)
 	{
 		if (!ft_isdigit(*line))
 		{
-			c = ft_playerOrient(*line);
+			c = ft_playerOrient(data, *line);
 			if (*line != 32 && (!c || (c && plyr)))
 				return (-1);
 			if (c && !plyr)

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/30 20:00:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/01/31 21:38:04 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	ft_cleanupMap(t_data *data)
 
 	while (y < data->mapy)
 	{
-		free(data->map[y]);
-		free(data->doors[y]);
-		free(data->dopen[y]);
+		if (data->map && data->map[y])
+			free(data->map[y]);
+		if (data->doors && data->doors[y])
+			free(data->doors[y]);
+		if (data->dopen && data->dopen[y])
+			free(data->dopen[y]);
 		y++;
 	}
 	free(data->map);
@@ -39,8 +42,6 @@ int	the_end(t_data *data, char *txt, int err)
 		write(2, "Error\n", 6);
 	if (txt && txt != NULL)
 		write(2, txt, ft_strlen(txt));
-	//if (data->map)
-	//	ft_cleanupMap(data);
 	if (err != 2)
 	{
 		ft_cleanupMap(data);
