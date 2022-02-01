@@ -110,6 +110,8 @@ typedef struct s_data {
 	t_sprite		*slist;		//list of sprites
 	int				snbr;	//total number of found sprites
 	int				chkdoor;
+	size_t			doorx;		//x coordinate of current door or 0
+	size_t			doory;		//y coordinate of current door or 0
 	float			*zbuf;		//z buffer for distances of all rays
 	int				part;
 }	t_data;
