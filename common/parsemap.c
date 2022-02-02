@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 10:37:29 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:06:53 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ static
 void	ft_writeCell(t_data *data, int x, int y, char c)
 {
 
-	data->map[y][x] = c - '0';
-	if (c - '0' > 1 && c - '0' < 5)
-		data->snbr++;
-	if (c - '0' > data->sprite_max + 1)
-		the_end(data, "Unexpected number on the map - check sprite_max\n", 1);
+	if (ft_isalpha(c) == 1)
+		data->map[y][x] = -1;
+	else
+	{
+		data->map[y][x] = c - '0';
+		if (c - '0' > 1 && c - '0' < 5)
+			data->snbr++;
+		if (c - '0' > data->sprite_max + 1)
+			the_end(data, "Unexpected number on the map - check sprite_max\n", 1);
+	}
 }
 
 static
@@ -50,6 +55,7 @@ int	ft_readline(t_data *data, char *line, int y, int plyr)
 			if (c && !plyr)
 			{
 				ft_initialize_player(data, x, y, c);
+				ft_writeCell(data, x, y, *line);
 				plyr = 1;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 11:55:10 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:12:49 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,17 @@ void	ft_dumpMap(t_data *data)
 		x = 0;
 		while (x < data->mapx)
 		{
-			printf("%d",data->map[y][x]);
+			if (data->map[y][x] == -1)
+			{
+				printf(RED"@"D);
+				data->map[y][x] = 0;
+			}
+			else if (data->map[y][x] == 0)
+				printf(BLACK"%d"D, data->map[y][x]);
+			else if (data->map[y][x] != 1)
+				printf(YE"%d"D, data->map[y][x]);
+			else
+				printf("%d",data->map[y][x]);
 			x++;
 		}
 		printf("\n");
