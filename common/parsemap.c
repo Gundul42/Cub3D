@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 13:06:53 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:23:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_writeCell(t_data *data, int x, int y, char c)
 	else
 	{
 		data->map[y][x] = c - '0';
-		if (c - '0' > 1 && c - '0' < 5)
+		if (c - '0' > 1 && c - '0' <= data->sprite_max)
 			data->snbr++;
-		if (c - '0' > data->sprite_max + 1)
+		if (c - '0' > data->sprite_max)
 			the_end(data, "Unexpected number on the map - check sprite_max\n", 1);
 	}
 }

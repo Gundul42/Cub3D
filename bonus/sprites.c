@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 10:28:58 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:30:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	ft_initSprites(t_data *data)
 		x = 0;
 		while (x < data->mapx)
 		{
-			if (data->map[y][x] > 1)
+			if (data->map[y][x] > 1 && data->map[y][x] <= data->sprite_max)
 				count = ft_writeSpriteData(data, x, y, count);
 			x++;
 		}

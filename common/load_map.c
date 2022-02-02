@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 13:12:49 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:56:04 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,5 @@ void	ft_initMap(t_data *data, char *path)
 	ft_map2Mem(data, path, 0, 0);
 	ft_dumpMap(data);
 	ft_initdoors(data);
-	ft_check_closed_map(data);
+	//ft_check_closed_map(data);
 }
