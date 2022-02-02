@@ -112,6 +112,7 @@ typedef struct s_data {
 	int				chkdoor;
 	float			*zbuf;		//z buffer for distances of all rays
 	int				part;
+	int				sprite_max;
 }	t_data;
 
 int		ft_loop_hook(t_data *img);

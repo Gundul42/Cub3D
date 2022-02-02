@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 17:46:45 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 10:28:58 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
-/* experimental Sprite def
- * assign different sprite abilities
- * depending on sprite code
- * on map
- */
+/*
+** NEW SPRITE => implement data->sprite_max
+** assign different sprite abilities
+** depending on sprite code
+** on map
+**
+*/
 static
 void	ft_defSprite(t_data *data, int count)
 {
@@ -33,7 +35,7 @@ int	ft_writeSpriteData(t_data *data, size_t x, size_t y, int count)
 {
 	t_point	cen;
 
-	cen.x = (float)((x * data->tilesize) + data->tilesize / 2); 
+	cen.x = (float)((x * data->tilesize) + data->tilesize / 2);
 	cen.y = (float)((y * data->tilesize) + data->tilesize / 2);
 	data->slist[count].p = cen;
 	data->slist[count].code = data->map[y][x];
@@ -112,7 +114,7 @@ void	ft_initSprites(t_data *data)
 	size_t	x;
 	size_t	y;
 	int	count;
-	
+
 	if (!data->snbr)
 		the_end(data, "You need at least one Sprite on the map.\n", 1);
 	data->slist = ft_calloc(data->snbr, sizeof(t_sprite));
