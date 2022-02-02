@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fov.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 10:07:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:06:37 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:32:52 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //draw field of view bonus style
 //
-void	ft_drawFovBonus(t_data *data)
+void	ft_draw_fovBonus(t_data *data)
 {
 	float	start;
 	int		max;
@@ -26,9 +26,9 @@ void	ft_drawFovBonus(t_data *data)
 	start = data->dir - (float)(data->fov / 2);
 	while (i < max)
 	{
-		ray = ft_castRay(data, start); 
+		ray = ft_cast_ray(data, start);
 		data->zbuf[i] = ray.dist;
-		ft_draw3D(data, ray, i);
+		ft_draw_3d(data, ray, i);
 		start += data->precision;
 		i++;
 	}

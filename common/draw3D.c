@@ -6,15 +6,14 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:12 by graja             #+#    #+#             */
-/*   Updated: 2022/01/25 19:17:45 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:37:45 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-
 static
-float	ft_rayCorrect(t_data *data, t_ray ray)
+float	ft_ray_correct(t_data *data, t_ray ray)
 {
 	float	diff;
 
@@ -24,7 +23,7 @@ float	ft_rayCorrect(t_data *data, t_ray ray)
 	return (ray.dist * cosf(ft_deg2rad(diff)));
 }
 
-void	ft_draw3D(t_data *data, t_ray ray, int i)
+void	ft_draw_3d(t_data *data, t_ray ray, int i)
 {
 	float	wop;
 	float	height;
@@ -32,18 +31,15 @@ void	ft_draw3D(t_data *data, t_ray ray, int i)
 	t_point	p1;
 	t_point	p2;
 
-	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
 	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
 	faktor *= data->tilesize / 64;
 	height = faktor * (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
+	wop = (float)data->dtpp / ft_ray_correct(data, ray) * height;
 	if (wop > 2500.0)
 		wop = 2500.0;
 	p1.y = (float)(data->win_y / 2) + wop / 2.0;
 	p2.y = (float)(data->win_y / 2) - wop / 2.0;
-//	printf("%5.4f) p1.y %5.2f - p2.y %5.2f     == %5.2f\n", wop, p1.y, p2.y, p1.y - p2.y);
 	p1.x = i;
 	p2.x = i;
-	ft_drawTex(data, p1, p2, ray);
+	ft_draw_tex(data, p1, p2, ray);
 }
-

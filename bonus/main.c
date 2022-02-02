@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 15:22:23 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:27:39 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //clean up all allocated memory for the loaded map
 static
-void	ft_cleanupMap(t_data *data)
+void	ft_cleanup_map(t_data *data)
 {
 	size_t	y;
 
@@ -50,7 +50,7 @@ int	the_end(t_data *data, char *txt, int err)
 			free(data->slist);
 		if (data->sprite[0])
 			ft_destroy_sprites(data);
-		ft_cleanupMap(data);
+		ft_cleanup_map(data);
 		mlx_destroy_image(data->mlx, data->img1);
 		mlx_destroy_image(data->mlx, data->img2);
 		ft_destroy_textures(data);
@@ -75,7 +75,7 @@ t_data	*ft_blank(t_data *data)
 	data->win_y = 600;
 	data->fov = 60;
 	data->minimap = 8;
-	data->miniZ = 16;
+	data->mini_z = 16;
 	data->rotspeed = 2.5;
 	data->correct = 1;
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
@@ -86,7 +86,7 @@ t_data	*ft_blank(t_data *data)
 }
 
 static
-void	ft_getReady(t_data *data)
+void	ft_get_ready(t_data *data)
 {
 	data->img1 = mlx_new_image(data->mlx, data->win_x /
 			data->minimap, data->win_x / data->minimap);
@@ -111,9 +111,9 @@ int	main(int argc, char **argv)
 	img->mlx = mlx_init();
 	if (!img->mlx || argc > 2)
 		return (1);
-	ft_getReady(img);
-	ft_initMap(img, argv[1]);
-	ft_loadSprites(img);
+	ft_get_ready(img);
+	ft_init_map(img, argv[1]);
+	ft_load_sprites(img);
 	ft_initSprites(img);
 	ft_draw_background(img);
 	mlx_hook(img->win2, 17, 1L << 2, the_end_hook, img);

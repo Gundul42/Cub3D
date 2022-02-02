@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/01 11:51:44 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:26:08 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_getSpritePixel(t_data *data, int x, int y, int i)
 	int	ll;
 	int	endian;
 
-	if (x < 0 || x > (int)(data->tilesize) || y < 0 || 
+	if (x < 0 || x > (int)(data->tilesize) || y < 0 ||
 			y > (int)(data->tilesize))
 		return (0);
 	dst = mlx_get_data_addr(data->sprite[i], &bpp,
@@ -65,7 +65,7 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	if (!ok && data->dir >= dirmax && ray->dir >= 0.0 && ray->dir <= (float)data->fov * 1.5)
 	{
 		*x = hfov;
-		*x += (360.0 - data->dir) + ray->dir; 
+		*x += (360.0 - data->dir) + ray->dir;
 //		printf("Match 3\n");
 		if (*x <= (float)data->fov * 1.5)
 			return (1);
@@ -75,7 +75,7 @@ int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
 	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov * 1.5)
 	{
 		*x = hfov;
-		*x -= (360.0 - ray->dir) + data->dir; 
+		*x -= (360.0 - ray->dir) + data->dir;
 //		printf("Match 4\n");
 		return (1);
 	}
@@ -115,7 +115,7 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 	x -= wop / 2;
 //	printf("x = %5.2f wop = %5.2f code = %d\n\n", x, wop, ray.flag);
 	sav = 0;
-//	printf("%ld -- %ld\n", (size_t)ray.p.x / 256, (size_t)ray.p.y / 256); 
+//	printf("%ld -- %ld\n", (size_t)ray.p.x / 256, (size_t)ray.p.y / 256);
 	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
 			[(size_t)ray.p.x / data->tilesize] > 0)
 		sav = data->dopen[(size_t)ray.p.y / data->tilesize]
@@ -126,7 +126,7 @@ void	ft_drawOneSprite(t_data *data, t_ray ray)
 		if (data->zbuf[(int)x+i] > ray.dist)
 		{
 			if (ray.flag !=2 || ray.dist > (float)data->tilesize / 2)
-				ft_draw3DSprite(data, ray, x + i + sav);
+				ft_draw_3dSprite(data, ray, x + i + sav);
 		}
 		i++;
 	}
@@ -151,7 +151,7 @@ void	ft_drawSprite(t_data *data, t_point p1, t_point p2, t_ray ray)
 	}
 }
 
-void	ft_draw3DSprite(t_data *data, t_ray ray, int i)
+void	ft_draw_3dSprite(t_data *data, t_ray ray, int i)
 {
 	float	wop;
 	float	height;

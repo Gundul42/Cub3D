@@ -5,10 +5,10 @@ SRCS		= main.c
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/col_rgb2hsv.c common/hooks.c common/hooks_2.c common/load_map.c \
 			common/player.c common/map2d.c common/maths.c \
-			common/raycast.c common/movePlayer.c common/points.c \
-			common/draw3D.c common/textures.c common/minimap.c \
+			common/raycast.c common/move_player.c common/points.c \
+			common/draw3D.c common/textures.c common/minimap.c common/minimap_2.c \
 			common/checkmap.c common/errors.c common/readmaphead.c common/parsemap.c \
-			common/checkmap_close.c
+			common/checkmap_close.c common/clean_up.c
 BONUS		= bonus/main.c bonus/spritecast.c bonus/draw.c bonus/hooks.c \
 		  bonus/sprites.c bonus/fov.c bonus/debug.c bonus/loadsprite.c \
 		  bonus/doors.c
@@ -46,7 +46,7 @@ bonus		:	$(BNAME)
 
 norme		:	$(SRC) $(COMMON) $(BONUS) $(LIBFT)
 	norminette $(SRC) $(COMMON) $(BONUS) $(LIBFT)
- 
+
 
 clean		:	$(LIBFT) $(MLX)
 	make clean -C $(LIBFT)

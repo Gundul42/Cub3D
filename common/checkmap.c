@@ -6,35 +6,35 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:18:25 by graja             #+#    #+#             */
-/*   Updated: 2022/01/18 12:54:59 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:16:47 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
 static
-int	ft_isAllowed(char *c)
+int	ft_isallowed(char *c)
 {
 	int	len;
 
 	len = ft_strlen(c);
 	if (len > 2)
 	{
-		if (!ft_strncmp(c ,"NO ", 3) || !ft_strncmp(c, "SO ", 3))
+		if (!ft_strncmp(c, "NO ", 3) || !ft_strncmp(c, "SO ", 3))
 			return (1);
-		else if (!ft_strncmp(c ,"WE ", 3) || !ft_strncmp(c, "EA ", 3))
+		else if (!ft_strncmp(c, "WE ", 3) || !ft_strncmp(c, "EA ", 3))
 			return (1);
 	}
 	if (len)
 	{
-		if (!ft_strncmp(c ,"F ", 2) || !ft_strncmp(c, "C ", 2))
+		if (!ft_strncmp(c, "F ", 2) || !ft_strncmp(c, "C ", 2))
 			return (1);
 	}
 	return (0);
 }
 
 static
-int	ft_doChecks(char *alpha, char *line)
+int	ft_do_checks(char *alpha, char *line)
 {
 	char	*bck;
 
@@ -45,7 +45,7 @@ int	ft_doChecks(char *alpha, char *line)
 		return (0);
 	if (ft_isdigit(*bck))
 		return (-1);
-	if (ft_isAllowed(bck) && !alpha[(int)(*bck)])
+	if (ft_isallowed(bck) && !alpha[(int)(*bck)])
 	{
 		alpha[(int)(*bck)] = 1;
 		return (1);
@@ -56,7 +56,7 @@ int	ft_doChecks(char *alpha, char *line)
 }
 
 static
-char	*ft_checkInit(t_data *data, char **line, int *valid)
+char	*ft_check_init(t_data *data, char **line, int *valid)
 {
 	char	*alpha;
 
@@ -68,21 +68,21 @@ char	*ft_checkInit(t_data *data, char **line, int *valid)
 	return (alpha);
 }
 
-void	ft_checkHead(t_data *data, int fd, int err, int chk)
+void	ft_check_head(t_data *data, int fd, int err, int chk)
 {
 	char	*line;
 	char	*alpha;
-	int	valid;
+	int		valid;
 
-	alpha =	ft_checkInit(data, &line, &valid);
+	alpha = ft_check_init(data, &line, &valid);
 	while (get_next_line(fd, &line))
 	{
 		if (!err)
 		{
-			chk = ft_doChecks(alpha, line);
+			chk = ft_do_checks(alpha, line);
 			if (chk == 1)
 				valid++;
-			else if (chk == 1 && valid > 6 )
+			else if (chk == 1 && valid > 6)
 				err = 1;
 			else if (chk == -2)
 				err = 1;

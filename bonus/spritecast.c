@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spritecast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:44:48 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 17:01:10 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:25:50 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ t_point	ft_spriteCenter(t_data *data, t_point inp, float alpha, int flag)
 	size_t	x;
 	size_t	y;
 
-	ft_getMapPoint(data, inp, &x, &y);
+	ft_get_map_point(data, inp, &x, &y);
 	if (!flag && alpha < 270.0 && alpha > 90.0)
 		x--;
 	if (flag && alpha >= 180.0 && alpha < 360.0)
 		y--;
-	inp.x = (float)((x * data->tilesize) + data->tilesize / 2); 
+	inp.x = (float)((x * data->tilesize) + data->tilesize / 2);
 	inp.y = (float)((y * data->tilesize) + data->tilesize / 2);
 	return (inp);
 }

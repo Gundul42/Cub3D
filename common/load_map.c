@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 14:56:04 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:42:06 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	ft_initdoors(t_data *data)
 }
 
 static
-void	ft_openMap(t_data *data, char *path)
+void	ft_open_map(t_data *data, char *path)
 {
-	int	fd;
+	int		fd;
 	char	*line;
-	int	skip;
+	int		skip;
 
 	line = NULL;
 	skip = 0;
-	fd = ft_openFile(data, path);
+	fd = ft_open_file(data, path);
 	while (get_next_line(fd, &line))
 	{
 		if (!skip)
@@ -62,7 +62,7 @@ void	ft_openMap(t_data *data, char *path)
 }
 
 // Display map in the terminal
-void	ft_dumpMap(t_data *data)
+void	ft_dump_map(t_data *data)
 {
 	size_t	x;
 	size_t	y;
@@ -83,7 +83,7 @@ void	ft_dumpMap(t_data *data)
 			else if (data->map[y][x] != 1)
 				printf(YE"%d"D, data->map[y][x]);
 			else
-				printf("%d",data->map[y][x]);
+				printf("%d", data->map[y][x]);
 			x++;
 		}
 		printf("\n");
@@ -91,7 +91,7 @@ void	ft_dumpMap(t_data *data)
 	}
 }
 
-int	ft_openFile(t_data *data, char *path)
+int	ft_open_file(t_data *data, char *path)
 {
 	int	fd;
 
@@ -104,20 +104,20 @@ int	ft_openFile(t_data *data, char *path)
 	else
 		fd = -1;
 	if (fd == -1)
-		ft_fileNf(data, path);
+		ft_file_nf(data, path);
 	return (fd);
 }
 
-void	ft_initMap(t_data *data, char *path)
+void	ft_init_map(t_data *data, char *path)
 {
 	int	fd;
 
-	fd = ft_openFile(data, path);
-	ft_checkHead(data, fd, 0, 0);
-	ft_readHead(data, path, 0, 0);
-	ft_openMap(data, path);
-	ft_map2Mem(data, path, 0, 0);
-	ft_dumpMap(data);
+	fd = ft_open_file(data, path);
+	ft_check_head(data, fd, 0, 0);
+	ft_read_head(data, path, 0, 0);
+	ft_open_map(data, path);
+	ft_map2_mem(data, path, 0, 0);
+	ft_dump_map(data);
 	ft_initdoors(data);
-	//ft_check_closed_map(data);
+	ft_check_closed_map(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movePlayer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:13:07 by graja             #+#    #+#             */
-/*   Updated: 2022/01/17 15:49:11 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:48:54 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_leftright(t_data *data, float *newx, float *newy, int flag)
  * by the rotspeed value
  * get sure angle is only between 0 and 360
  */
-void	ft_rotatePlayer(t_data *data, int flag)
+void	ft_rotate_player(t_data *data, int flag)
 {
 	if (flag)
 		data->dir += data->rotspeed;
@@ -65,5 +65,4 @@ void	ft_rotatePlayer(t_data *data, int flag)
 		data->dir -= 360.0;
 	if (data->dir < 0)
 		data->dir += 360.0;
-//	ft_showPlayer(data);
 }
