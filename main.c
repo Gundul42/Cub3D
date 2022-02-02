@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 21:38:04 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 10:37:58 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_data	*ft_blank(t_data *data)
 	data->dtpp = ((data->win_x / 2) / (tanf(ft_deg2rad((float)(data->fov / 2)))));
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->part = 1;
+	data->sprite_max = 0;
 	return (data);
 }
 

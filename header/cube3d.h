@@ -114,6 +114,7 @@ typedef struct s_data {
 	size_t			doory;		//y coordinate of current door or 0
 	float			*zbuf;		//z buffer for distances of all rays
 	int				part;
+	int				sprite_max;
 }	t_data;
 
 int		ft_loop_hook(t_data *img);

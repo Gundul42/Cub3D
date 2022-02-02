@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 21:45:10 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 10:37:29 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	ft_writeCell(t_data *data, int x, int y, char c)
 	data->map[y][x] = c - '0';
 	if (c - '0' > 1 && c - '0' < 5)
 		data->snbr++;
-	if (data->part == 1 && c - '0' > 1)
-		the_end(data, "Only wall are allowed => Number = 0 oder 1\n", 1);
-	if (data->part == 2 && c - '0' > 4)
-		the_end(data, "Number cannot be over 4\n", 1);
+	if (c - '0' > data->sprite_max + 1)
+		the_end(data, "Unexpected number on the map - check sprite_max\n", 1);
 }
 
 static
