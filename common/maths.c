@@ -6,12 +6,11 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/01/20 16:53:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:45:28 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
-
 
 /* M_PI is a macro of math.h lib for the value of pi.
  * deg2rad converting from degree to radians
@@ -19,12 +18,13 @@
  */
 float	ft_deg2rad(float deg)
 {
-	return (deg * M_PI /180.0);
+	return (deg * M_PI / 180.0);
 }
 
 float	ft_rad2deg(float rad)
 {
 	float	deg;
+
 	deg = rad / M_PI * 180.0;
 	if (deg < 0)
 		return (360.0 + deg);
@@ -34,7 +34,7 @@ float	ft_rad2deg(float rad)
 /*
  * alpha can only be something between 0 >= alpha >= 360 !
  */
-float	ft_valAlpha(float alpha)
+float	ft_val_alpha(float alpha)
 {
 	if (alpha <= 0.0)
 		alpha += 360.0;
@@ -45,12 +45,12 @@ float	ft_valAlpha(float alpha)
 
 /* get distance between two points in float
 */
-float	ft_getDist(float x1, float y1, float x2, float y2)
+float	ft_get_dist(float x1, float y1, float x2, float y2)
 {
 	return (sqrtf(powf((x1 - x2), 2) + powf((y1 - y2), 2)));
 }
 
-int	ft_getSide(int flag, float alpha)
+int	ft_get_side(int flag, float alpha)
 {
 	if (!flag)
 	{

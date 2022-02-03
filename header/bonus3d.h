@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 12:14:41 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:31:17 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int		ft_sprite_hook(t_data *img);
 void	ft_drawOneSprite(t_data *data, t_ray ray);
-void	ft_draw3DSprite(t_data *data, t_ray ray, int i);
+void	ft_draw_3dSprite(t_data *data, t_ray ray, int i);
 void	ft_drawSprite(t_data *data, t_point p1, t_point p2, t_ray ray);
 float	ft_rayCorrect(t_data *data, t_ray ray);
 t_point	ft_spriteCenter(t_data *data, t_point inp, float alpha, int flag);
@@ -28,7 +28,7 @@ void	ft_dumpSprite(t_sprite s);
 void	ft_updateSpriteData(t_data *data);
 void	ft_moveBonusPlayer(t_data *data,int flag);
 int		ft_key_hook_bonus(int code, t_data *data);
-void	ft_drawFovBonus(t_data *data);
+void	ft_draw_fovBonus(t_data *data);
 int	ft_opendoor(t_data *data, size_t x, size_t y);
 void	the_doors(t_data *data);
 int	ft_player_in_door(t_data *data);

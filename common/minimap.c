@@ -6,51 +6,24 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:12:21 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 12:26:35 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 22:00:40 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-static
-void	ft_mapHeading(t_data *data)
-{
-	int	x;
-	float	alpha;
-	int	len;
-	int	i;
-
-	alpha = data->dir - (float)(data->fov / 2);
-	i = 0;
-	while (i <= data->fov)
-	{
-		x = data->win_x / data->minimap / 2;
-		len = data->win_x / data->minimap / data->miniZ;
-		x += len / 2;
-		len *= 2;
-		while (len)
-		{
-			ft_drawMapPixel(data, x + cos(ft_deg2rad(alpha)) * len,
-					x + sin(ft_deg2rad(alpha)) * len, 0);
-			len--;
-		}
-		alpha += 8.0;
-		i += 8;
-	}
-}
-
-void	ft_drawMapPixel(t_data *data, int x, int y, int color)
+void	ft_draw_map_pixel(t_data *d, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x > (int)(data->win_x / data->minimap) || y < 0 ||
-			y > (int)(data->win_x / data->minimap))
+	if (x < 0 || x > (int)(d->win_x / d->minimap) || y < 0 ||
+			y > (int)(d->win_x / d->minimap))
 		return ;
-	dst = data->addr1 + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = d->addr1 + (y * d->line_length + x * (d->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	ft_drawMapBck(t_data *data)
+void	ft_draw_map_bck(t_data *data)
 {
 	int	x;
 	int	y;
@@ -61,27 +34,27 @@ void	ft_drawMapBck(t_data *data)
 		x = 0;
 		while (x < (int)(data->win_x / data->minimap))
 		{
-			ft_drawMapPixel(data, x, y, data->csky);
+			ft_draw_map_pixel(data, x, y, data->csky);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	ft_drawDot(t_data *data, int i, int j, int color)
+void	ft_draw_dot(t_data *data, int i, int j, int color)
 {
 	int	x;
 	int	y;
 	int	len;
 
-	len = data->win_x / data->minimap / data->miniZ;
+	len = data->win_x / data->minimap / data->mini_z;
 	y = j * len;
 	while (y < (j + 1) * len)
 	{
 		x = i * len;
 		while (x < (i + 1) * len)
 		{
-			ft_drawMapPixel(data, x, y, color);
+			ft_draw_map_pixel(data, x, y, color);
 			x++;
 		}
 		y++;
@@ -94,44 +67,41 @@ void	ft_draw2dmap(t_data *data)
 	int	j;
 
 	j = 0;
-	ft_drawMapBck(data);
-	while (j < (int)data->miniZ)
+	while (j < (int)data->mini_z)
 	{
 		i = 0;
-		while (i < (int)data->miniZ)
+		while (i < (int)data->mini_z)
 		{
-			if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
-						data->py - (int)data->miniZ / 2 + j) == 1)
-				ft_drawDot(data, i, j, ft_make_trgb(128, 0, 0, 255));
-			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
-						data->py - (int)data->miniZ / 2 + j) == 2)
-				ft_drawDot(data, i, j, ft_make_trgb(0, 0, 255, 0));
-			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
-						data->py - (int)data->miniZ / 2 + j) == 3)
-				ft_drawDot(data, i, j, ft_make_trgb(0, 128, 64, 0));
-			else if (ft_isWall(data, data->px - (int)data->miniZ / 2 + i,
-						data->py - (int)data->miniZ / 2 + j) == 4)
-				ft_drawDot(data, i, j, ft_make_trgb(0, 58, 157, 35));
+			if (ft_is_wall(data, data->px - (int)data->mini_z / 2 + i,
+					data->py - (int)data->mini_z / 2 + j) == 1)
+				ft_draw_dot(data, i, j, ft_make_trgb(128, 0, 0, 255));
+			else if (ft_is_wall(data, data->px - (int)data->mini_z / 2 + i,
+					data->py - (int)data->mini_z / 2 + j) == 2)
+				ft_draw_dot(data, i, j, ft_make_trgb(0, 0, 255, 0));
+			else if (ft_is_wall(data, data->px - (int)data->mini_z / 2 + i,
+					data->py - (int)data->mini_z / 2 + j) == 3)
+				ft_draw_dot(data, i, j, ft_make_trgb(0, 128, 64, 0));
+			else if (ft_is_wall(data, data->px - (int)data->mini_z / 2 + i,
+					data->py - (int)data->mini_z / 2 + j) == 4)
+				ft_draw_dot(data, i, j, ft_make_trgb(0, 58, 157, 35));
 			i++;
 		}
 		j++;
 	}
-	ft_mapHeading(data);
 }
 
-void	ft_MapZoom(t_data *data, int flag)
+void	ft_map_zoom(t_data *data, int flag)
 {
 	if (flag)
 	{
-		data->miniZ += 8;
-		if (data->miniZ > 32)
-		       data->miniZ = 32;
+		data->mini_z += 8;
+		if (data->mini_z > 32)
+			data->mini_z = 32;
 	}
 	else
 	{
-		data->miniZ -= 8;
-		if (data->miniZ < 8)
-			data->miniZ = 8;
+		data->mini_z -= 8;
+		if (data->mini_z < 8)
+			data->mini_z = 8;
 	}
 }
-

@@ -6,14 +6,14 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/01/29 11:35:28 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 22:09:53 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
 static
-int	ft_loadColor(t_data *data, char *str, int flag)
+int	ft_load_color(t_data *data, char *str, int flag)
 {
 	int		col;
 	t_color	mycol;
@@ -32,7 +32,7 @@ int	ft_loadColor(t_data *data, char *str, int flag)
 }
 
 static
-int	ft_setTexture(char **tex, char *str, int flag)
+int	ft_set_textures(char **tex, char *str, int flag)
 {
 	str += 2;
 	while (*str == 32)
@@ -46,46 +46,46 @@ int	ft_setTexture(char **tex, char *str, int flag)
 }
 
 static
-int	ft_loadData(t_data *data, char *str, char **tex)
+int	ft_load_data(t_data *data, char *str, char **tex)
 {
 	static int	err = 0;
 
 	if (err)
 		return (1);
 	if (!ft_strncmp(str, "F ", 2))
-		err = ft_loadColor(data, str, 1);
+		err = ft_load_color(data, str, 1);
 	if (!ft_strncmp(str, "C ", 2))
-		err = ft_loadColor(data, str, 0);
+		err = ft_load_color(data, str, 0);
 	if (!ft_strncmp(str, "NO ", 3))
-		err = ft_setTexture(tex, str, 1);
+		err = ft_set_textures(tex, str, 1);
 	if (!ft_strncmp(str, "SO ", 3))
-		err = ft_setTexture(tex, str, 0);
+		err = ft_set_textures(tex, str, 0);
 	if (!ft_strncmp(str, "EA ", 3))
-		err = ft_setTexture(tex, str, 2);
+		err = ft_set_textures(tex, str, 2);
 	if (!ft_strncmp(str, "WE ", 3))
-		err = ft_setTexture(tex, str, 3);
+		err = ft_set_textures(tex, str, 3);
 	return (err);
 }
 
 static
-void	ft_noTex(t_data *data, char **tex, char *path)
+void	ft_no_text(t_data *data, char **tex, char *path)
 {
 	if (!path)
 		path = "maps/test.cub";
 	write(2, "Wrong color or texture definition in: ", 39);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);
-	ft_freeTex(tex);
+	ft_free_tex(tex);
 	the_end(data, "Please correct the map\n", 1);
 }
 
-void	ft_readHead(t_data *data, char *path, int fd, int err)
+void	ft_read_head(t_data *data, char *path, int fd, int err)
 {
 	char	*line;
 	char	*bck;
 	char	**tex;
 
-	fd = ft_openFile(data, path);
+	fd = ft_open_file(data, path);
 	line = NULL;
 	tex = ft_calloc(4, sizeof(char *));
 	if (!tex)
@@ -96,31 +96,13 @@ void	ft_readHead(t_data *data, char *path, int fd, int err)
 		while (*bck == 32)
 			bck++;
 		if (*bck && !ft_isdigit(*bck))
-			err = ft_loadData(data, bck, tex);
+			err = ft_load_data(data, bck, tex);
 		free(line);
 	}
 	free(line);
 	close(fd);
 	if (err)
-		ft_noTex(data, tex, path);
-	ft_loadTextures(data, tex);
-	ft_freeTex(tex);
-}
-
-/*
- * this is only temp used for loading textures
- * con be freed after use or in case of file not found
- */
-void	ft_freeTex(char **tex)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (tex[i])
-			free(tex[i]);
-		i++;
-	}
-	free(tex);
+		ft_no_text(data, tex, path);
+	ft_load_textures(data, tex, 0);
+	ft_free_tex(tex);
 }

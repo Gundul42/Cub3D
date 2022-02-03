@@ -6,13 +6,13 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 15:34:40 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:28:23 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-void	ft_drawSpritePixel(t_data *data, int x, int y)
+void	ft_draw_sprite_pixel(t_data *data, int x, int y)
 {
 	char	*dst;
 	int	bpp;
@@ -79,7 +79,7 @@ void	ft_loadSprite(t_data *data, char *path, int i)
 	free(path);
 }
 
-void	ft_loadSprites(t_data *data)
+void	ft_load_sprites(t_data *data)
 {
 	char	*path1;
 	char	*path2;

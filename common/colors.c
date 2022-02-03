@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:18:45 by graja             #+#    #+#             */
-/*   Updated: 2022/01/16 19:11:38 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:18:11 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	ft_make_color(t_color src)
 int	ft_str2col(char *str, t_color *mycol)
 {
 	char	*bck;
-	int	col[3];
-	int	i;
+	int		col[3];
+	int		i;
 
 	i = 0;
 	while (i < 3)
@@ -40,7 +40,6 @@ int	ft_str2col(char *str, t_color *mycol)
 		bck = str;
 		while (*bck && ft_isdigit(*bck))
 			bck++;
-		//printf("%d) %s  --  %d  -- %ld\n",i , bck, ft_isalpha(*bck), str - bck);
 		if (*bck && (ft_isalpha(*bck) || !(str - bck)))
 			return (-1);
 		if (i < 2 && !*bck)
@@ -48,14 +47,13 @@ int	ft_str2col(char *str, t_color *mycol)
 		if (*bck && *bck == ',')
 			*bck = '\0';
 		col[i] = ft_atoi(str);
-		//printf("%d\n\n", col[i]);
 		if (col[i] < 0 || col[i] > 255)
 			return (-1);
 		str = bck + 1;
 		i++;
 	}
 	*mycol = ft_rgb2col(0, col[0], col[1], col[2]);
-	return ft_make_trgb(0, col[0], col[1], col[2]);
+	return (ft_make_trgb(0, col[0], col[1], col[2]));
 }
 
 t_color	ft_rgb2col(int t, int r, int g, int b)

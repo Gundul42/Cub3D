@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 12:15:47 by graja             #+#    #+#             */
-/*   Updated: 2022/01/22 13:13:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 22:06:37 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
 static
-t_point	ft_firstHitHorizontal(t_data *d, float alpha)
+t_point	ft_first_hit_horizontal(t_data *d, float alpha)
 {
 	t_point	diff;
 
@@ -28,7 +28,7 @@ t_point	ft_firstHitHorizontal(t_data *d, float alpha)
 }
 
 static
-t_point	ft_firstHitVertical(t_data *d, float alpha)
+t_point	ft_first_hit_vertical(t_data *d, float alpha)
 {
 	t_point	diff;
 
@@ -42,77 +42,75 @@ t_point	ft_firstHitVertical(t_data *d, float alpha)
 	return (diff);
 }
 
-static	
-t_point	ft_findCollVertical(t_data *data, t_point v, float alpha)
+static
+t_point	ft_find_col_vertical(t_data *data, t_point v, float alpha)
 {
-	float	deltaY;
+	float	delta_y;
 
-	deltaY = ((float)(data->tilesize)) * tanf(ft_deg2rad(alpha));
-	while (ft_checkMapNS(data, v, alpha))
+	delta_y = ((float)(data->tilesize)) * tanf(ft_deg2rad(alpha));
+	while (ft_check_map_ns(data, v, alpha))
 	{
 		if (alpha >= 270 || alpha <= 90)
 		{
 			v.x += (float)(data->tilesize);
-			v.y += deltaY;
+			v.y += delta_y;
 		}
-		else	
+		else
 		{
 			v.x -= (float)(data->tilesize);
-			v.y -= deltaY;
+			v.y -= delta_y;
 		}
 	}
 	return (v);
 }
 
 static
-t_point	ft_findCollHorizontal(t_data *data, t_point h, float alpha)
+t_point	ft_find_col_horizontal(t_data *data, t_point h, float alpha)
 {
-	float	deltaX;
+	float	delta_x;
 
-	deltaX = ((float)(data->tilesize)) / tanf(ft_deg2rad(alpha));
-	while (ft_checkMapWE(data, h, alpha))
+	delta_x = ((float)(data->tilesize)) / tanf(ft_deg2rad(alpha));
+	while (ft_check_map_we(data, h, alpha))
 	{
 		if (alpha >= 180 && alpha <= 360)
 		{
-			h.x -= deltaX;
+			h.x -= delta_x;
 			h.y -= (float)(data->tilesize);
 		}
 		else
 		{
-			h.x += deltaX;
+			h.x += delta_x;
 			h.y += (float)(data->tilesize);
 		}
 	}
 	return (h);
 }
 
-t_ray	ft_castRay(t_data *d, float alpha)
+t_ray	ft_cast_ray(t_data *d, float alpha)
 {
 	t_point	plyr;
 	t_point	hor;
 	t_point	vet;
 	t_ray	ray;
 
-	alpha = ft_valAlpha(alpha);
-	plyr = ft_getPlayerPoint(d);
-	hor = ft_firstHitHorizontal(d, alpha);
-	vet = ft_firstHitVertical(d, alpha);
-	vet = ft_findCollVertical(d, vet, alpha);
-	hor = ft_findCollHorizontal(d, hor, alpha);
+	alpha = ft_val_alpha(alpha);
+	plyr = ft_get_player_point(d);
+	hor = ft_first_hit_horizontal(d, alpha);
+	vet = ft_first_hit_vertical(d, alpha);
+	vet = ft_find_col_vertical(d, vet, alpha);
+	hor = ft_find_col_horizontal(d, hor, alpha);
 	ray.dir = alpha;
-	if (ft_PointDist(plyr, vet) < ft_PointDist(plyr, hor))
+	if (ft_point_dist(plyr, vet) < ft_point_dist(plyr, hor))
 	{
 		ray.p = vet;
-		ray.dist = ft_PointDist(plyr, vet);
+		ray.dist = ft_point_dist(plyr, vet);
 		ray.offset = (int)(ray.p.y) % d->tilesize;
-		ray.flag = ft_getSide(0, alpha);
+		ray.flag = ft_get_side(0, alpha);
+		return (ray);
 	}
-	else
-	{
-		ray.p = hor;
-		ray.dist = ft_PointDist(plyr, hor);
-		ray.offset = (int)(ray.p.x) % d->tilesize;
-		ray.flag = ft_getSide(1, alpha);
-	}
+	ray.p = hor;
+	ray.dist = ft_point_dist(plyr, hor);
+	ray.offset = (int)(ray.p.x) % d->tilesize;
+	ray.flag = ft_get_side(1, alpha);
 	return (ray);
 }

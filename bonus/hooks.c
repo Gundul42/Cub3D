@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/01/31 11:59:22 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:31:17 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,16 @@ int	ft_sprite_hook(t_data *img)
 	ft_draw2dmap(img);
 	if (img->run)
 	{
-		ft_drawFovBonus(img);
+		ft_draw_fovBonus(img);
 		ft_updateSpriteData(img);
 		ft_showSprites(img);
 	}
 	mlx_put_image_to_window(img->mlx, img->win2, img->img2, 0, 0);
-	if (img->mMap)
+	if (img->m_map)
 		mlx_put_image_to_window(img->mlx, img->win2, img->img1,
 			img->win_x - (img->win_x / img->minimap * 1.5), img->minimap / 2);
 	if (img->mouse)
-		ft_mouseRotPlayer(img);
+		ft_mouse_rot_player(img);
 	if (img->chkdoor)
 		ft_opendoor(img, img->doorx, img->doory);
 	ftime(&end);
@@ -108,13 +108,13 @@ int	ft_key_hook_bonus(int code, t_data *data)
 	if (code == 32)
 		the_doors(data);
 	if (code == 109)
-		data->mMap = !data->mMap;
+		data->m_map = !data->m_map;
 	if (code == 114)
 		data->mouse = !data->mouse;
 	if (code == 43)
-		ft_MapZoom(data, 1);
+		ft_map_zoom(data, 1);
 	if (code == 35)
-		ft_MapZoom(data, 0);
+		ft_map_zoom(data, 0);
 	if (code == 119 || code == 65362)
 		ft_moveBonusPlayer(data, 1);		// W
 	if (code == 115 || code == 65364)
@@ -124,9 +124,9 @@ int	ft_key_hook_bonus(int code, t_data *data)
 	if (code == 97)
 		ft_moveBonusPlayer(data, 4);		// D
 	if (code == 65361)
-		ft_rotatePlayer(data, 0);	// cursor right
+		ft_rotate_player(data, 0);	// cursor right
 	if (code == 65363)
-		ft_rotatePlayer(data, 1);	// cursor left
+		ft_rotate_player(data, 1);	// cursor left
 	return (code);
 }
 

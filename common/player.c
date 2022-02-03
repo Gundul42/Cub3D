@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/01/26 13:37:43 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:52:32 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_initialize_player(t_data *d, size_t x, size_t y, char dir)
 		d->dir = 180.0;
 }
 
-void	ft_getPlayerPos(t_data *d, size_t *x, size_t *y)
+void	ft_get_player_pos(t_data *d, size_t *x, size_t *y)
 {
 	*x = d->px * d->tilesize;
 	*y = d->py * d->tilesize;
@@ -39,6 +39,7 @@ int	ft_whatishere(int map)
 		return (0);
 	return (1);
 }
+
 /* Flags:
  * 		1 = up
  * 		2 = down
@@ -49,7 +50,7 @@ int	ft_whatishere(int map)
  * 		then check data->map[xyz] == 0 ? Only if true, save the new
  * 		player position.
 */
-void	ft_movePlayer(t_data *data,int flag)
+void	ft_move_player(t_data *data, int flag)
 {
 	float	newx;
 	float	newy;
@@ -70,7 +71,7 @@ void	ft_movePlayer(t_data *data,int flag)
 	}
 }
 
-void	ft_mouseRotPlayer(t_data *data)
+void	ft_mouse_rot_player(t_data *data)
 {
 	if (fabsf(data->rotmouse) < 0.06)
 		data->rotmouse = 0.0;
