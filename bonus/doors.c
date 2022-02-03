@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 20:02:52 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 20:23:21 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_get_next_door(t_data *data, size_t *x, size_t *y)
 		*x = *x + 1;
 }
 
+/*
 static
 int	ft_check_more(t_data *data, size_t x, size_t y, int *rev)
 {
@@ -104,4 +105,4 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 	}
 	chk = ft_check_more(data, x, y, &rev);
 	return (0);
-}
+}*/
