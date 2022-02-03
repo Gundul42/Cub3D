@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 18:54:38 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 19:07:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,13 @@ int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 	return (0);
 }
 
-void	ft_draw_one_sprite(t_data *data, t_ray ray)
+static
+void	ft_draw_now(t_data *data, t_ray ray, float x, float wop)
 {
-	float	faktor;
-	float	wop;
-	float	x;
-	int		i;
-	int		sav;
+	int	i;
+	int	sav;
 
 	i = 0;
-	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
-	faktor *= data->tilesize / 64;
-	faktor *= (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_ray_correct(data, ray) * faktor;
-	if (!ft_check_ray_dir(data, &ray, &x))
-		return ;
-	x /= data->precision;
-	x -= wop / 2;
 	sav = 0;
 	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
 		[(size_t)ray.p.x / data->tilesize] > 0)
@@ -102,18 +92,19 @@ void	ft_draw_one_sprite(t_data *data, t_ray ray)
 	}
 }
 
-int	ft_get_sprite_pixel(t_data *data, int x, int y, int i)
+void	ft_draw_one_sprite(t_data *data, t_ray ray)
 {
-	char	*dst;
-	int		bpp;
-	int		ll;
-	int		endian;
+	float	faktor;
+	float	wop;
+	float	x;
 
-	if (x < 0 || x > (int)(data->tilesize) || y < 0 ||
-			y > (int)(data->tilesize))
-		return (0);
-	dst = mlx_get_data_addr(data->sprite[i], &bpp,
-			&ll, &endian);
-	dst += (y * ll + x * (bpp / 8));
-	return (*(unsigned int *)dst);
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
+	faktor *= (float)data->win_y / (float)data->tilesize;
+	wop = (float)data->dtpp / ft_ray_correct(data, ray) * faktor;
+	if (!ft_check_ray_dir(data, &ray, &x))
+		return ;
+	x /= data->precision;
+	x -= wop / 2;
+	ft_draw_now(data, ray, x, wop);
 }
