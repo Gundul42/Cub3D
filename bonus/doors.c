@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 20:23:21 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 20:37:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_get_next_door(t_data *data, size_t *x, size_t *y)
 		*x = *x + 1;
 }
 
-/*
 static
 int	ft_check_more(t_data *data, size_t x, size_t y, int *rev)
 {
@@ -90,10 +89,7 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 	if (ft_checktime(start, end) < 25)
 		return (0);
 	if (ft_player_in_door(data, &chk))
-	{
-		chk = 0;
 		return (0);
-	}
 	if (rev < 0 && ft_checktime(start, end) < 1500)
 		return (0);
 	else if (rev < 0)
@@ -105,4 +101,4 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 	}
 	chk = ft_check_more(data, x, y, &rev);
 	return (0);
-}*/
+}

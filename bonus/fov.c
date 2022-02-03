@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 10:07:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 19:52:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 20:36:05 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_player_in_door(t_data *data, int *chk)
 	if (data->doorx == (size_t)floorf(data->px) && (data->doory
 			== (size_t)floorf(data->py)))
 		return (1);
+	*chk = 1;
 	return (0);
 }
 
