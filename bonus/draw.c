@@ -6,11 +6,46 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 17:02:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 19:07:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
+
+static
+int	ft_arraycheck(t_data *data, int x, int i)
+{
+	if (x + i > 0 && x + i < (int)data->win_x)
+		return (1);
+	return (0);
+}
+
+static
+int	ft_no_ok(t_data *data, t_ray *ray, float *x, float dirmax)
+{
+	if (data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
+		return (1);
+	if (data->dir <= (float)data->fov && ray->dir
+		<= (float)data->fov * 1.5)
+		return (1);
+	if (data->dir >= dirmax && ray->dir >= 0.0
+		&& ray->dir <= (float)data->fov * 1.5)
+	{
+		*x = (float)data->fov / 2.0;
+		*x += (360.0 - data->dir) + ray->dir;
+		if (*x <= (float)data->fov * 1.5)
+			return (1);
+		return (0);
+	}
+	if (ray->dir >= dirmax && data->dir >= 0.0 && data->dir
+		<= (float)data->fov * 1.5)
+	{
+		*x = (float)data->fov / 2.0;
+		*x -= (360.0 - ray->dir) + data->dir;
+		return (1);
+	}
+	return (0);
+}
 
 int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 {
@@ -28,47 +63,18 @@ int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 		ok = 1;
 	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
 		return (1);
-	if (!ok && data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
+	if (!ok && ft_no_ok(data, ray, x, dirmax))
 		return (1);
-	if (!ok && data->dir <= (float)data->fov && ray->dir
-		<= (float)data->fov * 1.5)
-		return (1);
-	if (!ok && data->dir >= dirmax && ray->dir >= 0.0
-		&& ray->dir <= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x += (360.0 - data->dir) + ray->dir;
-		if (*x <= (float)data->fov * 1.5)
-			return (1);
-		return (0);
-	}
-	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir
-		<= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x -= (360.0 - ray->dir) + data->dir;
-		return (1);
-	}
 	return (0);
 }
 
-void	ft_draw_one_sprite(t_data *data, t_ray ray)
+static
+void	ft_draw_now(t_data *data, t_ray ray, float x, float wop)
 {
-	float	faktor;
-	float	wop;
-	float	x;
-	int		i;
-	int		sav;
+	int	i;
+	int	sav;
 
 	i = 0;
-	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
-	faktor *= data->tilesize / 64;
-	faktor *= (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_ray_correct(data, ray) * faktor;
-	if (!ft_check_ray_dir(data, &ray, &x))
-		return ;
-	x /= data->precision;
-	x -= wop / 2;
 	sav = 0;
 	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
 		[(size_t)ray.p.x / data->tilesize] > 0)
@@ -77,7 +83,7 @@ void	ft_draw_one_sprite(t_data *data, t_ray ray)
 	while (i < wop - sav)
 	{
 		ray.offset = (float)data->tilesize / wop * (float)i;
-		if (data->zbuf[(int)x + i] > ray.dist)
+		if (ft_arraycheck(data, x, i) && data->zbuf[(int)x + i] > ray.dist)
 		{
 			if (ray.flag != 2 || ray.dist > (float)data->tilesize / 2)
 				ft_draw_3d_sprite(data, ray, x + i + sav);
@@ -86,18 +92,19 @@ void	ft_draw_one_sprite(t_data *data, t_ray ray)
 	}
 }
 
-int	ft_get_sprite_pixel(t_data *data, int x, int y, int i)
+void	ft_draw_one_sprite(t_data *data, t_ray ray)
 {
-	char	*dst;
-	int		bpp;
-	int		ll;
-	int		endian;
+	float	faktor;
+	float	wop;
+	float	x;
 
-	if (x < 0 || x > (int)(data->tilesize) || y < 0 ||
-			y > (int)(data->tilesize))
-		return (0);
-	dst = mlx_get_data_addr(data->sprite[i], &bpp,
-			&ll, &endian);
-	dst += (y * ll + x * (bpp / 8));
-	return (*(unsigned int *)dst);
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
+	faktor *= (float)data->win_y / (float)data->tilesize;
+	wop = (float)data->dtpp / ft_ray_correct(data, ray) * faktor;
+	if (!ft_check_ray_dir(data, &ray, &x))
+		return ;
+	x /= data->precision;
+	x -= wop / 2;
+	ft_draw_now(data, ray, x, wop);
 }

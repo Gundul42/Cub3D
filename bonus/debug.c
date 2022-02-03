@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 09:43:46 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 15:16:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 19:07:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,20 @@ void	ft_update_sprite_data(t_data *data)
 		i++;
 	}
 	ft_sort_sprites(data);
+}
+
+int	ft_get_sprite_pixel(t_data *data, int x, int y, int i)
+{
+	char	*dst;
+	int		bpp;
+	int		ll;
+	int		endian;
+
+	if (x < 0 || x > (int)(data->tilesize) || y < 0 ||
+			y > (int)(data->tilesize))
+		return (0);
+	dst = mlx_get_data_addr(data->sprite[i], &bpp,
+			&ll, &endian);
+	dst += (y * ll + x * (bpp / 8));
+	return (*(unsigned int *)dst);
 }

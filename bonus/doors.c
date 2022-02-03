@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 13:07:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 20:37:29 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_dynopen(t_data *data, int rev, size_t x, size_t y)
 	}
 }
 
-static
 void	ft_get_next_door(t_data *data, size_t *x, size_t *y)
 {
 	*x = (size_t)floorf(data->px);
@@ -89,11 +88,8 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 	ftime(&end);
 	if (ft_checktime(start, end) < 25)
 		return (0);
-	if (ft_player_in_door(data))
-	{
-		chk = 0;
+	if (ft_player_in_door(data, &chk))
 		return (0);
-	}
 	if (rev < 0 && ft_checktime(start, end) < 1500)
 		return (0);
 	else if (rev < 0)
@@ -105,18 +101,4 @@ int	ft_opendoor(t_data *data, size_t x, size_t y)
 	}
 	chk = ft_check_more(data, x, y, &rev);
 	return (0);
-}
-
-void	the_doors(t_data *data)
-{
-	size_t	x;
-	size_t	y;
-
-	ft_get_next_door(data, &x, &y);
-	if (data->chkdoor || data->map[y][x] != 4 || data->doors[y][x])
-		return ;
-	data->doorx = x;
-	data->doory = y;
-	data->chkdoor = 1;
-	data->doors[y][x] = 2;
 }
