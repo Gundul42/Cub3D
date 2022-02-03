@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 10:07:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:32:52 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:51:00 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //draw field of view bonus style
 //
-void	ft_draw_fovBonus(t_data *data)
+void	ft_draw_fov_bonus(t_data *data)
 {
 	float	start;
 	int		max;
@@ -36,8 +36,8 @@ void	ft_draw_fovBonus(t_data *data)
 
 int	ft_player_in_door(t_data *data)
 {
-	if (data->doorx == (size_t)floorf(data->px) && (data->doory ==
-				(size_t)floorf(data->py)))
+	if (data->doorx == (size_t)floorf(data->px) && (data->doory
+			== (size_t)floorf(data->py)))
 		return (1);
 	return (0);
 }

@@ -6,21 +6,14 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:32:18 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:15:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
-/*
-** NEW SPRITE => implement data->sprite_max
-** assign different sprite abilities
-** depending on sprite code
-** on map
-**
-*/
 static
-void	ft_defSprite(t_data *data, int count)
+void	ft_def_sprite(t_data *data, int count)
 {
 	if (data->slist[count].code == 3)
 		data->slist[count].walkable = 1;
@@ -31,7 +24,7 @@ void	ft_defSprite(t_data *data, int count)
 }
 
 static
-int	ft_writeSpriteData(t_data *data, size_t x, size_t y, int count)
+int	ft_write_sprite_data(t_data *data, size_t x, size_t y, int count)
 {
 	t_point	cen;
 
@@ -39,32 +32,30 @@ int	ft_writeSpriteData(t_data *data, size_t x, size_t y, int count)
 	cen.y = (float)((y * data->tilesize) + data->tilesize / 2);
 	data->slist[count].p = cen;
 	data->slist[count].code = data->map[y][x];
-	ft_defSprite(data, count);
+	ft_def_sprite(data, count);
 	count++;
 	return (count);
 }
 
-static
-float	ft_findAlpha(t_data *data, int i)
+float	ft_find_alpha(t_data *data, int i)
 {
 	t_point	plyr;
 	float	alpha;
 
 	plyr = ft_get_player_point(data);
-        alpha =	ft_rad2deg(acosf((data->slist[i].p.x - plyr.x) /
-				data->slist[i].dist));
+	alpha = ft_rad2deg(acosf((data->slist[i].p.x - plyr.x)
+				/ data->slist[i].dist));
 	if (data->dir >= 180.0 || data->dir <= 360.0)
 		alpha = 360.0 - alpha;
 	if (plyr.y < data->slist[i].p.y)
 		alpha = 360.0 - alpha;
 	if (data->dir >= 270.0 && data->dir <= 90.0 && plyr.y > data->slist[i].p.y)
 		alpha = 360.0 + alpha;
-	return(alpha);
+	return (alpha);
 }
 
 //BubbleSort Sprites, long distances will be drawn first !
-static
-void	ft_sortSprites(t_data *data)
+void	ft_sort_sprites(t_data *data)
 {
 	t_sprite	s;
 	int			moved;
@@ -91,29 +82,11 @@ void	ft_sortSprites(t_data *data)
 	}
 }
 
-void	ft_updateSpriteData(t_data *data)
-{
-	t_point	plyr;
-	int		i;
-
-	i = 0;
-	plyr = ft_get_player_point(data);
-	while (i < data->snbr)
-	{
-		data->slist[i].dist = ft_point_dist(plyr, data->slist[i].p);
-		data->slist[i].dir = ft_findAlpha(data, i);
-		//printf("DIR %5.2f Pposx %5.2f  --  Pposy %5.2f\n", data->dir, plyr.x, plyr.y);
-		//ft_dumpSprite(data->slist[i]);
-		i++;
-	}
-	ft_sortSprites(data);
-}
-
-void	ft_initSprites(t_data *data)
+void	ft_init_sprites(t_data *data)
 {
 	size_t	x;
 	size_t	y;
-	int	count;
+	int		count;
 
 	if (!data->snbr)
 		the_end(data, "You need at least one Sprite on the map.\n", 1);
@@ -129,7 +102,7 @@ void	ft_initSprites(t_data *data)
 		while (x < data->mapx)
 		{
 			if (data->map[y][x] > 1 && data->map[y][x] <= data->sprite_max)
-				count = ft_writeSpriteData(data, x, y, count);
+				count = ft_write_sprite_data(data, x, y, count);
 			x++;
 		}
 		y++;

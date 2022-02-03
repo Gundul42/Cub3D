@@ -6,19 +6,100 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:26:08 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:12:00 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
 
 static
-int	ft_getSpritePixel(t_data *data, int x, int y, int i)
+float	ft_get_faktor(t_data *data, t_ray ray, int *i, int *sav)
+{
+	float	faktor;
+
+	*i = 0;
+	*sav = 0;
+	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
+	faktor *= data->tilesize / 64;
+	faktor *= (float)data->win_y / (float)data->tilesize;
+	faktor = (float)data->dtpp / ft_ray_correct(data, ray) * faktor;
+	return (faktor);
+}
+
+static
+int	ft_check_deeper(t_data *data, t_ray *ray, float dirmax)
+{
+	if (data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
+		return (1);
+	if (data->dir <= (float)data->fov && ray->dir <= (float)
+		data->fov * 1.5)
+		return (1);
+	return (0);
+}
+
+int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
+{
+	float	dirmax;
+	float	hfov;
+	int		ok;
+
+	ok = 0;
+	hfov = (float)data->fov / 2.0;
+	hfov += atanf((float)(data->tilesize) / (ray->dist));
+	dirmax = 360.0 - (float)data->fov * 1.5;
+	*x = hfov - data->dir - ray->dir;
+	if (data->dir <= dirmax && data->dir > (float)data->fov)
+		ok = 1;
+	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
+		return (1);
+	if (!ok && ft_check_deeper(data, ray, dirmax))
+		return (1);
+	if (!ok && data->dir >= dirmax && ray->dir >= 0.0
+		&& ray->dir <= (float)data->fov * 1.5)
+	{
+		*x = hfov;
+		*x += (360.0 - data->dir) + ray->dir;
+		if (*x <= (float)data->fov * 1.5)
+			return (1);
+		return (0);
+	}
+	return (0);
+}
+
+void	ft_draw_one_sprite(t_data *data, t_ray ray)
+{
+	float	wop;
+	float	x;
+	int		i;
+	int		sav;
+
+	wop = ft_get_faktor(data, ray, &i, &sav);
+	if (!ft_check_ray_dir(data, &ray, &x))
+		return ;
+	x /= data->precision;
+	x -= wop / 2;
+	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
+		[(size_t)ray.p.x / data->tilesize] > 0)
+		sav = data->dopen[(size_t)ray.p.y / data->tilesize]
+		[(size_t)ray.p.x / data->tilesize];
+	while (i < wop - sav)
+	{
+		ray.offset = (float)data->tilesize / wop * (float)i;
+		if (data->zbuf[(int)x + i] > ray.dist)
+		{
+			if (ray.flag != 2 || ray.dist > (float)data->tilesize / 2)
+				ft_draw_3d_sprite(data, ray, x + i + sav);
+		}
+		i++;
+	}
+}
+
+int	ft_get_sprite_pixel(t_data *data, int x, int y, int i)
 {
 	char	*dst;
-	int	bpp;
-	int	ll;
-	int	endian;
+	int		bpp;
+	int		ll;
+	int		endian;
 
 	if (x < 0 || x > (int)(data->tilesize) || y < 0 ||
 			y > (int)(data->tilesize))
@@ -27,146 +108,4 @@ int	ft_getSpritePixel(t_data *data, int x, int y, int i)
 			&ll, &endian);
 	dst += (y * ll + x * (bpp / 8));
 	return (*(unsigned int *)dst);
-}
-
-int	ft_checkRayDir(t_data *data, t_ray *ray, float *x)
-{
-	float	dirmax;
-	float	hfov;
-	int	ok;
-
-	ok = 0;
-	hfov = (float)data->fov / 2.0;
-	hfov +=  atanf((float)(data->tilesize) / ( ray->dist));
-	dirmax = 360.0 - (float)data->fov * 1.5;
-	*x = hfov;
-	*x -= data->dir - ray->dir;
-	//out of problem scope dirmax <= alpha <= 360
-	if (data->dir <= dirmax && data->dir > (float)data->fov)
-		ok = 1;
-	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
-	{
-//		printf(" OK\n");
-		return (1);
-	}
-	// PROBLEM ZONE both angles between dirmax and 360
-	if (!ok && data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
-	{
-//		printf("Match 1\n");
-		return (1);
-	}
-	// PROBLEM ZONE both angles between 0 and fov
-	if (!ok && data->dir <= (float)data->fov && ray->dir <= (float)data->fov * 1.5)
-	{
-//		printf("Match 2\n");
-		return (1);
-	}
-	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && data->dir >= dirmax && ray->dir >= 0.0 && ray->dir <= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x += (360.0 - data->dir) + ray->dir;
-//		printf("Match 3\n");
-		if (*x <= (float)data->fov * 1.5)
-			return (1);
-		return (0);
-	}
-	// BIG PROBLEM ZONE maxdir <= dir <= 360 BUT 0 <= ray.dir <= fov
-	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir <= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x -= (360.0 - ray->dir) + data->dir;
-//		printf("Match 4\n");
-		return (1);
-	}
-//	printf("NoMatch\n");
-	return (0);
-}
-
-float	ft_rayCorrect(t_data *data, t_ray ray)
-{
-	float	diff;
-
-	if (data->correct)
-		return (ray.dist);
-	diff = (data->dir - ray.dir);
-	return (ray.dist * cosf(ft_deg2rad(diff)));
-}
-
-void	ft_drawOneSprite(t_data *data, t_ray ray)
-{
-	float	height;
-	float	faktor;
-	float	wop;
-	float	x;
-	int	i;
-	int	sav;
-
-	i = 0;
-	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
-	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
-	faktor *= data->tilesize / 64;
-	height = faktor * (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
-	if (!ft_checkRayDir(data, &ray, &x))
-		return ;
-//	printf("x = %5.2f, ray %5.2f   dir %5.2f\n", x, ray.dir, data->dir);
-	x /= data->precision;
-	x -= wop / 2;
-//	printf("x = %5.2f wop = %5.2f code = %d\n\n", x, wop, ray.flag);
-	sav = 0;
-//	printf("%ld -- %ld\n", (size_t)ray.p.x / 256, (size_t)ray.p.y / 256);
-	if (ray.flag == 2 && data->doors[(size_t)ray.p.y / data->tilesize]
-			[(size_t)ray.p.x / data->tilesize] > 0)
-		sav = data->dopen[(size_t)ray.p.y / data->tilesize]
-				[(size_t)ray.p.x / data->tilesize];
-	while (i < wop - sav)
-	{
-		ray.offset = (float)data->tilesize / wop * (float)i;
-		if (data->zbuf[(int)x+i] > ray.dist)
-		{
-			if (ray.flag !=2 || ray.dist > (float)data->tilesize / 2)
-				ft_draw_3dSprite(data, ray, x + i + sav);
-		}
-		i++;
-	}
-}
-
-//draw one colom of the texture or only a part of it depending on distance
-void	ft_drawSprite(t_data *data, t_point p1, t_point p2, t_ray ray)
-{
-	float	y;
-	int	i;
-	int	col;
-
-	y = (float)(data->tilesize) / (p1.y - p2.y);
-	i = 0;
-	while ((int)p1.y > (int)p2.y)
-	{
-		col = ft_getSpritePixel(data, ray.offset, i * y, ray.flag);
-		if (col)
-			ft_draw_pixel(data, p1.x, p2.y + i, col);
-		i++;
-		p1.y -= 1.0;
-	}
-}
-
-void	ft_draw_3dSprite(t_data *data, t_ray ray, int i)
-{
-	float	wop;
-	float	height;
-	float	faktor;
-	t_point	p1;
-	t_point	p2;
-
-	//faktor = (float)(data->tilesize * 80) / (float)(data->win_x);
-	faktor = (float)(data->win_x) * 0.5 / 64.0 * (float)(data->tilesize / 64);
-	faktor *= data->tilesize / 64;
-	height = faktor * (float)data->win_y / (float)data->tilesize;
-	wop = (float)data->dtpp / ft_rayCorrect(data, ray) * height;
-	p1.y = (float)(data->win_y / 2) + wop / 2.0;
-	p2.y = (float)(data->win_y / 2) - wop / 2.0;
-	p1.x = i;
-	p2.x = i;
-	ft_drawSprite(data, p1, p2, ray);
 }
