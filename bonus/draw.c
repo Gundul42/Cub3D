@@ -6,11 +6,46 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 18:15:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 18:54:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
+
+static
+int	ft_arraycheck(t_data *data, int x, int i)
+{
+	if (x + i > 0 && x + i < (int)data->win_x)
+		return (1);
+	return (0);
+}
+
+static
+int	ft_no_ok(t_data *data, t_ray *ray, float *x, float dirmax)
+{
+	if (data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
+		return (1);
+	if (data->dir <= (float)data->fov && ray->dir
+		<= (float)data->fov * 1.5)
+		return (1);
+	if (data->dir >= dirmax && ray->dir >= 0.0
+		&& ray->dir <= (float)data->fov * 1.5)
+	{
+		*x = (float)data->fov / 2.0;
+		*x += (360.0 - data->dir) + ray->dir;
+		if (*x <= (float)data->fov * 1.5)
+			return (1);
+		return (0);
+	}
+	if (ray->dir >= dirmax && data->dir >= 0.0 && data->dir
+		<= (float)data->fov * 1.5)
+	{
+		*x = (float)data->fov / 2.0;
+		*x -= (360.0 - ray->dir) + data->dir;
+		return (1);
+	}
+	return (0);
+}
 
 int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 {
@@ -28,34 +63,7 @@ int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 		ok = 1;
 	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
 		return (1);
-	if (!ok && data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
-		return (1);
-	if (!ok && data->dir <= (float)data->fov && ray->dir
-		<= (float)data->fov * 1.5)
-		return (1);
-	if (!ok && data->dir >= dirmax && ray->dir >= 0.0
-		&& ray->dir <= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x += (360.0 - data->dir) + ray->dir;
-		if (*x <= (float)data->fov * 1.5)
-			return (1);
-		return (0);
-	}
-	if (!ok && ray->dir >= dirmax && data->dir >= 0.0 && data->dir
-		<= (float)data->fov * 1.5)
-	{
-		*x = hfov;
-		*x -= (360.0 - ray->dir) + data->dir;
-		return (1);
-	}
-	return (0);
-}
-
-static
-int	ft_arraycheck(t_data *data, int x, int i)
-{
-	if (x + i > 0 && x + i < (int)data->win_x)
+	if (!ok && ft_no_ok(data, ray, x, dirmax))
 		return (1);
 	return (0);
 }
@@ -84,7 +92,6 @@ void	ft_draw_one_sprite(t_data *data, t_ray ray)
 		[(size_t)ray.p.x / data->tilesize];
 	while (i < wop - sav)
 	{
-
 		ray.offset = (float)data->tilesize / wop * (float)i;
 		if (ft_arraycheck(data, x, i) && data->zbuf[(int)x + i] > ray.dist)
 		{
