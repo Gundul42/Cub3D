@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:28:23 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:59:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ void	ft_draw_sprite_pixel(t_data *data, int x, int y)
 					(dst + (i * ll + j * (bpp / 8))));
 			j++;
 		}
-		i++;
-	}
-}
-
-void	ft_destroy_sprites(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->sprite_max - 1)
-	{
-		if (data->sprite[i])
-			mlx_destroy_image(data->mlx, data->sprite[i]);
 		i++;
 	}
 }
