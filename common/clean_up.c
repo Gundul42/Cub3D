@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:08:48 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/03 15:59:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 17:06:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_cleanup_map(t_data *data)
 	size_t	y;
 
 	y = 0;
-
 	while (y < data->mapy)
 	{
 		if (data->map && data->map[y])

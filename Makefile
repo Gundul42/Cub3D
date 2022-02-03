@@ -2,6 +2,7 @@
 NAME		= cub3d
 BNAME		= b3d
 SRCS		= main.c
+HEADER		= header/bonus3d.h header/cube3d.h
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
 			common/col_rgb2hsv.c common/hooks.c common/hooks_2.c common/load_map.c \
 			common/player.c common/map2d.c common/maths.c \
@@ -44,8 +45,8 @@ all		:	$(NAME)
 
 bonus		:	$(BNAME)
 
-norme		:	$(SRC) $(COMMON) $(BONUS) $(LIBFT)
-	norminette $(SRC) $(COMMON) $(BONUS) $(LIBFT)
+norme		:	$(SRC) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
+	norminette $(SRC) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
 
 
 clean		:	$(LIBFT) $(MLX)

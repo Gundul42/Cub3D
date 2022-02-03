@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:29:11 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 15:15:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 17:07:46 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	ft_show_sprites(t_data *data);
 void	ft_init_sprites(t_data *data);
 void	ft_dump_sprite(t_sprite s);
 void	ft_update_sprite_data(t_data *data);
-void	ft_move_bonus_player(t_data *data,int flag);
+void	ft_move_bonus_player(t_data *data, int flag);
 int		ft_key_hook_bonus(int code, t_data *data);
 void	ft_draw_fov_bonus(t_data *data);
-int	ft_opendoor(t_data *data, size_t x, size_t y);
+int		ft_opendoor(t_data *data, size_t x, size_t y);
 void	the_doors(t_data *data);
-int	ft_player_in_door(t_data *data);
-int	ft_get_sprite_pixel(t_data *data, int x, int y, int i);
+int		ft_player_in_door(t_data *data);
+int		ft_get_sprite_pixel(t_data *data, int x, int y, int i);
 void	ft_sort_sprites(t_data *data);
 float	ft_find_alpha(t_data *data, int i);
 
