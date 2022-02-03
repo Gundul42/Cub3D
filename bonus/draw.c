@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 17:02:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/03 18:15:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 	return (0);
 }
 
+static
+int	ft_arraycheck(t_data *data, int x, int i)
+{
+	if (x + i > 0 && x + i < (int)data->win_x)
+		return (1);
+	return (0);
+}
+
 void	ft_draw_one_sprite(t_data *data, t_ray ray)
 {
 	float	faktor;
@@ -76,8 +84,9 @@ void	ft_draw_one_sprite(t_data *data, t_ray ray)
 		[(size_t)ray.p.x / data->tilesize];
 	while (i < wop - sav)
 	{
+
 		ray.offset = (float)data->tilesize / wop * (float)i;
-		if (data->zbuf[(int)x + i] > ray.dist)
+		if (ft_arraycheck(data, x, i) && data->zbuf[(int)x + i] > ray.dist)
 		{
 			if (ray.flag != 2 || ray.dist > (float)data->tilesize / 2)
 				ft_draw_3d_sprite(data, ray, x + i + sav);
