@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:08:48 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/02 22:09:59 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:59:15 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,26 @@ void	ft_free_tex(char **tex)
 	free(tex);
 }
 
+void	ft_destroy_sprites(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->sprite_max - 1)
+	{
+		if (data->sprite[i])
+			mlx_destroy_image(data->mlx, data->sprite[i]);
+		i++;
+	}
+}
+
 //clean up all allocated memory for the loaded map
 void	ft_cleanup_map(t_data *data)
 {
 	size_t	y;
 
 	y = 0;
+
 	while (y < data->mapy)
 	{
 		if (data->map && data->map[y])
@@ -55,11 +69,17 @@ void	ft_cleanup_map(t_data *data)
 int	the_end(t_data *data, char *txt, int err)
 {
 	if (err == 1)
-		write(2, "\nError\n", 7);
-	if (txt && txt != NULL)
+		write(2, "Error\n", 6);
+	if (txt && *txt)
 		write(2, txt, ft_strlen(txt));
 	if (err != 2)
 	{
+		if (data && data->zbuf)
+			free(data->zbuf);
+		if (data->slist)
+			free(data->slist);
+		if (data->sprite[0])
+			ft_destroy_sprites(data);
 		ft_cleanup_map(data);
 		mlx_destroy_image(data->mlx, data->img1);
 		mlx_destroy_image(data->mlx, data->img2);
@@ -70,5 +90,5 @@ int	the_end(t_data *data, char *txt, int err)
 		free(data);
 	}
 	exit (0);
-	return (0);
+	return (1);
 }
