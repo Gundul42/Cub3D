@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 19:54:36 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/04 10:21:22 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	ft_print_fps(t_data *img, int fps)
 {
 	char	*num;
 
+	ft_draw_map_bck(img);
+	ft_draw2dmap(img);
+	ft_map_heading(img);
 	num = ft_itoa(fps);
 	mlx_string_put(img->mlx, img->win2, 380, 10, 0, num);
 	mlx_string_put(img->mlx, img->win2, 400, 10, 0, "FPS");
@@ -49,9 +52,6 @@ int	ft_sprite_hook(t_data *img)
 	runner++;
 	mlx_do_sync(img->mlx);
 	ft_draw_background(img);
-		ft_draw_map_bck(img);
-	ft_draw2dmap(img);
-		ft_map_heading(img);
 	ft_draw_fov_bonus(img);
 	ft_update_sprite_data(img);
 	ft_show_sprites(img);
