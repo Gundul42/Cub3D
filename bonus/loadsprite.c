@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 16:05:38 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/04 13:26:33 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_load_sprite(t_data *data, char *path, int i)
 	int	y;
 
 	data->sprite[i] = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
-	if (!data->sprite)
+	if (data->spritei == NULL)
 	{
 		write(2, "Sprite texture file not found: ", 31);
 		write(2, path, ft_strlen(path));

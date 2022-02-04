@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 19:59:41 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/04 12:24:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_display_rules(void)
 	printf("- use arrow right & left to rotate\n");
 	printf("- hit M to display the minimap\n");
 	printf("- hit C to activate or deactivate the fisheye correction\n");
+	printf("- hit ESC to end the program\n");
 	printf(D"\n"D);
 }
 

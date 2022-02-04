@@ -6,11 +6,26 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 16:05:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/04 12:30:52 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bonus3d.h"
+
+static
+void	ft_display_rules(void)
+{
+	printf(GR"Welcome to the CreepyCastel:\n");
+	printf("- use W, A, S, D or arrow up & down to move\n");
+	printf("- use arrow right & left to rotate\n");
+	printf("- hit R to turn mouse move on/off\n");
+	printf("- hit M to turn minimap on/off\n");
+	printf("- hit + to zoom in the minimap\n");
+	printf("- hit # to zoom out the minimap\n");
+	printf("- hit SPACE to open a door\n");
+	printf("- hit ESC to end the program\n");
+	printf(D"\n"D);
+}
 
 t_data	*ft_blank(t_data *data)
 {
@@ -61,6 +76,7 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_get_ready(img);
 	ft_init_map(img, argv[1]);
+	ft_display_rules();
 	ft_load_sprites(img);
 	ft_init_sprites(img);
 	ft_draw_background(img);
