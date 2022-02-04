@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 19:39:01 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/02 21:59:01 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/04 12:11:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	ft_key_hook(int code, t_data *data)
 	if (code == 114)
 		data->mouse = !data->mouse;
 	if (code == 43)
-		ft_map_zoom(data, 1);
-	if (code == 35)
 		ft_map_zoom(data, 0);
+	if (code == 35)
+		ft_map_zoom(data, 1);
 	if (code == 119 || code == 65362)
 		ft_move_player(data, 1);
 	if (code == 115 || code == 65364)

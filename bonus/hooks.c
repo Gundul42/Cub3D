@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:16:10 by graja             #+#    #+#             */
-/*   Updated: 2022/02/04 10:21:22 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/04 12:12:05 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int	ft_key_hook_bonus(int code, t_data *data)
 	if (code == 114)
 		data->mouse = !data->mouse;
 	if (code == 43)
-		ft_map_zoom(data, 1);
-	if (code == 35)
 		ft_map_zoom(data, 0);
+	if (code == 35)
+		ft_map_zoom(data, 1);
 	if (code == 119 || code == 65362)
 		ft_move_bonus_player(data, 1);
 	if (code == 115 || code == 65364)
