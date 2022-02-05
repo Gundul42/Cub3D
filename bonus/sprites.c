@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 15:15:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 17:53:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_init_sprites(t_data *data)
 		the_end(data, "You need at least one Sprite on the map.\n", 1);
 	data->slist = ft_calloc(data->snbr, sizeof(t_sprite));
 	if (!data->slist)
-		the_end(data, "Out of Memory", 1);
+		the_end(data, "Sprite out of Memory", 1);
 	printf("! %d Sprites found on map\n", data->snbr);
 	count = 0;
 	y = 0;

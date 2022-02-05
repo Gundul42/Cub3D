@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/05 12:17:55 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 17:51:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_data {
 	size_t			mapx;
 	size_t			mapy;
 	void			*txt[4];
-	void			*sprite[4];
+	void			*sprite[6];
 	t_sprite		*slist;
 	int				snbr;
 	int				chkdoor;

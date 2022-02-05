@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 11:47:37 by graja             #+#    #+#             */
-/*   Updated: 2022/02/04 14:42:58 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 17:57:51 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,8 @@ void	ft_load_sprites(t_data *data)
 	ft_load_sprite(data, path2, 1);
 	ft_load_sprite(data, path3, 2);
 	ft_load_sprite(data, path4, 3);
+	path2 = ft_strdup("./sprites/256freddy.xpm");
+	path1 = ft_strdup("./sprites/256monk.xpm");
+	ft_load_sprite(data, path1, 4);
+	ft_load_sprite(data, path2, 5);
 }
