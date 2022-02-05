@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 09:43:46 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 19:07:24 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 12:57:23 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	ft_move_bonus_player(t_data *data, int flag)
 		ft_leftright(data, &newx, &newy, flag);
 	newx += data->px;
 	newy += data->py;
-	if (data->map[(size_t)(newy)][(size_t)(newx)] == 0
+	if (!ft_whatishere(data, newx, newy)
+		&& (data->map[(size_t)(newy)][(size_t)(newx)] == 0
 			|| data->map[(size_t)(newy)][(size_t)(newx)] == 2
 			|| data->map[(size_t)(newy)][(size_t)(newx)] == 3
-			|| data->doors[(size_t)(newy)][(size_t)(newx)] == 1)
+			|| data->doors[(size_t)(newy)][(size_t)(newx)] == 1))
 	{
 		data->px = newx;
 		data->py = newy;

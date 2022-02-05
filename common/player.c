@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 11:53:42 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 12:54:17 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_get_player_pos(t_data *d, size_t *x, size_t *y)
 	*y = d->py * d->tilesize;
 }
 
-static
 int	ft_whatishere(t_data *data, size_t x, size_t y)
 {
 	int	diag;
