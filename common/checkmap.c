@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:18:25 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:16:47 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 11:12:07 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	ft_check_head(t_data *data, int fd, int err, int chk)
 	free(alpha);
 	close(fd);
 	if (err)
-		the_end(data, "Invalid head of .cub map file\n", 1);
+		the_end(data, "Invalid map file\n", 1);
 }
