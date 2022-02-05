@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 13:19:32 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:43:42 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static void	ft_display_rules(void)
 	printf(GR"Welcome to the CreepyCastel:\n");
 	printf("- use W, A, S, D or arrow up & down to move\n");
 	printf("- use arrow right & left to rotate\n");
-	printf("- hit M to display the minimap\n");
-	printf("- hit C to activate or deactivate the fisheye correction\n");
+	printf("- hit R to turn mouse move on/off\n");
+	printf("- hit M to turn minimap on/off\n");
+	printf("- hit + to zoom in the minimap\n");
+	printf("- hit # to zoom out the minimap\n");
 	printf("- hit ESC to end the program\n");
 	printf(D"\n"D);
 }

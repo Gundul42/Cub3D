@@ -6,15 +6,26 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 19:42:31 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/05 14:54:05 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 19:22:49 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
+int	ft_skip_space(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == 32)
+		i++;
+	return (i);
+}
+
 void	ft_map2_mem(t_data *data, char *path, int fd, int skip)
 {
 	char	*line;
+	int		i;
 
 	skip = 0;
 	line = NULL;
@@ -24,13 +35,14 @@ void	ft_map2_mem(t_data *data, char *path, int fd, int skip)
 		the_end(data, "Couldn't malloc map array\n", 1);
 	while (get_next_line(fd, &line))
 	{
-		if (!skip)
+		if (!skip && (*line || *line == 32))
 		{
-			if (*line && (ft_isdigit(*line) || *line == 32))
+			i = ft_skip_space(line);
+			if (ft_isdigit(line[i]) == 1)
 				skip = 1;
 		}
 		if (skip > 0)
-				skip = ft_parse_map_line(data, line);
+			skip = ft_parse_map_line(data, line);
 		free(line);
 	}
 	free(line);

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/02/04 23:24:09 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:17:49 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,8 @@ int	ft_load_data(t_data *data, char *str, char **tex)
 }
 
 static
-void	ft_no_text(t_data *data, char **tex, char *path)
+void	ft_no_texture(t_data *data, char **tex, char *path)
 {
-	//if (!path)
-	//	path = "maps/test.cub";
 	write(2, "Wrong color or texture definition in: ", 39);
 	write(2, path, ft_strlen(path));
 	write(2, "\n", 1);
@@ -102,7 +100,7 @@ void	ft_read_head(t_data *data, char *path, int fd, int err)
 	free(line);
 	close(fd);
 	if (err)
-		ft_no_text(data, tex, path);
+		ft_no_texture(data, tex, path);
 	ft_load_textures(data, tex, 0);
 	ft_free_tex(tex);
 }

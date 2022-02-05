@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:00:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:42:06 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:26:28 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_initdoors(t_data *data)
 }
 
 static
-void	ft_open_map(t_data *data, char *path)
+void	ft_open_map(t_data *data, char *path, int i)
 {
 	int		fd;
 	char	*line;
@@ -44,9 +44,10 @@ void	ft_open_map(t_data *data, char *path)
 	fd = ft_open_file(data, path);
 	while (get_next_line(fd, &line))
 	{
-		if (!skip)
+		if (!skip && (*line || *line == 32))
 		{
-			if (*line && (ft_isdigit(*line) || *line == 32))
+			i = ft_skip_space(line);
+			if (ft_isdigit(line[i]) == 1)
 				skip = 1;
 		}
 		if (skip)
@@ -74,10 +75,7 @@ void	ft_dump_map(t_data *data)
 		while (x < data->mapx)
 		{
 			if (data->map[y][x] == -1)
-			{
 				printf(RED"@"D);
-				data->map[y][x] = 0;
-			}
 			else if (data->map[y][x] == 0)
 				printf(BLACK"%d"D, data->map[y][x]);
 			else if (data->map[y][x] != 1)
@@ -115,7 +113,7 @@ void	ft_init_map(t_data *data, char *path)
 	fd = ft_open_file(data, path);
 	ft_check_head(data, fd, 0, 0);
 	ft_read_head(data, path, 0, 0);
-	ft_open_map(data, path);
+	ft_open_map(data, path, 0);
 	ft_map2_mem(data, path, 0, 0);
 	ft_dump_map(data);
 	ft_initdoors(data);

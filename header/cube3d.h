@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/05 17:51:38 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/05 19:30:12 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int		ft_parse_map_line(t_data *data, char *line);
 int		the_end_hook(int code, t_data *d);
 int		ft_quad(t_data *data);
 int		ft_whatishere(t_data *data, size_t x, size_t y);
+int		ft_skip_space(char *line);
 float	ft_deg2rad(float deg);
 float	ft_rad2deg(float rad);
 float	ft_point_dist(t_point a, t_point b);

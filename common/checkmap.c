@@ -6,14 +6,14 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:18:25 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 11:12:07 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 17:09:05 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
 static
-int	ft_isallowed(char *c)
+int	ft_is_texture(char *c)
 {
 	int	len;
 
@@ -45,7 +45,7 @@ int	ft_do_checks(char *alpha, char *line)
 		return (0);
 	if (ft_isdigit(*bck))
 		return (-1);
-	if (ft_isallowed(bck) && !alpha[(int)(*bck)])
+	if (ft_is_texture(bck) && !alpha[(int)(*bck)])
 	{
 		alpha[(int)(*bck)] = 1;
 		return (1);
