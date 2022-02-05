@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 19:42:31 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/02 19:44:16 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 14:54:05 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_map2_mem(t_data *data, char *path, int fd, int skip)
 {
 	char	*line;
 
+	skip = 0;
 	line = NULL;
 	fd = ft_open_file(data, path);
 	data->map = ft_calloc(data->mapy, sizeof(int *));
