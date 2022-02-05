@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movePlayer.c                                       :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:13:07 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:48:54 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/05 11:35:54 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,21 @@ void	ft_rotate_player(t_data *data, int flag)
 		data->dir -= 360.0;
 	if (data->dir < 0)
 		data->dir += 360.0;
+}
+
+/* get player quadrant in which it is moving
+ * 270 - 359	= 0
+ * 0 - 89	= 1
+ * 90 - 179	= 2
+ * 180 - 269	= 3
+ */
+int	ft_quad(t_data *data)
+{
+	if (data->dir >= 270 && data->dir < 360)
+		return (0);
+	if (data->dir >= 0 && data->dir < 90)
+		return (1);
+	if (data->dir >= 90 && data->dir < 180)
+		return (2);
+	return (3);
 }
