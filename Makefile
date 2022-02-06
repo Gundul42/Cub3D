@@ -1,6 +1,6 @@
 
-NAME		= cub3d
-BNAME		= b3d
+NAME		= cub3D
+BNAME		= bonus
 SRCS		= main.c
 HEADER		= header/bonus3d.h header/cube3d.h
 COMMON		= common/colors.c common/draw.c common/col_hsv2rgb.c \
