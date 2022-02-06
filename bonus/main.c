@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 17:50:07 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/06 15:37:00 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,35 @@ void	ft_get_ready(t_data *data)
 		the_end(data, "Out of Memory\n", 1);
 }
 
+static
+void	ft_check_cub(int argc, char **argv)
+{
+	int		len;
+
+	if (argc > 2)
+		exit(1);
+	else if (argc == 1)
+		return ;
+	len = ft_strlen(argv[1]);
+	if (len < 5)
+		exit(1);
+	if (ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
+	{
+		write(2, "Error: .cub expected\n", 21);
+		exit(1);
+	}
+	return ;
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_data	*img;
 
+	ft_check_cub(argc, argv);
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
-	if (!img->mlx || argc > 2)
+	if (!img->mlx)
 		return (1);
 	ft_get_ready(img);
 	ft_init_map(img, argv[1]);
