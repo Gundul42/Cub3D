@@ -1,11 +1,6 @@
 ERROR ENCOUTERED OPEN*********************************************************
+flo- let the minimap rule in the mandatory or not ?
 
-flo - Immediately close of the window with the X generate a seg. fault
-=> corrected with the_end_hook and err == 2 aber leak to be checked (with & without err == 2)
-
-
-flo - Mandatory part: remain stuck after hitting a wall
-+ bonus
 
 
 
@@ -27,5 +22,10 @@ flo	- if map begin so, the 1st line is NOT loaded
 1011010001110000000000001001
 => done (18.01)
 
+flo - Immediately close of the window with the X generate a seg. fault
+=> corrected with the_end_hook and err == 2 aber leak to be checked (with & without err == 2)
+
+flo - Mandatory part: remain stuck after hitting a wall
++ bonus
 
 QUESTION / NOTICE / IDEAS*******************************************************

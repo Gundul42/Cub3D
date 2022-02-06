@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:02:30 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 21:53:17 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:29:53 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ void	ft_destroy_textures(t_data *d)
 	}
 }
 
+static void	ft_display_err(char **path, int i)
+{
+	write(2, "Problem with : ", 14);
+	write(2, path[i], ft_strlen(path[i]));
+	write(2, "\n", 1);
+}
+
 void	ft_load_textures(t_data *d, char **path, int i)
 {
 	int	x;
@@ -51,7 +58,7 @@ void	ft_load_textures(t_data *d, char **path, int i)
 		{
 			if (path && path[i] != NULL)
 			{
-				write(2, path[i], ft_strlen(path[i]));
+				ft_display_err(path, i);
 				ft_free_tex(path);
 			}
 			the_end(d, "Fix the textures files and run the program again\n", 1);
