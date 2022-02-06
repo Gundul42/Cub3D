@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 19:43:42 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:13:32 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,32 @@ void	ft_get_ready(t_data *data)
 	data->addr = data->addr1;
 }
 
-static int	ft_check_cub(int argc, char **argv)
+static
+void	ft_check_cub(int argc, char **argv)
 {
 	int		len;
 
-	if (argc == 1)
-		return (0);
+	if (argc > 2)
+		exit(1);
+	else if (argc == 1)
+		return ;
 	len = ft_strlen(argv[1]);
 	if (ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
 	{
-		write(2, "Error\n", 6);
-		the_end(NULL, "Wrong map extention: .cub expected\n", 2);
+		write(2, "Error: .cub expected\n", 21);
+		exit (1);
 	}
-	return (0);
+	return ;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	*img;
 
+	ft_check_cub(argc, argv);
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
-	if (!img->mlx || argc > 2 || ft_check_cub(argc, argv) == 1)
+	if (!img->mlx)
 		return (1);
 	ft_get_ready(img);
 	ft_init_map(img, argv[1]);
