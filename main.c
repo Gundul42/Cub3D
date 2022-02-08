@@ -44,6 +44,7 @@ t_data	*ft_blank(t_data *d)
 	d->precision = (float)d->fov / (float)d->win_x;
 	d->part = 1;
 	d->sprite_max = 0;
+	d->over_sprite = 0;
 	return (d);
 }
 

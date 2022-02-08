@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/02/06 18:58:52 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:18:03 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	ft_write_cell(t_data *data, int x, int y, char c)
 		if (c - '0' > 1 && c - '0' <= data->sprite_max + 1)
 			data->snbr++;
 		if (c - '0' > data->sprite_max + 1)
+		{
+			data->over_sprite = 1;
 			return (-1);
+		}
 	}
 	return (1);
 }

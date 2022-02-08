@@ -45,6 +45,7 @@ t_data	*ft_blank(t_data *data)
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->part = 2;
 	data->sprite_max = 7;
+	data->over_sprite = 0;
 	return (data);
 }
 

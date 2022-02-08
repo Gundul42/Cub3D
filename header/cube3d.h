@@ -135,6 +135,7 @@ typedef struct s_data {
 	float			*zbuf;
 	int				part;
 	int				sprite_max;
+	int				over_sprite;
 }	t_data;
 
 int		ft_loop_hook(t_data *img);
