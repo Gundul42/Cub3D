@@ -1,11 +1,11 @@
 
 
 
-WE textures/256mosscobble.xpm
+         WE                textures/256mosscobble.xpm
 
-NO textures/256cobble.xpm
+ NO                                         textures/256cobble.xpm
 
-SO textures/256mosscobble.xpm
+                                                 NO    textures/256mosscobble.xpm
 
 EA textures/256cobble.xpm
 
@@ -18,5 +18,5 @@ F 127,0,0
 
 
 111111111111111111111111111111
-1001          S
-111
+1W041           
+11111                        
