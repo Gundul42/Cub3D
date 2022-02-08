@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:57 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 15:22:46 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/06 18:58:52 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,16 @@ int	ft_parse_map_line(t_data *data, char *line)
 {
 	static int	y = 0;
 	static int	plyr = 0;
+	size_t		i;
 
 	if (!*line || ft_strlen(line) < 3 || ft_isalpha(*line))
 		return (-1);
 	data->map[y] = ft_calloc(data->mapx, sizeof(int));
 	if (!data->map[y])
 		return (-1);
+	i = 0;
+	while (i < data->mapx)
+		data->map[y][i++] = -2;
 	plyr = ft_readline(data, line, y, plyr);
 	y++;
 	if (plyr < 0)

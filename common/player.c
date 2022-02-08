@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 12:54:17 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 10:38:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_whatishere(t_data *data, size_t x, size_t y)
 	int	dir;
 
 	dir = ft_quad(data);
-	diag = abs((int)data->px - x) + abs((int)data->py - y);
+	diag = abs((int)data->px - (int)x) + abs((int)data->py - (int)y);
 	if (!x || !y || data->map[y][x] == 1 || data->map[y][x] == 5)
 		return (1);
 	if (diag != 2)
