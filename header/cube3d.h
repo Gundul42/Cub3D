@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/08 16:20:09 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 18:16:57 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-
-# ifndef CUBEBONUS
-#  define CUBEBONUS 0
-# endif
 
 # define BLACK "\033[0;30m"
 # define RED "\033[0;31m"
