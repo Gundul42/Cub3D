@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/08 15:17:55 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:20:09 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void	ft_draw_tex(t_data *data, t_point p1, t_point p2, t_ray ray);
 void	ft_check_closed_map(t_data *data);
 void	ft_map_heading(t_data *data);
 void	ft_cleanup_map(t_data *data);
+void	ft_val_player_pos(t_data *data);
 t_data	*ft_blank(t_data *data);
 t_color	hsv2rgb(t_hsv in);
 t_color	ft_rgb2col(int t, int r, int g, int b);

@@ -45,8 +45,8 @@ all		:	$(NAME)
 
 bonus		:	$(BNAME)
 
-norme		:	$(SRC) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
-	norminette $(SRC) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
+norme		:	$(SRCS) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
+	norminette $(SRCS) $(COMMON) $(BONUS) $(LIBFT) $(HEADER)
 
 
 clean		:	$(LIBFT) $(MLX)

@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:13:07 by graja             #+#    #+#             */
-/*   Updated: 2022/02/05 11:35:54 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 16:09:38 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,37 @@ void	ft_rotate_player(t_data *data, int flag)
 		data->dir -= 360.0;
 	if (data->dir < 0)
 		data->dir += 360.0;
+}
+
+/* Flags:
+ * 		1 = up
+ * 		2 = down
+ * 		3 = right
+ * 		4 = left
+ *
+ * 		first save player position, then calculate the new positions
+ * 		then check data->map[xyz] == 0 ? Only if true, save the new
+ * 		player position.
+*/
+void	ft_move_player(t_data *data, int flag)
+{
+	float	newx;
+	float	newy;
+
+	newx = data->px;
+	newy = data->py;
+	data->run = 1;
+	if (flag == 1 || flag == 2)
+		ft_forbac(data, &newx, &newy, flag);
+	if (flag == 3 || flag == 4)
+		ft_leftright(data, &newx, &newy, flag);
+	newx += data->px;
+	newy += data->py;
+	if (!ft_whatishere(data, newx, newy))
+	{
+		data->px = newx;
+		data->py = newy;
+	}
 }
 
 /* get player quadrant in which it is moving

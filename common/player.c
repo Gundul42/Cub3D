@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 08:38:30 by graja             #+#    #+#             */
-/*   Updated: 2022/02/08 10:38:25 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 16:28:25 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,35 +54,17 @@ int	ft_whatishere(t_data *data, size_t x, size_t y)
 	return (0);
 }
 
-/* Flags:
- * 		1 = up
- * 		2 = down
- * 		3 = right
- * 		4 = left
- *
- * 		first save player position, then calculate the new positions
- * 		then check data->map[xyz] == 0 ? Only if true, save the new
- * 		player position.
-*/
-void	ft_move_player(t_data *data, int flag)
+void	ft_val_player_pos(t_data *data)
 {
-	float	newx;
-	float	newy;
+	size_t	x;
+	size_t	y;
 
-	newx = data->px;
-	newy = data->py;
-	data->run = 1;
-	if (flag == 1 || flag == 2)
-		ft_forbac(data, &newx, &newy, flag);
-	if (flag == 3 || flag == 4)
-		ft_leftright(data, &newx, &newy, flag);
-	newx += data->px;
-	newy += data->py;
-	if (!ft_whatishere(data, newx, newy))
-	{
-		data->px = newx;
-		data->py = newy;
-	}
+	x = (size_t)data->px;
+	y = (size_t)data->py;
+	if (!x || !y || (data->map[y][x - 1] == -2)
+		|| (data->map[y][x + 1] == -2) || (data->map[y + 1][x] == -2)
+		|| (data->map[y - 1][x] == -2))
+		the_end(data, "Invalid player position\n", 1);
 }
 
 void	ft_mouse_rot_player(t_data *data)
