@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/02/06 15:38:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 15:18:25 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_data	*ft_blank(t_data *d)
 	d->precision = (float)d->fov / (float)d->win_x;
 	d->part = 1;
 	d->sprite_max = 0;
+	d->over_sprite = 0;
 	return (d);
 }
 

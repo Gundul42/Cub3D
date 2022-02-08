@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/06 20:55:56 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:17:55 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_data {
 	float			*zbuf;
 	int				part;
 	int				sprite_max;
+	int				over_sprite;
 }	t_data;
 
 int		ft_loop_hook(t_data *img);

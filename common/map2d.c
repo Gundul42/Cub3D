@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 19:42:31 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/07 13:29:10 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 15:17:46 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_map2_mem(t_data *data, char *path, int fd, int skip)
 	}
 	free(line);
 	close(fd);
-	if (skip < 0 || data->px == 0 || data->py == 0)
+	if (skip < 0 || data->px == 0 || data->py == 0 || data->over_sprite == 1)
 		the_end(data, "Map NOK\n", 1);
 }
 

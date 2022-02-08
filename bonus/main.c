@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/06 15:37:00 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 15:39:13 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_data	*ft_blank(t_data *data)
 	data->precision = (float)data->fov / (float)data->win_x;
 	data->part = 2;
 	data->sprite_max = 7;
+	data->over_sprite = 0;
 	return (data);
 }
 
@@ -85,7 +86,6 @@ void	ft_check_cub(int argc, char **argv)
 	}
 	return ;
 }
-
 
 int	main(int argc, char **argv)
 {
