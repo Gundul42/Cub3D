@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:21 by graja             #+#    #+#             */
-/*   Updated: 2022/02/03 19:07:15 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/08 20:46:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_no_ok(t_data *data, t_ray *ray, float *x, float dirmax)
 	if (data->dir >= dirmax && (data->dir - ray->dir <= dirmax))
 		return (1);
 	if (data->dir <= (float)data->fov && ray->dir
-		<= (float)data->fov * 1.5)
+		<= (data->dir + (float)data->fov * 0.75))
 		return (1);
 	if (data->dir >= dirmax && ray->dir >= 0.0
 		&& ray->dir <= (float)data->fov * 1.5)
@@ -59,6 +59,7 @@ int	ft_check_ray_dir(t_data *data, t_ray *ray, float *x)
 	dirmax = 360.0 - (float)data->fov * 1.5;
 	*x = hfov;
 	*x -= data->dir - ray->dir;
+	//printf("dir = %5.2f, raydir = %5.2f, hfox1.5 = %5.2f\n", data->dir, ray->dir, hfov * 1.5);
 	if (data->dir <= dirmax && data->dir > (float)data->fov)
 		ok = 1;
 	if (ok && fabsf(data->dir - ray->dir) <= hfov * 1.5)
