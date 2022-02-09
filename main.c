@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:43:51 by graja             #+#    #+#             */
-/*   Updated: 2022/02/08 18:18:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/09 16:02:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ void	ft_check_cub(int argc, char **argv)
 	else if (argc == 1)
 		return ;
 	len = ft_strlen(argv[1]);
-	if (len < 5)
-		exit(1);
-	if (ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
+	if (len < 5 || ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
 	{
 		write(2, "Error: .cub expected\n", 21);
 		exit (1);
@@ -87,11 +85,13 @@ int	main(int argc, char **argv)
 {
 	t_data	*img;
 
+	if (argc > 2)
+		the_end(NULL, "Error\nToo many arguments\n", 2);
 	ft_check_cub(argc, argv);
 	img = ft_blank(NULL);
 	img->mlx = mlx_init();
 	if (!img->mlx)
-		return (1);
+		return (-1);
 	ft_get_ready(img);
 	ft_init_map(img, argv[1]);
 	ft_display_rules();

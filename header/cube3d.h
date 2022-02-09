@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:53:42 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/08 18:16:57 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/09 14:57:04 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int		ft_check_map_ns(t_data *data, t_point p, float alpha);
 int		ft_check_map_we(t_data *data, t_point p, float alpha);
 int		ft_make_trgb(int t, int r, int g, int b);
 int		ft_make_color(t_color src);
-int		ft_str2col(char *str, t_color *mycol);
+int		ft_str2col(char *str, t_color *mycol, int i);
 int		ft_key_hook(int code, t_data *data);
 int		ft_get_side(int flag, float alpha);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);

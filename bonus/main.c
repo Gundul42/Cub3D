@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/08 16:40:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/09 16:03:16 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,11 @@ void	ft_check_cub(int argc, char **argv)
 	int		len;
 
 	if (argc > 2)
-		exit(1);
+		the_end(NULL, "Error\nToo many arguments\n", 2);
 	else if (argc == 1)
 		return ;
 	len = ft_strlen(argv[1]);
-	if (len < 5)
-		exit(1);
-	if (ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
+	if (len < 5 || ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
 	{
 		write(2, "Error: .cub expected\n", 21);
 		exit(1);

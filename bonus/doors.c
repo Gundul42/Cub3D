@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:45:22 by graja             #+#    #+#             */
-/*   Updated: 2022/02/04 12:07:30 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/09 17:42:24 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,9 @@ static
 void	ft_dynopen(t_data *data, int rev, size_t x, size_t y)
 {
 	if (!rev)
-	{
-		if ((float)data->dopen[y][x] < (float)data->tilesize * 2.5)
-			data->dopen[y][x] += 6;
-		else
-			data->dopen[y][x] *= 2;
-	}
+		data->dopen[y][x] += 6;
 	else
-	{
-		if (data->dopen[y][x] < (int)data->tilesize * 2.5)
-			data->dopen[y][x] -= 6;
-		else
-			data->dopen[y][x] /= 2;
-	}
+		data->dopen[y][x] -= 6;
 }
 
 void	ft_get_next_door(t_data *data, size_t *x, size_t *y)
@@ -59,7 +49,7 @@ static
 int	ft_check_more(t_data *data, size_t x, size_t y, int *rev)
 {
 	ft_dynopen(data, *rev, x, y);
-	if (data->dopen[y][x] > (int)data->tilesize * 5)
+	if (data->dopen[y][x] > (int)data->tilesize)
 	{
 		*rev = -1;
 		data->doors[y][x] = 1;

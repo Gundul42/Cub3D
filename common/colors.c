@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:18:45 by graja             #+#    #+#             */
-/*   Updated: 2022/02/02 19:18:11 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:56:42 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int	ft_make_color(t_color src)
 	return (col);
 }
 
-int	ft_str2col(char *str, t_color *mycol)
+int	ft_str2col(char *str, t_color *mycol, int i)
 {
 	char	*bck;
 	int		col[3];
-	int		i;
 
-	i = 0;
 	while (i < 3)
 	{
 		bck = str;
@@ -44,7 +42,7 @@ int	ft_str2col(char *str, t_color *mycol)
 			return (-1);
 		if (i < 2 && !*bck)
 			return (-1);
-		if (*bck && *bck == ',')
+		if (i != 2 && *bck && *bck == ',')
 			*bck = '\0';
 		col[i] = ft_atoi(str);
 		if (col[i] < 0 || col[i] > 255)
@@ -52,6 +50,8 @@ int	ft_str2col(char *str, t_color *mycol)
 		str = bck + 1;
 		i++;
 	}
+	if (ft_strlen(bck))
+		return (-1);
 	*mycol = ft_rgb2col(0, col[0], col[1], col[2]);
 	return (ft_make_trgb(0, col[0], col[1], col[2]));
 }

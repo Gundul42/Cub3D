@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/02/06 12:17:20 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/09 15:31:01 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_load_color(t_data *data, char *str, int flag)
 	str++;
 	while (*str == 32)
 		str++;
-	col = ft_str2col(str, &mycol);
+	col = ft_str2col(str, &mycol, 0);
 	if (col < 0)
-		return (1);
+		return (-1);
 	if (flag)
 		data->cfloor_near = mycol;
 	else
@@ -51,7 +51,7 @@ int	ft_load_data(t_data *data, char *str, char **tex)
 	static int	err = 0;
 
 	if (err)
-		return (1);
+		return (err);
 	if (!ft_strncmp(str, "F ", 2))
 		err = ft_load_color(data, str, 1);
 	if (!ft_strncmp(str, "C ", 2))
@@ -68,20 +68,25 @@ int	ft_load_data(t_data *data, char *str, char **tex)
 }
 
 static
-void	ft_no_texture(t_data *data, char **tex, char *path)
+void	ft_no_texture(t_data *data, char **tex, char *path, int err)
 {
-	if (path)
+	if (path && err > 0)
 	{
-		write(2, "Wrong color or texture definition in: ", 39);
+		write(2, "Wrong texture path: ", 39);
 		write(2, path, ft_strlen(path));
-		write(2, "\n", 1);
+		write(2, " <<<\n", 1);
 		ft_free_tex(tex);
-		the_end(data, "Please correct the textures files\n", 1);
+		the_end(data, "Please correct the header part in .cub file\n", 1);
 	}
-	else
+	else if (!path && err > 0)
 	{
 		ft_free_tex(tex);
-		the_end(data, "Please give a valid texture path\n", 1);
+		the_end(data, "Please correct the header part in .cub file\n", 1);
+	}
+	else if (err < 0)
+	{
+		ft_free_tex(tex);
+		the_end(data, "Invalid color definition in .cub file\n", 1);
 	}
 }
 
@@ -108,7 +113,7 @@ void	ft_read_head(t_data *data, char *path, int fd, int err)
 	free(line);
 	close(fd);
 	if (err)
-		ft_no_texture(data, tex, path);
+		ft_no_texture(data, tex, path, err);
 	ft_load_textures(data, tex, 0);
 	ft_free_tex(tex);
 }
