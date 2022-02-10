@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:13:55 by graja             #+#    #+#             */
-/*   Updated: 2022/02/09 16:03:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/09 18:36:35 by flormich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_check_cub(int argc, char **argv)
 	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strnstr(argv[1] + len - 4, ".cub", 4) == NULL)
 	{
-		write(2, "Error: .cub expected\n", 21);
+		write(2, "Error\n.cub expected\n", 21);
 		exit(1);
 	}
 	return ;

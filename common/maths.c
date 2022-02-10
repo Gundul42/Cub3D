@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:20:08 by graja             #+#    #+#             */
-/*   Updated: 2022/02/08 20:00:21 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/10 07:44:07 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int	ft_get_side(int flag, float alpha)
 	if (!flag)
 	{
 		if (alpha < 270 && alpha > 90)
-			return (2);
+			return (0);
 		else
-			return (3);
+			return (1);
 	}
 	if (alpha > 0 && alpha < 180)
-		return (1);
+		return (2);
 	else
-		return (0);
+		return (3);
 }

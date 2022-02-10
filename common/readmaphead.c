@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/02/09 15:31:01 by graja            ###   ########.fr       */
+/*   Updated: 2022/02/10 09:25:14 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	ft_load_data(t_data *data, char *str, char **tex)
 	if (!ft_strncmp(str, "C ", 2))
 		err = ft_load_color(data, str, 0);
 	if (!ft_strncmp(str, "NO ", 3))
-		err = ft_set_textures(tex, str, 1);
-	if (!ft_strncmp(str, "SO ", 3))
-		err = ft_set_textures(tex, str, 0);
-	if (!ft_strncmp(str, "EA ", 3))
 		err = ft_set_textures(tex, str, 2);
-	if (!ft_strncmp(str, "WE ", 3))
+	if (!ft_strncmp(str, "SO ", 3))
 		err = ft_set_textures(tex, str, 3);
+	if (!ft_strncmp(str, "EA ", 3))
+		err = ft_set_textures(tex, str, 0);
+	if (!ft_strncmp(str, "WE ", 3))
+		err = ft_set_textures(tex, str, 1);
 	return (err);
 }
 

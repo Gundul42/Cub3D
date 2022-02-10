@@ -6,7 +6,7 @@
 #    By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 12:40:34 by graja             #+#    #+#              #
-#    Updated: 2022/02/09 12:41:35 by graja            ###   ########.fr        #
+#    Updated: 2022/02/10 08:07:42 by graja            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ BONUS		= bonus/main.c bonus/spritecast.c bonus/draw.c bonus/hooks.c \
 		  bonus/sprites.c bonus/fov.c bonus/debug.c bonus/loadsprite.c \
 		  bonus/doors.c
 CC		= gcc
-FLAGS	= -Wall -Wextra -Werror -g
+FLAGS	= -Wall -Wextra -Werror
 LIBFT	= libft
 FLGFT	= -Llibft -lft
 APLFLG	= -L /usr/X11/lib -lXext -lX11 -lm
