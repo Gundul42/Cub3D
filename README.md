@@ -8,6 +8,7 @@ a 42-School 3D raycasting project featuring Wolfenstein3D
 <ul>
 	<li> gcc </li>
 	<li> make </li>
+	<li> build-essential </li>
 	<li> libbsd-dev </li>
 	<li> libx11-dev </li>
 	<li> libxext-dev</li>
