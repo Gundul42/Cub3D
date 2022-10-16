@@ -6,7 +6,7 @@
 /*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:17:02 by graja             #+#    #+#             */
-/*   Updated: 2022/02/10 09:25:14 by graja            ###   ########.fr       */
+/*   Updated: 2022/10/16 14:57:06 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_no_texture(t_data *data, char **tex, char *path, int err)
 {
 	if (path && err > 0)
 	{
-		write(2, "Wrong texture path: ", 39);
+		write(2, "Wrong texture path: ", 20);
 		write(2, path, ft_strlen(path));
 		write(2, " <<<\n", 1);
 		ft_free_tex(tex);
